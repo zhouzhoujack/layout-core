@@ -14,6 +14,13 @@
 namespace geo
 {
 
+namespace
+{
+//  self-registration of the GDS2 writer implementation
+geo::WriterFactoryRegistration s_gds2_writer_factory (
+    "GDS2", []() -> geo::WriterBase * { return new geo::GDS2Writer (); });
+}
+
 // ------------------------------------------------------------------
 //  GDS2Writer implementation
 

@@ -1,7 +1,7 @@
 #include "geoGDS2Reader.h"
 
-#include "geoGDS2Writer.h"
 #include "geoStream.h"
+#include "geoWriter.h"
 
 #include "utilsClassRegistry.h"
 #include "utilsGLog.h"
@@ -38,7 +38,7 @@ public:
 
   virtual WriterBase *create_writer () const 
   {
-    return new geo::GDS2Writer ();
+    return geo::create_writer_for_format ("GDS2");
   }
 
   virtual bool can_read () const

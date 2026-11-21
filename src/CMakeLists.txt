@@ -22,11 +22,9 @@ find_package(toolkit REQUIRED)
 
 enable_testing()
 
-add_subdirectory(utils)
+add_subdirectory(util)
 add_subdirectory(data)
-
 add_subdirectory(geo)
-
 add_subdirectory(writer)
 add_subdirectory(reader)
 

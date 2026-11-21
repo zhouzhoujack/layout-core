@@ -1,7 +1,7 @@
 #include "geoOASIS2Reader.h"
 
-#include "geoOASIS2Writer.h"
 #include "geoStream.h"
+#include "geoWriter.h"
 #include "geoOASIS2.h"
 
 #include "utilsClassRegistry.h"
@@ -47,7 +47,7 @@ public:
 
   virtual WriterBase *create_writer () const
   {
-    return new geo::OASIS2Writer ();
+    return geo::create_writer_for_format ("OASIS");
   }
 
   virtual bool can_read () const

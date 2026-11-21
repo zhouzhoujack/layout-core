@@ -3,7 +3,7 @@
 # 编译 layout-io（独立的 GDS2 / OASIS 读入 + polygon 布尔库）
 #
 # 源码布局：src/（工程根，含 src/CMakeLists.txt）、
-#           src/utils/（→ libutils.so）、src/utils/test/（ut_utils）、
+#           src/util/（→ libutils.so）、src/util/test/（ut_utils）、
 #           src/geo/（→ libdb-io.so）、src/geo/test/（ut_geo）、
 #           demo/（独立工程，纯可执行 demo，演示如何用 lib/ 与 include/）
 #

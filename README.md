@@ -8,22 +8,22 @@
 | `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`、`libreader.so`、`libwriter.so`（自动生成） |
 | `include/` | 构建产物：**全部头文件平铺**（geo 公共头 + utils + gsi_shim） |
 | `src/CMakeLists.txt` | **工程根**：project / 工具链 / 构建开关 / 引入模块与测试 |
-| `src/utils/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程 / 内存统计（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
-| `src/utils/test/` | utils 的 gtest 单元测试（`ut_utils`） |
-| `src/geo/` | 几何与 IO：`geo::` 命名空间下的 Polygon / Region / Edges / Layout / Reader / Writer / 布尔引擎 → `libdb-io.so`；GDS2 / OASIS 的格式常量与选项声明（`geoGDS2.h` / `geoGDS2Format.h` / `geoOASIS2.h` / `geoOASIS2Format.h` / `geoOASIS2Magic.cc`）位于 `src/geo/base/` |
+| `src/util/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程 / 内存统计（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
+| `src/util/test/` | util 的 gtest 单元测试（`ut_utils`） |
+| `src/geo/` | 剩余几何与算法层：`Region` / `Edges` / `EdgePairs` / `Texts` 等集合、布尔与层次处理、GDS2/OASIS 写入对接 → `libdb-io.so`（依赖 `libdata.so`） |
 | `src/geo/test/` | geo 的 gtest 单元测试（`ut_geo`） |
-| `src/reader/` | **读取器**：GDS2 / OASIS 的 Reader 实现与格式注册（`geo::GDS2Reader` / `geo::OASIS2Reader` / `geo::CommonReader`，含 `GDS2FormatDeclaration` / `OASIS2FormatDeclaration`）→ `libreader.so`（依赖 `libdb-io.so` 与 `libwriter.so`；使用方需连同它一起链接，否则格式注册缺失） |
-| `src/data/` | layout data 基础类型（`geo::Coord` / `coord_traits` / `geo::point` / `ShortPoint` / `Point` / `DPoint` / `geo::vector` / `geo::matrix` / `geo::Trans` 等变换 / `geo::box` / `geo::edge` / `geo::edge_pair` / `geo::polygon` / `geo::path` / `geo::text` / `geo::array` / `geo::PropertiesRepository` / `geo::LayoutStateModel` / `geo::box_tree` 空间索引 / `geo::Font` 等文本对齐枚举 / `geo::MetaInfo` / 全局静态参数 `geoStatic`）→ `libdata.so`（geo 依赖它，data 不反向依赖 geo） |
+| `src/reader/` | **读取器**：GDS2 / OASIS 的 Reader 实现与格式注册（`geo::GDS2Reader` / `geo::OASIS2Reader` / `geo::CommonReader`，含 `GDS2FormatDeclaration` / `OASIS2FormatDeclaration`）→ `libreader.so`（**只依赖 `libdata.so`**，不依赖 `libdb-io.so` / `libwriter.so`；写入实现通过 data 里的 `WriterFactoryRegistration` 自注册，需要写文件时额外链接 `libwriter.so`） |
+| `src/data/` | layout 数据与模型层：坐标/box/polygon/edge/edge_pair/path/text 等基础类型，`Layout` / `Cell` / `Instances` / `Layer` / `Library` / `PCell`，动画/层次工具，以及 `ReaderBase` / `WriterBase` / `Stream` / 读写选项与格式声明（`geoGDS2*` / `geoOASIS2*`）→ `libdata.so`（只依赖 `libutils.so`） |
 | `demo/` | **独立工程**：纯可执行 demo（无 gtest），演示如何用 `lib/` 与 `include/` |
-| `src/writer/` | **写入器**：GDS2 / OASIS 的 Writer 实现（`geo::GDS2Writer` / `geo::OASIS2Writer`）→ `libwriter.so`（依赖 `libdb-io.so`；`libreader.so` 已通过 DT_NEEDED 拖入它，通常只链 reader 即可） |
+| `src/writer/` | **写入器**：GDS2 / OASIS 的 Writer 实现（`geo::GDS2Writer` / `geo::OASIS2Writer`）→ `libwriter.so`（只依赖 `libdata.so`；启动时用 `WriterFactoryRegistration` 把工厂注册到 data，因此消费者需链接它（配 `--no-as-needed`）才能获得写入能力） |
 
-（源码目录是 `src/utils` / `src/data` / `src/geo` / `src/reader` / `src/writer`，CMake 目标名分别是 `utils` / `data` / `db-io` / `reader` / `writer`。
-构建完成后，`.so` 输出到 `lib/`，所有头文件（geo / utils / gsi_shim）平铺到
+（源码目录是 `src/util` / `src/data` / `src/geo` / `src/reader` / `src/writer`，CMake 目标名分别是 `utils` / `data` / `db-io` / `reader` / `writer`。
+构建完成后，`.so` 输出到 `lib/`，所有头文件（data / geo / utils / gsi_shim）平铺到
 `include/`，使用方只需一个 `-I include`。）
 
 ## 命名空间
 
-三个库（`libutils.so` 基础设施 + `libdata.so` 基础类型 + `libdb-io.so` 几何/IO）统一使用 **`geo`** 一个命名空间，
+五个库（`libutils.so` 基础设施 + `libdata.so` 数据/模型 + `libdb-io.so` 集合与算法 + `libwriter.so` 写入器 + `libreader.so` 读取器）统一使用 **`geo`** 一个命名空间，
 使用方不需要区分前缀：
 
 ```cpp
@@ -33,7 +33,7 @@ geo::Reader reader (stream);
 geo::Variant v = geo::Variant (1);         // 基础设施（原 utils::）
 ```
 
-> 源码目录与文件名前缀（`src/utils/`、`utils*.h`）和 CMake 目标名（`utils` / `db-io`）保持
+> 源码目录与文件名前缀（`src/util/`、`utils*.h`）和 CMake 目标名（`utils` / `db-io`）保持
 > 不变，只有命名空间被统一。
 
 合并时有两个名字与几何库冲突，已改用新名字（语义不变）：
@@ -67,15 +67,15 @@ cmake -S src -B build && cmake --build build -j3
 ```bash
 ctest --test-dir build --output-on-failure                 # 跑全部
 ctest --test-dir build -R ut_geo                          # 只跑几何层
-./build/utils/test/ut_utils --gtest_filter='Tl*'          # 细粒度过滤
+./build/util/test/ut_utils --gtest_filter='Tl*'          # 细粒度过滤
 ```
 
 | 可执行文件 | 覆盖内容 |
 | --- | --- |
-| `src/utils/test/ut_utils` | `geo::` 字符串格式化、`geo::Variant` 取值/比较 |
+| `src/util/test/ut_utils` | `geo::` 字符串格式化、`geo::Variant` 取值/比较 |
 | `src/geo/test/ut_geo` | `geo::Region` / `geo::Polygon` 基础、polygon 布尔（并/交/差/异或、挖洞、链式）、GDS2 写入→读回、**OASIS 写入→读回** |
 
-测试在 `src/utils/test` 与 `src/geo/test` 里各自声明，由顶层统一登记到 ctest。
+测试在 `src/util/test` 与 `src/geo/test` 里各自声明，由顶层统一登记到 ctest。
 
 新增用例：直接在所属模块的 `test/` 目录下加 `*Test.cc`，并登记到该目录的
 `CMakeLists.txt`；测试入口用同目录的 `main.cpp`（内部初始化 glog + gtest）。
@@ -93,7 +93,7 @@ google::InstallPrefixFormatter (glogPrefixFormatter);  // "[HH:MM:SS file:line]"
 google::SetStderrLogging (google::GLOG_INFO);
 ```
 
-两个测试入口（`src/utils/test/main.cpp`、`src/geo/test/main.cpp`）与 demo（`demo/main.cpp`）都按上面
+两个测试入口（`src/util/test/main.cpp`、`src/geo/test/main.cpp`）与 demo（`demo/main.cpp`）都按上面
 方式初始化，因此：
 
 - 库内部的 `LOGI`（如 `geoGDS2.cc` 的初始化日志）会直接出现在测试输出里；
