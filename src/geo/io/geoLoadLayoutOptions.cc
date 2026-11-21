@@ -1,5 +1,7 @@
 #include "geoLoadLayoutOptions.h"
+
 #include "geoStream.h"
+
 #include "utilsClassRegistry.h"
 #include "utilsStream.h"
 #include "utilsExpression.h"

@@ -5,19 +5,19 @@
 
 | 目录 | 内容 |
 | --- | --- |
-| `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`（自动生成） |
+| `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`、`libreader.so`、`libwriter.so`（自动生成） |
 | `include/` | 构建产物：**全部头文件平铺**（geo 公共头 + utils + gsi_shim） |
 | `src/CMakeLists.txt` | **工程根**：project / 工具链 / 构建开关 / 引入模块与测试 |
 | `src/utils/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程 / 内存统计（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
 | `src/utils/test/` | utils 的 gtest 单元测试（`ut_utils`） |
-| `src/geo/` | 几何与 IO：`geo::` 命名空间下的 Polygon / Region / Edges / Layout / Reader / Writer / 布尔引擎 → `libdb-io.so` |
-| `src/geo/gds/` | GDS2 读写（`GDS2Reader` / `GDS2Writer` / 格式声明） |
-| `src/geo/oas/` | **OASIS 读写**（`OASIS2Reader` / `OASIS2Writer` / 格式声明） |
+| `src/geo/` | 几何与 IO：`geo::` 命名空间下的 Polygon / Region / Edges / Layout / Reader / Writer / 布尔引擎 → `libdb-io.so`；GDS2 / OASIS 的格式常量与选项声明（`geoGDS2.h` / `geoGDS2Format.h` / `geoOASIS2.h` / `geoOASIS2Format.h` / `geoOASIS2Magic.cc`）位于 `src/geo/base/` |
 | `src/geo/test/` | geo 的 gtest 单元测试（`ut_geo`） |
-| `src/data/` | layout data 基础类型（`geo::Coord` / `coord_traits` / `geo::point` / `ShortPoint` / `Point` / `DPoint` / `geo::vector` / `geo::matrix` / `geo::Trans` 等变换 / `geo::box` / `geo::edge` / `geo::MetaInfo`）→ `libdata.so`（geo 依赖它，data 不反向依赖 geo） |
+| `src/reader/` | **读取器**：GDS2 / OASIS 的 Reader 实现与格式注册（`geo::GDS2Reader` / `geo::OASIS2Reader` / `geo::CommonReader`，含 `GDS2FormatDeclaration` / `OASIS2FormatDeclaration`）→ `libreader.so`（依赖 `libdb-io.so` 与 `libwriter.so`；使用方需连同它一起链接，否则格式注册缺失） |
+| `src/data/` | layout data 基础类型（`geo::Coord` / `coord_traits` / `geo::point` / `ShortPoint` / `Point` / `DPoint` / `geo::vector` / `geo::matrix` / `geo::Trans` 等变换 / `geo::box` / `geo::edge` / `geo::edge_pair` / `geo::polygon` / `geo::path` / `geo::text` / `geo::array` / `geo::PropertiesRepository` / `geo::LayoutStateModel` / `geo::box_tree` 空间索引 / `geo::Font` 等文本对齐枚举 / `geo::MetaInfo` / 全局静态参数 `geoStatic`）→ `libdata.so`（geo 依赖它，data 不反向依赖 geo） |
 | `demo/` | **独立工程**：纯可执行 demo（无 gtest），演示如何用 `lib/` 与 `include/` |
+| `src/writer/` | **写入器**：GDS2 / OASIS 的 Writer 实现（`geo::GDS2Writer` / `geo::OASIS2Writer`）→ `libwriter.so`（依赖 `libdb-io.so`；`libreader.so` 已通过 DT_NEEDED 拖入它，通常只链 reader 即可） |
 
-（源码目录是 `src/utils` / `src/geo`，CMake 目标名分别是 `utils` / `db-io`。
+（源码目录是 `src/utils` / `src/data` / `src/geo` / `src/reader` / `src/writer`，CMake 目标名分别是 `utils` / `data` / `db-io` / `reader` / `writer`。
 构建完成后，`.so` 输出到 `lib/`，所有头文件（geo / utils / gsi_shim）平铺到
 `include/`，使用方只需一个 `-I include`。）
 
@@ -109,7 +109,7 @@ google::SetStderrLogging (google::GLOG_INFO);
 查看方式：`ctest --test-dir build -V`，或直接执行测试可执行文件；日志级别可用
 `GLOG_minloglevel=0/1/2` 过滤。
 
-## OASIS 读写（`src/geo/oas`）
+## OASIS 读写（`src/reader` + `src/writer`）
 
 除了 GDS2，库还提供 **OASIS（SEMI P39，`%SEMI-OASIS` 1.0）** 的读写能力。使用方式与 GDS2
 完全一致：格式按**文件名后缀**自动选择，`Reader` / `Writer` 不需要改动。

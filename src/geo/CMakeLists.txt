@@ -2,15 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 
 file(GLOB DB_IO_SOURCES
     "base/*.cc"
-    "core/*.cc"
     "collections/*.cc"
     "ops/*.cc"
     "hier/*.cc"
     "manager/*.cc"
-    "netlist/*.cc"
     "io/*.cc"
-    "gds/*.cc"
-    "oas/*.cc"
 )
 
 list(FILTER DB_IO_SOURCES EXCLUDE REGEX ".*/hier/(geoTilingProcessor|geoLayoutQuery)\\.cc$")
@@ -22,15 +18,11 @@ add_library(db-io SHARED
 target_include_directories(db-io PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/base
-    ${CMAKE_CURRENT_SOURCE_DIR}/core
     ${CMAKE_CURRENT_SOURCE_DIR}/collections
     ${CMAKE_CURRENT_SOURCE_DIR}/ops
     ${CMAKE_CURRENT_SOURCE_DIR}/hier
-    ${CMAKE_CURRENT_SOURCE_DIR}/netlist
     ${CMAKE_CURRENT_SOURCE_DIR}/manager
     ${CMAKE_CURRENT_SOURCE_DIR}/io
-    ${CMAKE_CURRENT_SOURCE_DIR}/gds
-    ${CMAKE_CURRENT_SOURCE_DIR}/oas
     ${CMAKE_CURRENT_SOURCE_DIR}/gsi_shim
 )
 

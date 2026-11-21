@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayout
 #define HDR_geoLayout
 
-
 #include "geoArray.h"
 #include "geoPropertiesRepository.h"
 #include "geoObject.h"

@@ -4,7 +4,6 @@
 
 #include "geoInstances.h"
 #include "geoObject.h"
-#include "utilsMemStatistics.h"
 #include "geoBox.h"
 #include "geoBoxTree.h"
 #include "geoBoxConvert.h"
@@ -17,6 +16,7 @@
 #include "utilsVector.h"
 #include "utilsAlgorithm.h"
 #include "gsi.h"
+#include "utilsMemStatistics.h"
 
 #include <map>
 #include <set>

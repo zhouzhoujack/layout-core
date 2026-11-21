@@ -4,7 +4,6 @@
 #include <string>
 #include <map>
 
-
 #include "geoLayout.h"
 #include "geoStreamLayers.h"
 

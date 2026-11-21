@@ -1,6 +1,4 @@
-#include "utilsStream.h"
-#include "utilsAssert.h"
-#include "utilsException.h"
+
 #include "geoLayout.h"
 #include "geoShape.h"
 #include "geoPolygonTools.h"
@@ -10,6 +8,10 @@
 #include "geoClip.h"
 #include "geoSaveLayoutOptions.h"
 #include "geoPolygonGenerators.h"
+
+#include "utilsStream.h"
+#include "utilsAssert.h"
+#include "utilsException.h"
 
 #include <stdio.h>
 #include <errno.h>

@@ -1,5 +1,7 @@
 #include "geoCommonReader.h"
+
 #include "geoStream.h"
+
 #include "utilsXMLParser.h"
 
 namespace geo

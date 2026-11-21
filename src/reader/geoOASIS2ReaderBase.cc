@@ -11,7 +11,8 @@
 namespace geo
 {
 
-const char oasis_magic [] = "%SEMI-OASIS\015\012";
+//  oasis_magic 的唯一定义在 geo/oas/geoOASIS2Magic.cc（db-io），
+//  这里通过 geoOASIS2.h 的 extern 声明使用，避免两个库各自定义。
 
 //  a safety limit for repetition expansion - protects against corrupted files
 static const uint64_t max_repetition_count = 10000000;
