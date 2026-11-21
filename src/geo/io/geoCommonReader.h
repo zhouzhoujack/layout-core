@@ -21,7 +21,7 @@ enum CellConflictResolution
 /**
  *  @brief Structure that holds the GDS2 and OASIS specific options for the reader
  */
-class DB_PUBLIC CommonReaderOptions
+class CommonReaderOptions
   : public FormatSpecificReaderOptions
 {
 public:
@@ -108,7 +108,7 @@ public:
 /**
  *  @brief A common reader base for GDS2 and OASIS providing common services for both readers
  */
-class DB_PUBLIC CommonReader
+class CommonReader
   : public ReaderBase
 {
 public:

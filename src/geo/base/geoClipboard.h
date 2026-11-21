@@ -1,7 +1,6 @@
 #ifndef HDR_geoClipboard
 #define HDR_geoClipboard
 
-#include "geoCommon.h"
 
 #include <vector>
 
@@ -16,7 +15,7 @@ class Object;
  *  Each object stored in the clipboard must be derived from this
  *  base class. 
  */
-class DB_PUBLIC ClipboardObject
+class ClipboardObject
 {
 public:
   /**
@@ -96,7 +95,7 @@ private:
  *  There is a static instance of the clipboard that should be used
  *  by the applications.
  */
-class DB_PUBLIC Clipboard
+class Clipboard
 {
 public:
   typedef std::vector <const ClipboardObject *>::const_iterator iterator;

@@ -1,7 +1,6 @@
 #ifndef HDR_geoLibraryManager
 #define HDR_geoLibraryManager
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "utilsClassRegistry.h"
@@ -25,7 +24,7 @@ class Library;
  *  The LibraryManager implements geo::Observed and delivers a signal when the library collection
  *  changes.
  */
-class DB_PUBLIC LibraryManager
+class LibraryManager
 {
 public:
   typedef std::multimap <std::string, lib_id_type> lib_name_map;

@@ -1,4 +1,3 @@
-#include "geoCommon.h"
 
 #include "geoTexts.h"
 #include "geoEmptyTexts.h"
@@ -76,7 +75,7 @@ void Texts::insert (const Sh &shape)
   mutable_texts ()->insert (shape);
 }
 
-template DB_PUBLIC void Texts::insert (const geo::Text &);
+template void Texts::insert (const geo::Text &);
 
 void Texts::insert (const geo::Shape &shape)
 {
@@ -89,11 +88,11 @@ void Texts::insert (const geo::Shape &shape, const T &trans)
   mutable_texts ()->insert (shape, trans);
 }
 
-template DB_PUBLIC void Texts::insert (const geo::Shape &, const geo::ICplxTrans &);
-template DB_PUBLIC void Texts::insert (const geo::Shape &, const geo::Trans &);
-template DB_PUBLIC void Texts::insert (const geo::Shape &, const geo::Disp &);
-template DB_PUBLIC void Texts::insert (const geo::Shape &, const geo::IMatrix2d &);
-template DB_PUBLIC void Texts::insert (const geo::Shape &, const geo::IMatrix3d &);
+template void Texts::insert (const geo::Shape &, const geo::ICplxTrans &);
+template void Texts::insert (const geo::Shape &, const geo::Trans &);
+template void Texts::insert (const geo::Shape &, const geo::Disp &);
+template void Texts::insert (const geo::Shape &, const geo::IMatrix2d &);
+template void Texts::insert (const geo::Shape &, const geo::IMatrix3d &);
 
 void Texts::clear ()
 {
@@ -118,9 +117,9 @@ Texts &Texts::transform (const T &trans)
 }
 
 //  explicit instantiations
-template DB_PUBLIC Texts &Texts::transform (const geo::ICplxTrans &);
-template DB_PUBLIC Texts &Texts::transform (const geo::Trans &);
-template DB_PUBLIC Texts &Texts::transform (const geo::Disp &);
+template Texts &Texts::transform (const geo::ICplxTrans &);
+template Texts &Texts::transform (const geo::Trans &);
+template Texts &Texts::transform (const geo::Disp &);
 
 const geo::RecursiveShapeIterator &
 Texts::iter () const
@@ -177,7 +176,7 @@ void Texts::pull_interacting (Region &output, const Region &other) const
 
 namespace geo
 {
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Texts &b)
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Texts &b)
   {
     geo::Text ep;
 
@@ -197,7 +196,7 @@ namespace geo
     return true;
   }
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Texts &b)
+  template<> void extractor_impl (geo::Extractor &ex, geo::Texts &b)
   {
     if (! test_extractor_impl (ex, b)) {
       ex.error (geo::to_string (tr ("Expected an edge pair collection specification")));

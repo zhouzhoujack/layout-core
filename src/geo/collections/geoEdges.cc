@@ -159,11 +159,11 @@ Edges &Edges::transform (const T &trans)
 }
 
 //  explicit instantiations
-template DB_PUBLIC Edges &Edges::transform (const geo::ICplxTrans &);
-template DB_PUBLIC Edges &Edges::transform (const geo::Trans &);
-template DB_PUBLIC Edges &Edges::transform (const geo::Disp &);
-template DB_PUBLIC Edges &Edges::transform (const geo::IMatrix2d &);
-template DB_PUBLIC Edges &Edges::transform (const geo::IMatrix3d &);
+template Edges &Edges::transform (const geo::ICplxTrans &);
+template Edges &Edges::transform (const geo::Trans &);
+template Edges &Edges::transform (const geo::Disp &);
+template Edges &Edges::transform (const geo::IMatrix2d &);
+template Edges &Edges::transform (const geo::IMatrix3d &);
 
 template <class Sh>
 void Edges::insert (const Sh &shape)
@@ -171,11 +171,11 @@ void Edges::insert (const Sh &shape)
   mutable_edges ()->insert (shape);
 }
 
-template DB_PUBLIC void Edges::insert (const geo::Box &);
-template DB_PUBLIC void Edges::insert (const geo::SimplePolygon &);
-template DB_PUBLIC void Edges::insert (const geo::Polygon &);
-template DB_PUBLIC void Edges::insert (const geo::Path &);
-template DB_PUBLIC void Edges::insert (const geo::Edge &);
+template void Edges::insert (const geo::Box &);
+template void Edges::insert (const geo::SimplePolygon &);
+template void Edges::insert (const geo::Polygon &);
+template void Edges::insert (const geo::Path &);
+template void Edges::insert (const geo::Edge &);
 
 void Edges::insert (const geo::Shape &shape)
 {
@@ -188,9 +188,9 @@ void Edges::insert (const geo::Shape &shape, const T &trans)
   mutable_edges ()->insert (shape, trans);
 }
 
-template DB_PUBLIC void Edges::insert (const geo::Shape &, const geo::ICplxTrans &);
-template DB_PUBLIC void Edges::insert (const geo::Shape &, const geo::Trans &);
-template DB_PUBLIC void Edges::insert (const geo::Shape &, const geo::Disp &);
+template void Edges::insert (const geo::Shape &, const geo::ICplxTrans &);
+template void Edges::insert (const geo::Shape &, const geo::Trans &);
+template void Edges::insert (const geo::Shape &, const geo::Disp &);
 
 MutableEdges *
 Edges::mutable_edges ()
@@ -213,7 +213,7 @@ Edges::mutable_edges ()
 
 namespace geo
 {
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Edges &b)
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Edges &b)
   {
     geo::Edge p;
 
@@ -233,7 +233,7 @@ namespace geo
     return true;
   }
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Edges &b)
+  template<> void extractor_impl (geo::Extractor &ex, geo::Edges &b)
   {
     if (! test_extractor_impl (ex, b)) {
       ex.error (geo::to_string (tr ("Expected an edge set specification")));

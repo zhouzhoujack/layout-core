@@ -9,7 +9,7 @@ namespace geo
 
 // ---------------------------------------------------------------
 
-DB_PUBLIC void
+void
 join_layer_names (std::string &s, const std::string &n)
 {
   if (s == n) {

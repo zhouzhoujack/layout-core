@@ -1,7 +1,6 @@
 #ifndef HDR_geoFlatRegion
 #define HDR_geoFlatRegion
 
-#include "geoCommon.h"
 
 #include "geoMutableRegion.h"
 #include "geoShapes.h"
@@ -18,7 +17,7 @@ typedef generic_shapes_iterator_delegate<geo::Polygon> FlatRegionIterator;
 /**
  *  @brief A flat, polygon-set delegate
  */
-class DB_PUBLIC FlatRegion
+class FlatRegion
   : public MutableRegion
 {
 public:

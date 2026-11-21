@@ -28,7 +28,7 @@ bool check_trailing_reserved_word (const geo::Extractor &ex0)
 // --------------------------------------------------------------------------------
 //  FilterSingleState definition and implementation
 
-class DB_PUBLIC FilterSingleState 
+class FilterSingleState 
   : public FilterStateBase
 {
 public:
@@ -64,7 +64,7 @@ private:
 /**
  *  @brief A class that provides a name filter argument
  */
-class DB_PUBLIC NameFilterArgument
+class NameFilterArgument
 {
 public:
   NameFilterArgument ()
@@ -119,7 +119,7 @@ private:
 /**
  *  @brief A class that provides a name filter (with late evaluation)
  */
-class DB_PUBLIC NameFilter
+class NameFilter
 {
 public:
   NameFilter (const NameFilterArgument &arg, geo::Eval &eval)
@@ -195,7 +195,7 @@ struct ShapeFilterPropertyIDs
   unsigned int cell_index;          // cell_index           -> The cell index
 };
 
-class DB_PUBLIC ShapeFilterState
+class ShapeFilterState
   : public FilterStateBase
 {
 public:
@@ -328,7 +328,7 @@ private:
   std::set<geo::Shape> m_ignored;
 };
 
-class DB_PUBLIC ShapeFilter
+class ShapeFilter
   : public FilterBracket
 {
 public:
@@ -474,7 +474,7 @@ struct ChildCellFilterPropertyIDs
   unsigned int array_ib;            // array_ib             -> The b index when an array is iterated
 };
 
-class DB_PUBLIC ChildCellFilterState
+class ChildCellFilterState
   : public FilterStateBase
 {
 public:
@@ -1094,7 +1094,7 @@ private:
   geo::cell_index_type m_cell_index;
 };
 
-class DB_PUBLIC ChildCellFilter
+class ChildCellFilter
   : public FilterBracket
 {
 public:
@@ -1181,7 +1181,7 @@ struct CellFilterPropertyIDs
   unsigned int path_trans;          // parent_trans         -> transformation to initial cell
 };
 
-class DB_PUBLIC CellFilterState
+class CellFilterState
   : public FilterStateBase
 {
 public:
@@ -1361,7 +1361,7 @@ private:
   geo::cell_index_type m_cell_index;
 };
 
-class DB_PUBLIC CellFilter
+class CellFilter
   : public FilterBracket
 {
 public:
@@ -1422,7 +1422,7 @@ struct DeleteFilterPropertyIDs
   unsigned int shape;
 };
 
-class DB_PUBLIC DeleteFilterState
+class DeleteFilterState
   : public FilterStateBase
 {
 public:
@@ -1509,7 +1509,7 @@ private:
 
 };
 
-class DB_PUBLIC DeleteFilter
+class DeleteFilter
   : public FilterBracket
 {
 public:
@@ -1553,7 +1553,7 @@ private:
 // --------------------------------------------------------------------------------
 //  WithDoFilter definition and implementation
 
-class DB_PUBLIC WithDoFilterState
+class WithDoFilterState
   : public FilterStateBase
 {
 public:
@@ -1611,7 +1611,7 @@ private:
   unsigned int m_count;
 };
 
-class DB_PUBLIC WithDoFilter
+class WithDoFilter
   : public FilterBracket
 {
 public:
@@ -1666,7 +1666,7 @@ struct SelectFilterPropertyIDs
   unsigned int data;                // data                 -> An array of the selected values
 };
 
-class DB_PUBLIC SelectFilterReportingState
+class SelectFilterReportingState
   : public FilterStateBase
 {
 public:
@@ -1716,7 +1716,7 @@ private:
   std::multimap <geo::Variant, geo::Variant>::const_iterator m_sorted;
 };
 
-class DB_PUBLIC SelectFilterState
+class SelectFilterState
   : public FilterStateBase
 {
 public:
@@ -1830,7 +1830,7 @@ private:
   SelectFilterReportingState *mp_reporter_state;
 };
 
-class DB_PUBLIC SelectFilter
+class SelectFilter
   : public FilterBracket
 {
 public:
@@ -1883,7 +1883,7 @@ private:
 // --------------------------------------------------------------------------------
 //  ConditionalFilter
 
-class DB_PUBLIC ConditionalFilterState
+class ConditionalFilterState
   : public FilterStateBase
 {
 public:
@@ -1920,7 +1920,7 @@ private:
   geo::Expression m_expression;
 };
 
-class DB_PUBLIC ConditionalFilter
+class ConditionalFilter
   : public FilterBracket
 {
 public:

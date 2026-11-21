@@ -81,7 +81,7 @@ enum edge_relation_type
  *  This filter supports distance filtering (less than a certain value) plus 
  *  various selection criteria such as 
  */
-struct DB_PUBLIC EdgeRelationFilter
+struct EdgeRelationFilter
 {
   typedef geo::Edge::distance_type distance_type;
 
@@ -234,10 +234,10 @@ private:
 
 //  Internal methods exposed for testing purposes
 
-DB_PUBLIC bool projected_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
-DB_PUBLIC bool square_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
-DB_PUBLIC bool euclidian_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
-DB_PUBLIC geo::Edge::distance_type edge_projection (const geo::Edge &a, const geo::Edge &b);
+bool projected_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
+bool square_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
+bool euclidian_near_part_of_edge (bool include_zero, geo::coord_traits<geo::Coord>::distance_type d, const geo::Edge &e, const geo::Edge &g, geo::Edge *output);
+geo::Edge::distance_type edge_projection (const geo::Edge &a, const geo::Edge &b);
 
 }
 

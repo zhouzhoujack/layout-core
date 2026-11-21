@@ -1,7 +1,6 @@
 #ifndef HDR_geoEmptyTexts
 #define HDR_geoEmptyTexts
 
-#include "geoCommon.h"
 
 #include "geoTextsDelegate.h"
 #include "geoRecursiveShapeIterator.h"
@@ -11,7 +10,7 @@ namespace geo {
 /**
  *  @brief The delegate for the actual edge set implementation
  */
-class DB_PUBLIC EmptyTexts
+class EmptyTexts
   : public TextsDelegate
 {
 public:

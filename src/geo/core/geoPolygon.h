@@ -1,16 +1,15 @@
 #ifndef HDR_geoPolygon
 #define HDR_geoPolygon
 
-#include "geoCommon.h"
-
 #include "geoTypes.h"
-#include "geoMemStatistics.h"
+// #include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoTrans.h"
 #include "geoEdge.h"
 #include "geoBox.h"
 #include "geoObjectTag.h"
 #include "geoShapeRepository.h"
+
 #include "utilsTypeTraits.h"
 #include "utilsVector.h"
 #include "utilsAlgorithm.h"
@@ -61,9 +60,9 @@ inline bool default_compression<geo::DCoord> ()
  */
 
 //  NOTE: we do explicit instantiation, so the exposure is declared
-//  as DB_PUBLIC - as if it wasn't a template
+//  as - as if it wasn't a template
 template <class C>
-class DB_PUBLIC polygon_contour
+class polygon_contour
 {
 public:
   typedef C coord_type;
@@ -1398,7 +1397,7 @@ private:
  */
 
 template <class C>
-class DB_PUBLIC_TEMPLATE polygon
+class polygon
 {
 public:
   typedef C coord_type;
@@ -2400,7 +2399,7 @@ private:
  */
 
 template <class C>
-class DB_PUBLIC_TEMPLATE simple_polygon
+class simple_polygon
 {
 public:
   typedef C coord_type;
@@ -3495,29 +3494,29 @@ typedef polygon_ref<DSimplePolygon, DUnitTrans> DSimplePolygonPtr;
 /**
  *  @brief Collect memory statistics
  */
-template <class X>
-inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const polygon_contour<X> &x, bool no_self = false, void *parent = 0)
-{
-  x.mem_stat (stat, purpose, cat, no_self, parent);
-}
+// template <class X>
+// inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const polygon_contour<X> &x, bool no_self = false, void *parent = 0)
+// {
+//   x.mem_stat (stat, purpose, cat, no_self, parent);
+// }
 
-/**
- *  @brief Collect memory statistics
- */
-template <class X>
-inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const polygon<X> &x, bool no_self = false, void *parent = 0)
-{
-  x.mem_stat (stat, purpose, cat, no_self, parent);
-}
+// /**
+//  *  @brief Collect memory statistics
+//  */
+// template <class X>
+// inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const polygon<X> &x, bool no_self = false, void *parent = 0)
+// {
+//   x.mem_stat (stat, purpose, cat, no_self, parent);
+// }
 
-/**
- *  @brief Collect memory statistics
- */
-template <class X>
-inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const simple_polygon<X> &x, bool no_self = false, void *parent = 0)
-{
-  x.mem_stat (stat, purpose, cat, no_self, parent);
-}
+// /**
+//  *  @brief Collect memory statistics
+//  */
+// template <class X>
+// inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const simple_polygon<X> &x, bool no_self = false, void *parent = 0)
+// {
+//   x.mem_stat (stat, purpose, cat, no_self, parent);
+// }
 
 } // namespace geo
 
@@ -3574,15 +3573,15 @@ namespace geo
   /**
    *  @brief Special extractors for the polygons
    */
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Polygon &p);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DPolygon &p);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Polygon &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DPolygon &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p);
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Polygon &p);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DPolygon &p);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Polygon &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DPolygon &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p);
 
 } // namespace geo
 

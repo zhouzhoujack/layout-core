@@ -1,7 +1,6 @@
 #ifndef HDR_geoRegion
 #define HDR_geoRegion
 
-#include "geoCommon.h"
 #include "geoRegionDelegate.h"
 #include "geoRecursiveShapeIterator.h"
 #include "geoPolygonGenerators.h"
@@ -25,7 +24,7 @@ class CompoundRegionOperationNode;
  *
  *  The iterator delivers the polygons of the region
  */
-class DB_PUBLIC RegionIterator
+class RegionIterator
   : public generic_shape_iterator<geo::Polygon>
 {
 public:
@@ -92,7 +91,7 @@ typedef addressable_shape_delivery<geo::Polygon> AddressablePolygonDelivery;
  *
  *  Polygons inside the region may contain holes if the region is merged.
  */
-class DB_PUBLIC Region
+class Region
   : public geo::ShapeCollection
 {
 public:
@@ -1758,7 +1757,7 @@ private:
  *  This class implements the PolygonSink interface for the edge processor.
  *  Like EdgeContainer, this receiver collects the objects into an existing Region object.
  */
-class DB_PUBLIC RegionPolygonSink
+class RegionPolygonSink
   : public geo::PolygonSink
 {
 public:

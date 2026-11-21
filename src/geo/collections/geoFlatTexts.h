@@ -1,7 +1,6 @@
 #ifndef HDR_geoFlatTexts
 #define HDR_geoFlatTexts
 
-#include "geoCommon.h"
 
 #include "geoMutableTexts.h"
 #include "geoShapes.h"
@@ -17,7 +16,7 @@ typedef generic_shapes_iterator_delegate<geo::Text> FlatTextsIterator;
 /**
  *  @brief The delegate for the actual text set implementation
  */
-class DB_PUBLIC FlatTexts
+class FlatTexts
   : public MutableTexts
 {
 public:

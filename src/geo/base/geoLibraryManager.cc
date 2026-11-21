@@ -1,6 +1,5 @@
 #include "geoLibraryManager.h"
 #include "geoLibrary.h"
-#include "geoCommon.h"
 #include "geoColdProxy.h"
 
 #include "utilsAssert.h"

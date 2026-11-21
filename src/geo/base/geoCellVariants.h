@@ -1,7 +1,6 @@
 #ifndef HDR_geoCellVariants
 #define HDR_geoCellVariants
 
-#include "geoCommon.h"
 
 #include "geoTrans.h"
 #include "geoLayout.h"
@@ -22,7 +21,7 @@ namespace geo
  *
  *   reduce(A*B) = reduce(reduce(A)*reduce(B))
  */
-class DB_PUBLIC TransformationReducer
+class TransformationReducer
 {
 public:
   TransformationReducer () { }
@@ -40,7 +39,7 @@ public:
  *
  *  This reducer incarnation reduces the transformation to it's rotation/mirror part.
  */
-struct DB_PUBLIC OrientationReducer
+struct OrientationReducer
   : public TransformationReducer
 {
   geo::ICplxTrans reduce (const geo::ICplxTrans &trans) const;
@@ -52,7 +51,7 @@ struct DB_PUBLIC OrientationReducer
  *
  *  This reducer incarnation reduces the transformation to it's scaling part.
  */
-struct DB_PUBLIC MagnificationReducer
+struct MagnificationReducer
   : public TransformationReducer
 {
   geo::ICplxTrans reduce (const geo::ICplxTrans &trans) const;
@@ -64,7 +63,7 @@ struct DB_PUBLIC MagnificationReducer
  *
  *  This reducer is used for cases where an x and y-value is given, e.g. anisotropic size.
  */
-struct DB_PUBLIC XYAnisotropyAndMagnificationReducer
+struct XYAnisotropyAndMagnificationReducer
   : public TransformationReducer
 {
   geo::ICplxTrans reduce (const geo::ICplxTrans &trans) const;
@@ -76,7 +75,7 @@ struct DB_PUBLIC XYAnisotropyAndMagnificationReducer
  *
  *  This reducer incarnation reduces the transformation to it's rotation/mirror/magnification part (2d matrix)
  */
-struct DB_PUBLIC MagnificationAndOrientationReducer
+struct MagnificationAndOrientationReducer
   : public TransformationReducer
 {
   geo::ICplxTrans reduce (const geo::ICplxTrans &trans) const;
@@ -88,7 +87,7 @@ struct DB_PUBLIC MagnificationAndOrientationReducer
  *
  *  This reducer incarnation reduces the transformation to it's displacement modulo a grid
  */
-struct DB_PUBLIC GridReducer
+struct GridReducer
   : public TransformationReducer
 {
   GridReducer (geo::Coord grid);
@@ -109,7 +108,7 @@ private:
  *  after a specified scaling has been applied.
  *  The scaling is given by a divider and multiplier and is mult / div.
  */
-struct DB_PUBLIC ScaleAndGridReducer
+struct ScaleAndGridReducer
   : public TransformationReducer
 {
   ScaleAndGridReducer (geo::Coord grid, geo::Coord mult, geo::Coord div);
@@ -132,7 +131,7 @@ private:
  *  The cell variants are build from the cell instances and are accumulated over
  *  the hierarchy path.
  */
-class DB_PUBLIC VariantsCollectorBase
+class VariantsCollectorBase
 {
 public:
   /**
@@ -205,7 +204,7 @@ private:
  *  @brief A template using a specific transformation reducer
  */
 template <class RED>
-class DB_PUBLIC_TEMPLATE cell_variants_collector
+class cell_variants_collector
   : public VariantsCollectorBase
 {
 public:

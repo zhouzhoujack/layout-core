@@ -1,7 +1,6 @@
 #ifndef HDR_geoStream
 #define HDR_geoStream
 
-#include "geoCommon.h"
 
 #include "geoSaveLayoutOptions.h"
 #include "geoLoadLayoutOptions.h"
@@ -27,7 +26,7 @@ class WriterBase;
 /**
  *  @brief A stream format declaration
  */
-class DB_PUBLIC StreamFormatDeclaration 
+class StreamFormatDeclaration 
 {
 public:
   /**
@@ -268,12 +267,12 @@ public:
 /**
  *  @brief Returns the XMLElement list that can represent a geo::LoadLayoutOptions object
  */
-DB_PUBLIC geo::XMLElementList load_options_xml_element_list ();
+geo::XMLElementList load_options_xml_element_list ();
 
 /**
  *  @brief Returns the XMLElement list that can represent a geo::SaveLayoutOptions object
  */
-DB_PUBLIC geo::XMLElementList save_options_xml_element_list ();
+geo::XMLElementList save_options_xml_element_list ();
 
 }
 

@@ -1,7 +1,6 @@
 #ifndef HDR_geoTextsUtils
 #define HDR_geoTextsUtils
 
-#include "geoCommon.h"
 #include "geoTexts.h"
 #include "geoBoxScanner.h"
 #include "geoPolygonTools.h"
@@ -18,7 +17,7 @@ namespace geo {
  *  matching the criterion.
  */
 
-struct DB_PUBLIC TextStringFilter
+struct TextStringFilter
   : public TextFilterBase
 {
   /**
@@ -78,7 +77,7 @@ private:
  *  matching the criterion.
  */
 
-struct DB_PUBLIC TextPatternFilter
+struct TextPatternFilter
   : public TextFilterBase
 {
   /**

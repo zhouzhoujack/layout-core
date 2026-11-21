@@ -119,11 +119,11 @@ Region &Region::transform (const T &trans)
 }
 
 //  explicit instantiations
-template DB_PUBLIC Region &Region::transform (const geo::ICplxTrans &);
-template DB_PUBLIC Region &Region::transform (const geo::Trans &);
-template DB_PUBLIC Region &Region::transform (const geo::Disp &);
-template DB_PUBLIC Region &Region::transform (const geo::IMatrix2d &);
-template DB_PUBLIC Region &Region::transform (const geo::IMatrix3d &);
+template Region &Region::transform (const geo::ICplxTrans &);
+template Region &Region::transform (const geo::Trans &);
+template Region &Region::transform (const geo::Disp &);
+template Region &Region::transform (const geo::IMatrix2d &);
+template Region &Region::transform (const geo::IMatrix3d &);
 
 template <class Sh>
 void Region::insert (const Sh &shape)
@@ -131,10 +131,10 @@ void Region::insert (const Sh &shape)
   mutable_region ()->insert (shape);
 }
 
-template DB_PUBLIC void Region::insert (const geo::Box &);
-template DB_PUBLIC void Region::insert (const geo::SimplePolygon &);
-template DB_PUBLIC void Region::insert (const geo::Polygon &);
-template DB_PUBLIC void Region::insert (const geo::Path &);
+template void Region::insert (const geo::Box &);
+template void Region::insert (const geo::SimplePolygon &);
+template void Region::insert (const geo::Polygon &);
+template void Region::insert (const geo::Path &);
 
 void Region::insert (const geo::Shape &shape)
 {
@@ -147,9 +147,9 @@ void Region::insert (const geo::Shape &shape, const T &trans)
   mutable_region ()->insert (shape, trans);
 }
 
-template DB_PUBLIC void Region::insert (const geo::Shape &, const geo::ICplxTrans &);
-template DB_PUBLIC void Region::insert (const geo::Shape &, const geo::Trans &);
-template DB_PUBLIC void Region::insert (const geo::Shape &, const geo::Disp &);
+template void Region::insert (const geo::Shape &, const geo::ICplxTrans &);
+template void Region::insert (const geo::Shape &, const geo::Trans &);
+template void Region::insert (const geo::Shape &, const geo::Disp &);
 
 MutableRegion *
 Region::mutable_region ()
@@ -596,7 +596,7 @@ Region::texts_as_boxes (const std::string &pat, bool pattern, geo::Coord enl, ge
 
 namespace geo
 {
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Region &b)
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Region &b)
   {
     geo::Polygon p;
 
@@ -616,7 +616,7 @@ namespace geo
     return true;
   }
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Region &b)
+  template<> void extractor_impl (geo::Extractor &ex, geo::Region &b)
   {
     if (! test_extractor_impl (ex, b)) {
       ex.error (geo::to_string (tr ("Expected a region specification")));

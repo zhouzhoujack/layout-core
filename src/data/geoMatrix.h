@@ -1,9 +1,8 @@
 #ifndef HDR_geoMatrix
 #define HDR_geoMatrix
 
-#include "geoCommon.h"
 
-#include <geoVector.h>
+#include "geoVector.h"
 #include "geoPoint.h"
 
 #include <string>
@@ -20,7 +19,7 @@ namespace geo
  *  @brief A class representing a 2d matrix, mainly to represent a rotation or shear transformation of 2d vectors
  */
 template <class C>
-class DB_PUBLIC matrix_2d
+class matrix_2d
 {
 public:
   /**
@@ -462,7 +461,7 @@ typedef matrix_2d<geo::Coord> IMatrix2d;
  *  @brief A class representing a 3d matrix, mainly to represent a rotation, shear or perspective transformation of 2d vectors
  */
 template <class C>
-class DB_PUBLIC matrix_3d
+class matrix_3d
 {
 public:
   /**
@@ -1036,7 +1035,7 @@ struct MatrixAdjustFlags
  *  @param flags Selects the properties to adjust.
  *  @param fixed_point The index of the fixed point (one that is definitely mapped to the target) or -1 if there is none
  */
-void DB_PUBLIC adjust_matrix (Matrix2d &matrix, geo::DVector &disp, const std::vector <geo::DPoint> &landmarks_before, const std::vector <geo::DPoint> &landmarks_after, MatrixAdjustFlags::Flags flags, int fixed_point = -1);
+void adjust_matrix (Matrix2d &matrix, geo::DVector &disp, const std::vector <geo::DPoint> &landmarks_before, const std::vector <geo::DPoint> &landmarks_after, MatrixAdjustFlags::Flags flags, int fixed_point = -1);
 
 /**
  *  @brief Adjust a 3d matrix to match the given set of landmarks
@@ -1052,7 +1051,7 @@ void DB_PUBLIC adjust_matrix (Matrix2d &matrix, geo::DVector &disp, const std::v
  *  @param flags Selects the properties to adjust.
  *  @param fixed_point The index of the fixed point (one that is definitely mapped to the target) or -1 if there is none
  */
-void DB_PUBLIC adjust_matrix (Matrix3d &matrix, const std::vector <geo::DPoint> &landmarks_before, const std::vector <geo::DPoint> &landmarks_after, MatrixAdjustFlags::Flags flags, int fixed_point = -1);
+void adjust_matrix (Matrix3d &matrix, const std::vector <geo::DPoint> &landmarks_before, const std::vector <geo::DPoint> &landmarks_after, MatrixAdjustFlags::Flags flags, int fixed_point = -1);
 
 } // namespace geo
 
@@ -1062,15 +1061,15 @@ void DB_PUBLIC adjust_matrix (Matrix3d &matrix, const std::vector <geo::DPoint> 
 
 namespace geo 
 {
-  template<> DB_PUBLIC void extractor_impl<geo::matrix_2d<geo::Coord> > (geo::Extractor &ex, geo::matrix_2d<geo::Coord> &t);
-  template<> DB_PUBLIC void extractor_impl<geo::matrix_2d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_2d<geo::DCoord> &t);
-  template<> DB_PUBLIC void extractor_impl<geo::matrix_3d<geo::Coord> > (geo::Extractor &ex, geo::matrix_3d<geo::Coord> &t);
-  template<> DB_PUBLIC void extractor_impl<geo::matrix_3d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_3d<geo::DCoord> &t);
+  template<> void extractor_impl<geo::matrix_2d<geo::Coord> > (geo::Extractor &ex, geo::matrix_2d<geo::Coord> &t);
+  template<> void extractor_impl<geo::matrix_2d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_2d<geo::DCoord> &t);
+  template<> void extractor_impl<geo::matrix_3d<geo::Coord> > (geo::Extractor &ex, geo::matrix_3d<geo::Coord> &t);
+  template<> void extractor_impl<geo::matrix_3d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_3d<geo::DCoord> &t);
 
-  template<> DB_PUBLIC bool test_extractor_impl<geo::matrix_2d<geo::Coord> > (geo::Extractor &ex, geo::matrix_2d<geo::Coord> &t);
-  template<> DB_PUBLIC bool test_extractor_impl<geo::matrix_2d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_2d<geo::DCoord> &t);
-  template<> DB_PUBLIC bool test_extractor_impl<geo::matrix_3d<geo::Coord> > (geo::Extractor &ex, geo::matrix_3d<geo::Coord> &t);
-  template<> DB_PUBLIC bool test_extractor_impl<geo::matrix_3d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_3d<geo::DCoord> &t);
+  template<> bool test_extractor_impl<geo::matrix_2d<geo::Coord> > (geo::Extractor &ex, geo::matrix_2d<geo::Coord> &t);
+  template<> bool test_extractor_impl<geo::matrix_2d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_2d<geo::DCoord> &t);
+  template<> bool test_extractor_impl<geo::matrix_3d<geo::Coord> > (geo::Extractor &ex, geo::matrix_3d<geo::Coord> &t);
+  template<> bool test_extractor_impl<geo::matrix_3d<geo::DCoord> > (geo::Extractor &ex, geo::matrix_3d<geo::DCoord> &t);
 } // namespace geo
 
 #endif

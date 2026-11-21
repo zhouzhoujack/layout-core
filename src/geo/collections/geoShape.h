@@ -1,7 +1,6 @@
 #ifndef HDR_geoShape
 #define HDR_geoShape
 
-#include "geoCommon.h"
 
 #include "utilsException.h"
 #include "utilsReuseVector.h"
@@ -571,7 +570,7 @@ private:
  *  the shape proxy will also point to a modified or invalid shape.
  *  The proxy can be "null" which means a invalid reference.
  */ 
-class DB_PUBLIC Shape
+class Shape
 {
 public:
   typedef geo::Coord coord_type;

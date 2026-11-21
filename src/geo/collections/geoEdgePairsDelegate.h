@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdgePairsDelegate
 #define HDR_geoEdgePairsDelegate
 
-#include "geoCommon.h"
 #include "geoEdgePair.h"
 #include "geoShapeCollection.h"
 #include "geoShapeCollectionUtils.h"
@@ -19,7 +18,7 @@ class Layout;
 typedef shape_collection_processor<geo::EdgePair, geo::Polygon> EdgePairToPolygonProcessorBase;
 typedef shape_collection_processor<geo::EdgePair, geo::Edge> EdgePairToEdgeProcessorBase;
 
-class DB_PUBLIC
+class 
 EdgePairToPolygonProcessor
   : public EdgePairToPolygonProcessorBase
 {
@@ -40,7 +39,7 @@ private:
   geo::Coord m_e;
 };
 
-class DB_PUBLIC
+class 
 EdgePairToEdgesProcessor
   : public EdgePairToEdgeProcessorBase
 {
@@ -55,7 +54,7 @@ public:
   }
 };
 
-class DB_PUBLIC
+class 
 EdgePairToFirstEdgesProcessor
   : public EdgePairToEdgeProcessorBase
 {
@@ -72,7 +71,7 @@ public:
   }
 };
 
-class DB_PUBLIC
+class 
 EdgePairToSecondEdgesProcessor
   : public EdgePairToEdgeProcessorBase
 {
@@ -88,7 +87,7 @@ public:
   }
 };
 
-class DB_PUBLIC
+class 
 EdgePairToLesserEdgesProcessor
   : public EdgePairToEdgeProcessorBase
 {
@@ -102,7 +101,7 @@ public:
   }
 };
 
-class DB_PUBLIC
+class 
 EdgePairToGreaterEdgesProcessor
   : public EdgePairToEdgeProcessorBase
 {
@@ -124,7 +123,7 @@ typedef geo::generic_shape_iterator_delegate_base <geo::EdgePair> EdgePairsItera
 /**
  *  @brief The delegate for the actual edge set implementation
  */
-class DB_PUBLIC EdgePairsDelegate
+class EdgePairsDelegate
   : public ShapeCollectionDelegateBase
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoHierNetworkProcessor
 #define HDR_geoHierNetworkProcessor
 
-#include "geoCommon.h"
 #include "geoTrans.h"
 #include "geoBoxConvert.h"
 #include "geoBoxTree.h"
@@ -33,7 +32,7 @@ class DeepLayer;
  *  shapes on a layer are not connected by default. They need to
  *  be connected explicitly using "connect(layer)".
  */
-class DB_PUBLIC Connectivity
+class Connectivity
 {
 public:
   typedef std::set<unsigned int> layers_type;
@@ -195,7 +194,7 @@ private:
  *  of a given connectivity. The shapes will still be organized in layers.
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE local_cluster
+class local_cluster
 {
 public:
   typedef size_t id_type;
@@ -403,7 +402,7 @@ inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int
  *  @brief A box converter for the local_cluster class
  */
 template <class T>
-struct DB_PUBLIC_TEMPLATE local_cluster_box_convert
+struct local_cluster_box_convert
 {
   typedef typename local_cluster<T>::box_type box_type;
   typedef typename geo::simple_bbox_tag complexity;
@@ -422,7 +421,7 @@ struct DB_PUBLIC_TEMPLATE local_cluster_box_convert
  *  the clusters from a cell's shapes.
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE local_clusters
+class local_clusters
 {
 public:
   typedef typename local_cluster<T>::id_type id_type;
@@ -576,7 +575,7 @@ inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int
 /**
  *  @brief The instance information for a cluster
  */
-class DB_PUBLIC ClusterInstElement
+class ClusterInstElement
 {
 public:
   ClusterInstElement (const geo::InstElement &ie)
@@ -695,7 +694,7 @@ private:
 /**
  *  @brief A connection to a cluster in a child instance
  */
-class DB_PUBLIC ClusterInstance
+class ClusterInstance
   : public ClusterInstElement
 {
 public:
@@ -789,7 +788,7 @@ inline bool less_array_delegates (const geo::ArrayBase *a, const geo::ArrayBase 
 /**
  *  @brief A helper struct to describe a pair of cell instances with a specific relative transformation
  */
-struct DB_PUBLIC InstanceToInstanceInteraction
+struct InstanceToInstanceInteraction
 {
   InstanceToInstanceInteraction (const geo::ArrayBase *_array1, const geo::ArrayBase *_array2, const geo::ICplxTrans &_tn, const geo::ICplxTrans &_t21)
     : array1 (0), array2 (0), t21 (_t21)
@@ -878,7 +877,7 @@ struct DB_PUBLIC InstanceToInstanceInteraction
 };
 
 template <class Box>
-struct DB_PUBLIC_TEMPLATE interaction_key_for_clusters
+struct interaction_key_for_clusters
   : public InstanceToInstanceInteraction
 {
   interaction_key_for_clusters (const geo::ICplxTrans &_t1, const geo::ICplxTrans &_t21, const Box &_box)
@@ -908,7 +907,7 @@ struct DB_PUBLIC_TEMPLATE interaction_key_for_clusters
  *  @brief An object representing the instance interaction cache
  */
 template <class Key, class Value>
-class DB_PUBLIC_TEMPLATE instance_interaction_cache
+class instance_interaction_cache
 {
 public:
   instance_interaction_cache ()
@@ -984,7 +983,7 @@ template <class T> class connected_clusters;
  *  @brief An iterator delivering all clusters of a connected_clusters set
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE connected_clusters_iterator
+class connected_clusters_iterator
 {
 public:
   typedef typename local_cluster<T>::id_type value_type;
@@ -1032,7 +1031,7 @@ private:
  *  "half connected" clusters.
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE connected_clusters
+class connected_clusters
   : public local_clusters<T>
 {
 public:
@@ -1159,7 +1158,7 @@ template <typename> class cell_clusters_box_converter;
  *  Hierarchical clusters
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE hier_clusters
+class hier_clusters
   : public geo::RefCounted
 {
 public:
@@ -1245,7 +1244,7 @@ private:
  *
  *  Reimplement the "new_circuit" method to receive a callback on a new cell or circuit.
  */
-class DB_PUBLIC CircuitCallback
+class CircuitCallback
 {
 public:
   CircuitCallback () { }
@@ -1268,7 +1267,7 @@ public:
  *  This iterator applies to one layer.
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE recursive_cluster_shape_iterator
+class recursive_cluster_shape_iterator
 {
 public:
   typedef T value_type;
@@ -1372,7 +1371,7 @@ private:
  *  This iterator will deliver the child clusters of a specific cluster.
  */
 template <class T>
-class DB_PUBLIC_TEMPLATE recursive_cluster_iterator
+class recursive_cluster_iterator
 {
 public:
   /**
@@ -1436,7 +1435,7 @@ private:
 /**
  *  @brief A connection to a cluster from a parent cluster
  */
-class DB_PUBLIC IncomingClusterInstance
+class IncomingClusterInstance
 {
 public:
   IncomingClusterInstance (geo::cell_index_type pc, size_t parent_cluster_id, const ClusterInstance &inst)

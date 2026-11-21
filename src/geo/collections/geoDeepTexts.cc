@@ -19,7 +19,7 @@ namespace geo
  *  @brief An iterator delegate for the deep region
  *  TODO: this is kind of redundant with OriginalLayerIterator ..
  */
-class DB_PUBLIC DeepTextsIterator
+class DeepTextsIterator
   : public TextsIteratorDelegate
 {
 public:

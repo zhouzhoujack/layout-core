@@ -1,7 +1,6 @@
 #ifndef HDR_geoHierProcessor
 #define HDR_geoHierProcessor
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoLocalOperation.h"
@@ -32,7 +31,7 @@ inline unsigned int foreign_idlayer() { return std::numeric_limits<unsigned int>
 
 //  TODO: move this somewhere else?
 template <class TS, class TI>
-class DB_PUBLIC shape_interactions
+class shape_interactions
 {
 public:
   typedef std::unordered_map<unsigned int, std::vector<unsigned int> > container;
@@ -117,7 +116,7 @@ private:
 
 //  TODO: should be hidden (private data?)
 template <class TS, class TI, class TR>
-struct DB_PUBLIC local_processor_cell_drop
+struct local_processor_cell_drop
 {
   local_processor_cell_drop (geo::local_processor_cell_context<TS, TI, TR> *_parent_context, geo::Cell *_parent, const geo::ICplxTrans &_cell_inst)
     : parent_context (_parent_context), parent (_parent), cell_inst (_cell_inst)
@@ -132,7 +131,7 @@ struct DB_PUBLIC local_processor_cell_drop
 
 //  TODO: should be hidden (private data?)
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_cell_context
+class local_processor_cell_context
 {
 public:
   typedef std::pair<const geo::Cell *, geo::ICplxTrans> parent_inst_type;
@@ -189,7 +188,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_cell_contexts
+class local_processor_cell_contexts
 {
 public:
   typedef std::pair<std::set<CellInstArray>, std::map<unsigned int, std::set<TI> > > context_key_type;
@@ -224,7 +223,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_contexts
+class local_processor_contexts
 {
 public:
   typedef std::unordered_map<geo::Cell *, local_processor_cell_contexts<TS, TI, TR> > contexts_per_cell_type;
@@ -318,7 +317,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_context_computation_task
+class local_processor_context_computation_task
   : public geo::Task
 {
 public:
@@ -338,7 +337,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_context_computation_worker
+class local_processor_context_computation_worker
   : public geo::Worker
 {
 public:
@@ -355,7 +354,7 @@ public:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_result_computation_task
+class local_processor_result_computation_task
   : public geo::Task
 {
 public:
@@ -372,7 +371,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor_result_computation_worker
+class local_processor_result_computation_worker
   : public geo::Worker
 {
 public:
@@ -389,7 +388,7 @@ public:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_processor
+class local_processor
 {
 public:
   local_processor (geo::Layout *layout = 0, geo::Cell *top = 0, const std::set<geo::cell_index_type> *breakout_cells = 0);

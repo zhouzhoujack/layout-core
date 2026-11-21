@@ -1,4 +1,3 @@
-#include "geoCommon.h"
 
 #include "geoBoxConvert.h"
 #include "geoCell.h"
@@ -9,7 +8,7 @@ namespace geo
 //  BoxConvert implementation
 
 
-DB_PUBLIC geo::Box cellinst_box_convert_impl (const geo::CellInst &inst, const geo::Layout *layout, int layer, bool allow_empty)
+geo::Box cellinst_box_convert_impl (const geo::CellInst &inst, const geo::Layout *layout, int layer, bool allow_empty)
 {
   if (layer >= 0) {
     return inst.bbox (*layout, layer);
@@ -25,7 +24,7 @@ DB_PUBLIC geo::Box cellinst_box_convert_impl (const geo::CellInst &inst, const g
   }
 }
 
-DB_PUBLIC geo::Box cell_box_convert_impl (const geo::Cell &c, int layer, bool allow_empty)
+geo::Box cell_box_convert_impl (const geo::Cell &c, int layer, bool allow_empty)
 {
   if (layer >= 0) {
     return c.bbox (layer);

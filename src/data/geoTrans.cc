@@ -135,7 +135,7 @@ namespace geo
 {
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::FTrans &t)
 {
   if (! test_extractor_impl (ex, t)) {
@@ -144,56 +144,56 @@ extractor_impl (geo::Extractor &ex, geo::FTrans &t)
 }
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::Trans &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::DTrans &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::Disp &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::DDisp &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-void DB_PUBLIC 
+void 
 extractor_impl (geo::Extractor &ex, geo::CplxTrans &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC void 
+void 
 extractor_impl (geo::Extractor &ex, geo::ICplxTrans &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC void 
+void 
 extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t)
 {
   _extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC void
+void
 extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t)
 {
   _extractor_impl (ex, t);
@@ -201,7 +201,7 @@ extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t)
 
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::FTrans &t)
 {
   if (ex.test ("r0")) {
@@ -234,56 +234,56 @@ test_extractor_impl (geo::Extractor &ex, geo::FTrans &t)
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::Trans &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::DTrans &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::Disp &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::DDisp &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::CplxTrans &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::ICplxTrans &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool 
+bool 
 test_extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t)
 {
   return _test_extractor_impl (ex, t);
 }
 
 template <>
-DB_PUBLIC bool
+bool
 test_extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t)
 {
   return _test_extractor_impl (ex, t);

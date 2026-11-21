@@ -1,7 +1,6 @@
 #ifndef HDR_geoFlatEdgePairs
 #define HDR_geoFlatEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoMutableEdgePairs.h"
 #include "geoShapes.h"
@@ -18,7 +17,7 @@ typedef generic_shapes_iterator_delegate<geo::EdgePair> FlatEdgePairsIterator;
 /**
  *  @brief The delegate for the actual edge pair set implementation
  */
-class DB_PUBLIC FlatEdgePairs
+class FlatEdgePairs
   : public MutableEdgePairs
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoOriginalLayerEdgePairs
 #define HDR_geoOriginalLayerEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatEdgePairs.h"
 #include "geoShapes.h"
@@ -12,7 +11,7 @@ namespace geo {
 /**
  *  @brief An original layerregion based on a RecursiveShapeIterator
  */
-class DB_PUBLIC OriginalLayerEdgePairs
+class OriginalLayerEdgePairs
   : public AsIfFlatEdgePairs
 {
 public:

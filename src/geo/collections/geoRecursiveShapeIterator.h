@@ -1,7 +1,6 @@
 #ifndef HDR_geoRecursiveShapeIterator
 #define HDR_geoRecursiveShapeIterator
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoInstElement.h"
@@ -26,7 +25,7 @@ class RecursiveShapeReceiver;
  *  Some options can be specified, i.e. the level to which to look into or
  *  shape classes and shape properties. 
  */
-class DB_PUBLIC RecursiveShapeIterator
+class RecursiveShapeIterator
 {
 public:
   typedef geo::Layout layout_type;
@@ -808,7 +807,7 @@ private:
  *  entry and on each instance (followed by a cell entry). It also receives
  *  the shapes.
  */
-class DB_PUBLIC RecursiveShapeReceiver
+class RecursiveShapeReceiver
 {
 public:
   typedef RecursiveShapeIterator::box_tree_type box_tree_type;

@@ -1,7 +1,6 @@
 #ifndef HDR_geoBoxScanner
 #define HDR_geoBoxScanner
 
-#include "geoCommon.h"
 
 #include "geoBoxConvert.h"
 #include "utilsProgress.h"

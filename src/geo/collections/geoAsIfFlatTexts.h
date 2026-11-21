@@ -1,7 +1,6 @@
 #ifndef HDR_geoAsIfFlatTexts
 #define HDR_geoAsIfFlatTexts
 
-#include "geoCommon.h"
 
 #include "geoTextsDelegate.h"
 
@@ -12,7 +11,7 @@ class Region;
 /**
  *  @brief Provides default flat implementations
  */
-class DB_PUBLIC AsIfFlatTexts
+class AsIfFlatTexts
   : public TextsDelegate
 {
 public:

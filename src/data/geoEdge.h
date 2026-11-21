@@ -1,13 +1,11 @@
 #ifndef HDR_geoEdge
 #define HDR_geoEdge
 
-#include "geoCommon.h"
-
 #include "geoTypes.h"
 #include "geoPoint.h"
 #include "geoVector.h"
 #include "geoTrans.h"
-#include "geoObjectTag.h"
+#include "dataObjectTag.h"
 #include "geoBox.h"
 
 #include <string>
@@ -23,7 +21,7 @@ namespace geo {
  *  The implementation uses the gcd to reduce the ratios. This way we can
  *  represent the numbers with the area type.
  */
-geo::Coord DB_PUBLIC div_exact (geo::Coord a, geo::coord_traits<geo::Coord>::area_type b, geo::coord_traits<geo::Coord>::area_type d);
+geo::Coord div_exact (geo::Coord a, geo::coord_traits<geo::Coord>::area_type b, geo::coord_traits<geo::Coord>::area_type d);
 
 /**
  *  @brief An overload of div_exact for double types
@@ -37,7 +35,7 @@ template <class C> class generic_repository;
 class ArrayRepository;
 
 template <class C>
-class DB_PUBLIC_TEMPLATE edge
+class edge
 {
 public:
   typedef C coord_type;
@@ -1492,11 +1490,11 @@ namespace geo
     typedef true_tag has_equal_operator;
   };
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Edge &b);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DEdge &b);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Edge &b);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DEdge &b);
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Edge &b);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DEdge &b);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Edge &b);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DEdge &b);
 
 } // namespace geo
 

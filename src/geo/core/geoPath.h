@@ -1,10 +1,9 @@
 #ifndef HDR_geoPath
 #define HDR_geoPath
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoTrans.h"
 #include "geoEdge.h"
@@ -13,6 +12,7 @@
 #include "geoObjectTag.h"
 #include "geoShapeRepository.h"
 #include "geoStatic.h"
+
 #include "utilsVector.h"
 #include "utilsString.h"
 
@@ -185,9 +185,9 @@ private:
  */
 
 //  NOTE: we do explicit instantiation, so the exposure is declared
-//  as DB_PUBLIC - as if it wasn't a template
+//  as - as if it wasn't a template
 template <class C>
-class DB_PUBLIC path
+class path
 {
 public:
   typedef C coord_type;
@@ -1093,7 +1093,7 @@ typedef path_ref<DPath, DUnitTrans> DPathPtr;
  *  @param accuracy The internal numerical accuracy. This value should be half the database unit.
  *  @return The new path with the corners replaced by an arc interpolation
  */
-DB_PUBLIC DPath round_path_corners (const DPath &input, double rad, int npoints, double accuracy);
+DPath round_path_corners (const DPath &input, double rad, int npoints, double accuracy);
 
 /**
  *  @brief Rounds the path by smoothing the corners with a circle approximation
@@ -1126,11 +1126,11 @@ namespace geo
   /**
    *  @brief Special extractors for the paths
    */
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Path &p);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DPath &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Path &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DPath &p);
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Path &p);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DPath &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Path &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DPath &p);
 
 } // namespace geo
 

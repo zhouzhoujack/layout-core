@@ -4,7 +4,6 @@
 #include <string>
 #include <map>
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoStreamLayers.h"
@@ -19,7 +18,7 @@ namespace geo
 /**
  *  @brief Base class for specific options for a certain format
  */
-class DB_PUBLIC FormatSpecificReaderOptions
+class FormatSpecificReaderOptions
   : public gsi::ObjectBase
 {
 public:
@@ -33,7 +32,7 @@ public:
 /**
  *  @brief Options for loading layouts
  */
-class DB_PUBLIC LoadLayoutOptions
+class LoadLayoutOptions
 {
 public:
   /**

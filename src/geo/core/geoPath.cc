@@ -563,31 +563,31 @@ template class path<Coord>;
 template class path<DCoord>;
 
 //  explicit instantiations
-template DB_PUBLIC void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, box_inserter<path<Coord>::box_type>) const;
-template DB_PUBLIC void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, std::back_insert_iterator<geo::uvector<path<Coord>::point_type> >) const;
-template DB_PUBLIC void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, std::back_insert_iterator<std::vector<path<Coord>::point_type> >) const;
-template DB_PUBLIC void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::reverse_iterator, path<Coord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<geo::uvector<path<Coord>::point_type> >) const;
-template DB_PUBLIC void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::reverse_iterator, path<Coord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<std::vector<path<Coord>::point_type> >) const;
+template void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, box_inserter<path<Coord>::box_type>) const;
+template void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, std::back_insert_iterator<geo::uvector<path<Coord>::point_type> >) const;
+template void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::iterator, path<Coord>::pointlist_type::iterator, int, std::back_insert_iterator<std::vector<path<Coord>::point_type> >) const;
+template void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::reverse_iterator, path<Coord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<geo::uvector<path<Coord>::point_type> >) const;
+template void path<Coord>::create_shifted_points (Coord, Coord, Coord, bool, path<Coord>::pointlist_type::reverse_iterator, path<Coord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<std::vector<path<Coord>::point_type> >) const;
 
-template DB_PUBLIC void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, box_inserter<path<DCoord>::box_type>) const;
-template DB_PUBLIC void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, std::back_insert_iterator<geo::uvector<path<DCoord>::point_type> >) const;
-template DB_PUBLIC void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, std::back_insert_iterator<std::vector<path<DCoord>::point_type> >) const;
-template DB_PUBLIC void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::reverse_iterator, path<DCoord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<geo::uvector<path<DCoord>::point_type> >) const;
-template DB_PUBLIC void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::reverse_iterator, path<DCoord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<std::vector<path<DCoord>::point_type> >) const;
+template void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, box_inserter<path<DCoord>::box_type>) const;
+template void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, std::back_insert_iterator<geo::uvector<path<DCoord>::point_type> >) const;
+template void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::iterator, path<DCoord>::pointlist_type::iterator, int, std::back_insert_iterator<std::vector<path<DCoord>::point_type> >) const;
+template void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::reverse_iterator, path<DCoord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<geo::uvector<path<DCoord>::point_type> >) const;
+template void path<DCoord>::create_shifted_points (DCoord, DCoord, DCoord, bool, path<DCoord>::pointlist_type::reverse_iterator, path<DCoord>::pointlist_type::reverse_iterator, int, std::back_insert_iterator<std::vector<path<DCoord>::point_type> >) const;
 
 }
 
 namespace geo
 {
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Path &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::Path &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a path specification")));
   }
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DPath &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::DPath &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a path specification")));
@@ -643,12 +643,12 @@ template<class C> bool _test_extractor_impl (geo::Extractor &ex, geo::path<C> &p
   }
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Path &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::Path &p)
 {
   return _test_extractor_impl (ex, p);
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DPath &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::DPath &p)
 {
   return _test_extractor_impl (ex, p);
 }

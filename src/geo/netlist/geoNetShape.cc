@@ -194,7 +194,7 @@ bool NetShape::interacts_with_transformed (const geo::NetShape &other, const Tr 
 }
 
 //  explicit instantiations
-template DB_PUBLIC bool NetShape::interacts_with_transformed<geo::ICplxTrans> (const geo::NetShape &other, const geo::ICplxTrans &trans) const;
-template DB_PUBLIC bool NetShape::interacts_with_transformed<geo::Trans> (const geo::NetShape &other, const geo::Trans &trans) const;
+template bool NetShape::interacts_with_transformed<geo::ICplxTrans> (const geo::NetShape &other, const geo::ICplxTrans &trans) const;
+template bool NetShape::interacts_with_transformed<geo::Trans> (const geo::NetShape &other, const geo::Trans &trans) const;
 
 }

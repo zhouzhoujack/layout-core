@@ -345,13 +345,13 @@ bool Connectivity::interact (const geo::Cell &a, const T &ta, const geo::Cell &b
 }
 
 //  explicit instantiations
-template DB_PUBLIC bool Connectivity::interacts<geo::NetShape> (const geo::NetShape &a, unsigned int la, const geo::NetShape &b, unsigned int lb, const geo::UnitTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interacts<geo::NetShape> (const geo::NetShape &a, unsigned int la, const geo::NetShape &b, unsigned int lb, const geo::ICplxTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interacts<geo::PolygonRef> (const geo::PolygonRef &a, unsigned int la, const geo::PolygonRef &b, unsigned int lb, const geo::UnitTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interacts<geo::PolygonRef> (const geo::PolygonRef &a, unsigned int la, const geo::PolygonRef &b, unsigned int lb, const geo::ICplxTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interacts<geo::Edge> (const geo::Edge &a, unsigned int la, const geo::Edge &b, unsigned int lb, const geo::UnitTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interacts<geo::Edge> (const geo::Edge &a, unsigned int la, const geo::Edge &b, unsigned int lb, const geo::ICplxTrans &trans) const;
-template DB_PUBLIC bool Connectivity::interact<geo::ICplxTrans> (const geo::Cell &a, const geo::ICplxTrans &ta, const geo::Cell &b, const geo::ICplxTrans &tb) const;
+template bool Connectivity::interacts<geo::NetShape> (const geo::NetShape &a, unsigned int la, const geo::NetShape &b, unsigned int lb, const geo::UnitTrans &trans) const;
+template bool Connectivity::interacts<geo::NetShape> (const geo::NetShape &a, unsigned int la, const geo::NetShape &b, unsigned int lb, const geo::ICplxTrans &trans) const;
+template bool Connectivity::interacts<geo::PolygonRef> (const geo::PolygonRef &a, unsigned int la, const geo::PolygonRef &b, unsigned int lb, const geo::UnitTrans &trans) const;
+template bool Connectivity::interacts<geo::PolygonRef> (const geo::PolygonRef &a, unsigned int la, const geo::PolygonRef &b, unsigned int lb, const geo::ICplxTrans &trans) const;
+template bool Connectivity::interacts<geo::Edge> (const geo::Edge &a, unsigned int la, const geo::Edge &b, unsigned int lb, const geo::UnitTrans &trans) const;
+template bool Connectivity::interacts<geo::Edge> (const geo::Edge &a, unsigned int la, const geo::Edge &b, unsigned int lb, const geo::ICplxTrans &trans) const;
+template bool Connectivity::interact<geo::ICplxTrans> (const geo::Cell &a, const geo::ICplxTrans &ta, const geo::Cell &b, const geo::ICplxTrans &tb) const;
 
 // ------------------------------------------------------------------------------
 //  local_cluster implementation
@@ -462,7 +462,7 @@ local_cluster<T>::mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpos
 }
 
 template <class T>
-class DB_PUBLIC hnp_interaction_receiver
+class hnp_interaction_receiver
   : public box_scanner_receiver2<T, unsigned int, T, unsigned int>
 {
 public:
@@ -711,12 +711,12 @@ size_t local_cluster<T>::split (double max_area_ratio, Iter &output) const
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_cluster<geo::NetShape>;
-template class DB_PUBLIC local_cluster<geo::PolygonRef>;
-template class DB_PUBLIC local_cluster<geo::Edge>;
-template DB_PUBLIC size_t local_cluster<geo::NetShape>::split<std::back_insert_iterator<std::list<local_cluster<geo::NetShape> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::NetShape> > > &) const;
-template DB_PUBLIC size_t local_cluster<geo::PolygonRef>::split<std::back_insert_iterator<std::list<local_cluster<geo::PolygonRef> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::PolygonRef> > > &) const;
-template DB_PUBLIC size_t local_cluster<geo::Edge>::split<std::back_insert_iterator<std::list<local_cluster<geo::Edge> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::Edge> > > &) const;
+template class local_cluster<geo::NetShape>;
+template class local_cluster<geo::PolygonRef>;
+template class local_cluster<geo::Edge>;
+template size_t local_cluster<geo::NetShape>::split<std::back_insert_iterator<std::list<local_cluster<geo::NetShape> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::NetShape> > > &) const;
+template size_t local_cluster<geo::PolygonRef>::split<std::back_insert_iterator<std::list<local_cluster<geo::PolygonRef> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::PolygonRef> > > &) const;
+template size_t local_cluster<geo::Edge>::split<std::back_insert_iterator<std::list<local_cluster<geo::Edge> > > > (double, std::back_insert_iterator<std::list<local_cluster<geo::Edge> > > &) const;
 
 // ------------------------------------------------------------------------------
 //  local_clusters implementation
@@ -1171,9 +1171,9 @@ local_clusters<T>::apply_attr_equivalences (const geo::equivalence_clusters<size
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_clusters<geo::NetShape>;
-template class DB_PUBLIC local_clusters<geo::PolygonRef>;
-template class DB_PUBLIC local_clusters<geo::Edge>;
+template class local_clusters<geo::NetShape>;
+template class local_clusters<geo::PolygonRef>;
+template class local_clusters<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  connected_clusters_iterator implementation
@@ -1194,9 +1194,9 @@ connected_clusters_iterator<T>::connected_clusters_iterator (const connected_clu
 }
 
 //  explicit instantiations
-template class DB_PUBLIC connected_clusters_iterator<geo::NetShape>;
-template class DB_PUBLIC connected_clusters_iterator<geo::PolygonRef>;
-template class DB_PUBLIC connected_clusters_iterator<geo::Edge>;
+template class connected_clusters_iterator<geo::NetShape>;
+template class connected_clusters_iterator<geo::PolygonRef>;
+template class connected_clusters_iterator<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  connected_clusters implementation
@@ -1279,15 +1279,15 @@ connected_clusters<T>::mem_stat (MemStatistics *stat, MemStatistics::purpose_t p
 }
 
 //  explicit instantiations
-template class DB_PUBLIC connected_clusters<geo::NetShape>;
-template class DB_PUBLIC connected_clusters<geo::PolygonRef>;
-template class DB_PUBLIC connected_clusters<geo::Edge>;
+template class connected_clusters<geo::NetShape>;
+template class connected_clusters<geo::PolygonRef>;
+template class connected_clusters<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  connected_clusters implementation
 
 template <class T>
-class DB_PUBLIC cell_clusters_box_converter
+class cell_clusters_box_converter
 {
 public:
   typedef geo::simple_bbox_tag complexity;
@@ -2624,9 +2624,9 @@ hier_clusters<T>::return_to_hierarchy (geo::Layout &layout, const std::map<unsig
 }
 
 //  explicit instantiations
-template class DB_PUBLIC hier_clusters<geo::NetShape>;
-template class DB_PUBLIC hier_clusters<geo::PolygonRef>;
-template class DB_PUBLIC hier_clusters<geo::Edge>;
+template class hier_clusters<geo::NetShape>;
+template class hier_clusters<geo::PolygonRef>;
+template class hier_clusters<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  recursive_cluster_shape_iterator implementation
@@ -2749,9 +2749,9 @@ void recursive_cluster_shape_iterator<T>::down (geo::cell_index_type ci, typenam
 }
 
 //  explicit instantiations
-template class DB_PUBLIC recursive_cluster_shape_iterator<geo::NetShape>;
-template class DB_PUBLIC recursive_cluster_shape_iterator<geo::PolygonRef>;
-template class DB_PUBLIC recursive_cluster_shape_iterator<geo::Edge>;
+template class recursive_cluster_shape_iterator<geo::NetShape>;
+template class recursive_cluster_shape_iterator<geo::PolygonRef>;
+template class recursive_cluster_shape_iterator<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  recursive_cluster_iterator implementation
@@ -2823,9 +2823,9 @@ void recursive_cluster_iterator<T>::down (geo::cell_index_type ci, typename geo:
 }
 
 //  explicit instantiations
-template class DB_PUBLIC recursive_cluster_iterator<geo::NetShape>;
-template class DB_PUBLIC recursive_cluster_iterator<geo::PolygonRef>;
-template class DB_PUBLIC recursive_cluster_iterator<geo::Edge>;
+template class recursive_cluster_iterator<geo::NetShape>;
+template class recursive_cluster_iterator<geo::PolygonRef>;
+template class recursive_cluster_iterator<geo::Edge>;
 
 // ------------------------------------------------------------------------------
 //  incoming_cluster_connections implementation
@@ -2905,8 +2905,8 @@ incoming_cluster_connections<T>::ensure_computed_parent (geo::cell_index_type ci
 }
 
 //  explicit instantiations
-template class DB_PUBLIC incoming_cluster_connections<geo::NetShape>;
-template class DB_PUBLIC incoming_cluster_connections<geo::PolygonRef>;
-template class DB_PUBLIC incoming_cluster_connections<geo::Edge>;
+template class incoming_cluster_connections<geo::NetShape>;
+template class incoming_cluster_connections<geo::PolygonRef>;
+template class incoming_cluster_connections<geo::Edge>;
 
 }

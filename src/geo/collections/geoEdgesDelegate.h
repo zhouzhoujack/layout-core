@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdgesDelegate
 #define HDR_geoEdgesDelegate
 
-#include "geoCommon.h"
 
 #include "geoEdge.h"
 #include "geoEdgePairs.h"
@@ -19,7 +18,7 @@ namespace geo {
 /**
  *  @brief A structure holding the options for the region checks (space, width, ...)
  */
-struct DB_PUBLIC EdgesCheckOptions
+struct EdgesCheckOptions
 {
   typedef geo::coord_traits<geo::Coord>::distance_type distance_type;
 
@@ -82,7 +81,7 @@ struct DB_PUBLIC EdgesCheckOptions
 /**
  *  @brief A base class for edge filters
  */
-class DB_PUBLIC EdgeFilterBase
+class EdgeFilterBase
 {
 public:
   /**
@@ -128,7 +127,7 @@ public:
  *  A polygon processor can turn a edge into something else.
  */
 template <class Result>
-class DB_PUBLIC edge_processor
+class edge_processor
 {
 public:
   /**
@@ -195,7 +194,7 @@ typedef geo::generic_shape_iterator_delegate_base <geo::Edge> EdgesIteratorDeleg
 /**
  *  @brief The delegate for the actual edge set implementation
  */
-class DB_PUBLIC EdgesDelegate
+class EdgesDelegate
   : public ShapeCollectionDelegateBase
 {
 public:

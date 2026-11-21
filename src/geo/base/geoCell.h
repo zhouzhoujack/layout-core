@@ -1,11 +1,10 @@
 #ifndef HDR_geoCell
 #define HDR_geoCell
 
-#include "geoCommon.h"
 
 #include "geoInstances.h"
 #include "geoObject.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 #include "geoBox.h"
 #include "geoBoxTree.h"
 #include "geoBoxConvert.h"
@@ -13,6 +12,7 @@
 #include "geoShapes.h"
 #include "geoCellInst.h"
 #include "geoArray.h"
+
 #include "utilsTypeTraits.h"
 #include "utilsVector.h"
 #include "utilsAlgorithm.h"
@@ -47,7 +47,7 @@ class LayerMapping;
  *  must issue the cell index.
  */
 
-class DB_PUBLIC Cell
+class Cell
   : public geo::Object,
     public gsi::ObjectBase
 {

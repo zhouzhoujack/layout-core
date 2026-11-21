@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayout
 #define HDR_geoLayout
 
-#include "geoCommon.h"
 
 #include "geoArray.h"
 #include "geoPropertiesRepository.h"
@@ -12,6 +11,7 @@
 #include "geoLayerProperties.h"
 #include "geoMetaInfo.h"
 #include "geoCellInst.h"
+
 #include "utilsException.h"
 #include "utilsVector.h"
 #include "utilsString.h"
@@ -57,7 +57,7 @@ typedef generic_repository<geo::Coord> GenericRepository;
  *  Since we are using a custom cell list, we have to provide our own iterator
  */
 template <class C>
-class DB_PUBLIC_TEMPLATE cell_list_iterator
+class cell_list_iterator
 {
 public:
   typedef C cell_type;
@@ -375,7 +375,7 @@ private:
  *
  *  The layer iterator delivers layer indices and layer properties of layer layers.
  */
-class DB_PUBLIC LayerIterator
+class LayerIterator
 {
 public:
   /**
@@ -437,7 +437,7 @@ public:
 /**
  *  @brief A binary object representing context information for regenerating library proxies and PCells
  */
-struct DB_PUBLIC ProxyContextInfo
+struct ProxyContextInfo
 {
   std::string lib_name;
   std::string cell_name;
@@ -455,7 +455,7 @@ struct DB_PUBLIC ProxyContextInfo
  *  adds functionality for managing cell names and layer names.
  */
 
-class DB_PUBLIC Layout 
+class Layout 
   : public geo::Object,
     public geo::LayoutStateModel,
     public gsi::ObjectBase,
@@ -1930,7 +1930,7 @@ mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int cat, const 
  *  //  now only the layout gets updated
  *  @endcode
  */
-class DB_PUBLIC LayoutLocker
+class LayoutLocker
 {
 public:
   explicit LayoutLocker (geo::Layout *layout = 0, bool no_update = false)

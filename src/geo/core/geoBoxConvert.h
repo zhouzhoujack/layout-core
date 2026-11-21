@@ -25,7 +25,7 @@ class Layout;
  *  enables algorithms to simply use the box without caching it.
  */
 
-struct DB_PUBLIC simple_bbox_tag { };
+struct simple_bbox_tag { };
 
 /**
  *  @brief A tag class to indicate "complex" box computation
@@ -34,7 +34,7 @@ struct DB_PUBLIC simple_bbox_tag { };
  *  enables algorithms to use cached bboxes, i.e. for the dbBoxTree.
  */
 
-struct DB_PUBLIC complex_bbox_tag { };
+struct complex_bbox_tag { };
 
 /**
  *  @brief The generic box converter for the shapes
@@ -486,7 +486,7 @@ struct box_convert< geo::array< geo::box<C, R>, ArrayTrans >, AllowEmpty >
 };
 
 //  Note: the implementation is delegated, so we don't need to make box_convert dllexport.
-DB_PUBLIC geo::Box cell_box_convert_impl (const geo::Cell &c, int layer, bool allow_empty);
+geo::Box cell_box_convert_impl (const geo::Cell &c, int layer, bool allow_empty);
 
 /**
  *  @brief The cell box converter
@@ -498,7 +498,7 @@ DB_PUBLIC geo::Box cell_box_convert_impl (const geo::Cell &c, int layer, bool al
  */
 
 template <bool AllowEmpty>
-struct DB_PUBLIC box_convert <geo::Cell, AllowEmpty>
+struct box_convert <geo::Cell, AllowEmpty>
 {
   typedef geo::Cell cell_type;
   typedef geo::Box box_type;
@@ -523,7 +523,7 @@ private:
 };
 
 //  Note: the implementation is delegated, so we don't need to make box_convert dllexport.
-DB_PUBLIC geo::Box cellinst_box_convert_impl (const geo::CellInst &inst, const geo::Layout *layout, int layer, bool allow_empty);
+geo::Box cellinst_box_convert_impl (const geo::CellInst &inst, const geo::Layout *layout, int layer, bool allow_empty);
 
 /**
  *  @brief The cell inst box converter

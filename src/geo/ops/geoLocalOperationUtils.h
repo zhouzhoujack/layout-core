@@ -1,7 +1,6 @@
 #ifndef HDR_geoLocalOperationUtils
 #define HDR_geoLocalOperationUtils
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoPolygonGenerators.h"
@@ -41,10 +40,10 @@ private:
 };
 
 template <class T>
-class DB_PUBLIC polygon_ref_generator;
+class polygon_ref_generator;
 
 template <>
-class DB_PUBLIC polygon_ref_generator<geo::PolygonRef>
+class polygon_ref_generator<geo::PolygonRef>
   : public PolygonSink
 {
 public:
@@ -72,7 +71,7 @@ private:
 };
 
 template <>
-class DB_PUBLIC polygon_ref_generator<geo::Polygon>
+class polygon_ref_generator<geo::Polygon>
   : public PolygonSink
 {
 public:
@@ -99,7 +98,7 @@ private:
 
 typedef polygon_ref_generator<geo::PolygonRef> PolygonRefGenerator;
 
-class DB_PUBLIC EdgeToEdgeSetGenerator
+class EdgeToEdgeSetGenerator
   : public EdgeSink
 {
 public:
@@ -117,7 +116,7 @@ private:
   std::unordered_set<geo::Edge> *mp_edges;
 };
 
-class DB_PUBLIC PolygonRefToShapesGenerator
+class PolygonRefToShapesGenerator
   : public PolygonSink
 {
 public:
@@ -136,7 +135,7 @@ private:
   geo::Shapes *mp_shapes;
 };
 
-class DB_PUBLIC PolygonSplitter
+class PolygonSplitter
   : public PolygonSink
 {
 public:

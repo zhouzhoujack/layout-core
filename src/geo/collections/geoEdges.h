@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdges
 #define HDR_geoEdges
 
-#include "geoCommon.h"
 #include "geoEdgesDelegate.h"
 #include "geoRecursiveShapeIterator.h"
 #include "geoCellVariants.h"
@@ -22,7 +21,7 @@ class DeepShapeStore;
  *
  *  The iterator delivers the edges of the edge set
  */
-class DB_PUBLIC EdgesIterator
+class EdgesIterator
   : public generic_shape_iterator<geo::Edge>
 {
 public:
@@ -91,7 +90,7 @@ class Edges;
  *  Such edges are basically points which have some applications, i.e. as markers for certain locations.
  */
 
-class DB_PUBLIC Edges
+class Edges
   : public geo::ShapeCollection
 {
 public:

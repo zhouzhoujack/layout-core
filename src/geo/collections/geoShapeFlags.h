@@ -1,7 +1,6 @@
 #ifndef HDR_geoShapeFlags
 #define HDR_geoShapeFlags
 
-#include "geoCommon.h"
 #include "geoShapes.h"
 
 namespace geo
@@ -36,7 +35,7 @@ template <> inline unsigned int shape_flags_pure<geo::Text> ()       { return 1 
 
 
 template <class T>
-struct DB_PUBLIC shape_to_object
+struct shape_to_object
 {
   void set (const geo::Shape &) { }
   const T *get (const geo::Shape &s) const { return s.basic_ptr (typename T::tag ()); }
@@ -44,7 +43,7 @@ struct DB_PUBLIC shape_to_object
 
 
 template <>
-struct DB_PUBLIC shape_to_object<geo::Polygon>
+struct shape_to_object<geo::Polygon>
 {
   typedef geo::Polygon value_type;
 
@@ -56,7 +55,7 @@ private:
 };
 
 template <>
-struct DB_PUBLIC shape_to_object<geo::SimplePolygon>
+struct shape_to_object<geo::SimplePolygon>
 {
   typedef geo::SimplePolygon value_type;
 
@@ -68,7 +67,7 @@ private:
 };
 
 template <>
-struct DB_PUBLIC shape_to_object<geo::Path>
+struct shape_to_object<geo::Path>
 {
   typedef geo::Path value_type;
 
@@ -80,7 +79,7 @@ private:
 };
 
 template <>
-struct DB_PUBLIC shape_to_object<geo::Text>
+struct shape_to_object<geo::Text>
 {
   typedef geo::Text value_type;
 
@@ -92,7 +91,7 @@ private:
 };
 
 template <>
-struct DB_PUBLIC shape_to_object<geo::Box>
+struct shape_to_object<geo::Box>
 {
   typedef geo::Box value_type;
 

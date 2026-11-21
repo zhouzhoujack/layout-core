@@ -1,7 +1,6 @@
 #ifndef HDR_geoMutableRegion
 #define HDR_geoMutableRegion
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatRegion.h"
 
@@ -14,7 +13,7 @@ namespace geo {
  *
  *  Mutable regions offer insert, transform, flatten and other manipulation functions.
  */
-class DB_PUBLIC MutableRegion
+class MutableRegion
   : public AsIfFlatRegion
 {
 public:

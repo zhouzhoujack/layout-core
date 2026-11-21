@@ -1,7 +1,6 @@
 #ifndef HDR_geoOriginalLayerTexts
 #define HDR_geoOriginalLayerTexts
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatTexts.h"
 #include "geoShapes.h"
@@ -12,7 +11,7 @@ namespace geo {
 /**
  *  @brief An original layer text collection based on a RecursiveShapeIterator
  */
-class DB_PUBLIC OriginalLayerTexts
+class OriginalLayerTexts
   : public AsIfFlatTexts
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoOriginalLayerRegion
 #define HDR_geoOriginalLayerRegion
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatRegion.h"
 
@@ -14,7 +13,7 @@ class DeepShapeStore;
 /**
  *  @brief An original layerregion based on a RecursiveShapeIterator
  */
-class DB_PUBLIC OriginalLayerRegion
+class OriginalLayerRegion
   : public AsIfFlatRegion
 {
 public:

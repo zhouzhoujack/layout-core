@@ -344,18 +344,18 @@ local_processor_cell_context<TS, TI, TR>::propagate (unsigned int output_layer, 
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Text, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Edge, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Text, geo::Text>;
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_context<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_cell_context<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_cell_context<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
-template class DB_PUBLIC local_processor_cell_context<geo::Polygon, geo::Polygon, geo::EdgePair>;
-template class DB_PUBLIC local_processor_cell_context<geo::Edge, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_context<geo::Edge, geo::Polygon, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_context<geo::Edge, geo::Edge, geo::EdgePair>;
+template class local_processor_cell_context<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class local_processor_cell_context<geo::Polygon, geo::Text, geo::Polygon>;
+template class local_processor_cell_context<geo::Polygon, geo::Edge, geo::Polygon>;
+template class local_processor_cell_context<geo::Polygon, geo::Text, geo::Text>;
+template class local_processor_cell_context<geo::Polygon, geo::Edge, geo::Edge>;
+template class local_processor_cell_context<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor_cell_context<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class local_processor_cell_context<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
+template class local_processor_cell_context<geo::Polygon, geo::Polygon, geo::EdgePair>;
+template class local_processor_cell_context<geo::Edge, geo::Edge, geo::Edge>;
+template class local_processor_cell_context<geo::Edge, geo::Polygon, geo::Edge>;
+template class local_processor_cell_context<geo::Edge, geo::Edge, geo::EdgePair>;
 
 // ---------------------------------------------------------------------------------------------
 //  LocalProcessorCellContexts implementation
@@ -657,18 +657,18 @@ local_processor_cell_contexts<TS, TI, TR>::compute_results (const local_processo
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Edge, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Text, geo::Polygon>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Text, geo::Text>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Polygon, geo::Polygon, geo::EdgePair>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Edge, geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Edge, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_cell_contexts<geo::Edge, geo::Edge, geo::EdgePair>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Edge, geo::Polygon>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Edge, geo::Edge>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Text, geo::Polygon>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Text, geo::Text>;
+template class local_processor_cell_contexts<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor_cell_contexts<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class local_processor_cell_contexts<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
+template class local_processor_cell_contexts<geo::Polygon, geo::Polygon, geo::EdgePair>;
+template class local_processor_cell_contexts<geo::Edge, geo::PolygonRef, geo::Edge>;
+template class local_processor_cell_contexts<geo::Edge, geo::Edge, geo::Edge>;
+template class local_processor_cell_contexts<geo::Edge, geo::Edge, geo::EdgePair>;
 
 // ---------------------------------------------------------------------------------------------
 
@@ -762,18 +762,18 @@ shape_interactions<TS, TI>::intruder_shape (unsigned int id) const
 }
 
 //  explicit instantiations
-template class DB_PUBLIC shape_interactions<geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC shape_interactions<geo::Polygon, geo::Text>;
-template class DB_PUBLIC shape_interactions<geo::Polygon, geo::TextRef>;
-template class DB_PUBLIC shape_interactions<geo::Polygon, geo::Edge>;
-template class DB_PUBLIC shape_interactions<geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC shape_interactions<geo::PolygonRef, geo::TextRef>;
-template class DB_PUBLIC shape_interactions<geo::PolygonRef, geo::Text>;
-template class DB_PUBLIC shape_interactions<geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC shape_interactions<geo::Edge, geo::Edge>;
-template class DB_PUBLIC shape_interactions<geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC shape_interactions<geo::TextRef, geo::TextRef>;
-template class DB_PUBLIC shape_interactions<geo::TextRef, geo::PolygonRef>;
+template class shape_interactions<geo::Polygon, geo::Polygon>;
+template class shape_interactions<geo::Polygon, geo::Text>;
+template class shape_interactions<geo::Polygon, geo::TextRef>;
+template class shape_interactions<geo::Polygon, geo::Edge>;
+template class shape_interactions<geo::PolygonRef, geo::PolygonRef>;
+template class shape_interactions<geo::PolygonRef, geo::TextRef>;
+template class shape_interactions<geo::PolygonRef, geo::Text>;
+template class shape_interactions<geo::PolygonRef, geo::Edge>;
+template class shape_interactions<geo::Edge, geo::Edge>;
+template class shape_interactions<geo::Edge, geo::PolygonRef>;
+template class shape_interactions<geo::TextRef, geo::TextRef>;
+template class shape_interactions<geo::TextRef, geo::PolygonRef>;
 
 // ---------------------------------------------------------------------------------------------
 //  Helper classes for the LocalProcessor
@@ -1186,19 +1186,19 @@ local_processor_context_computation_task<TS, TI, TR>::perform ()
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Text, geo::Polygon>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Text, geo::Text>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Edge, geo::Polygon>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::EdgePair>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::Edge>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Edge, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Edge, geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC local_processor_context_computation_task<geo::Edge, geo::Edge, geo::EdgePair>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Text, geo::Polygon>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Text, geo::Text>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Edge, geo::Polygon>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Edge, geo::Edge>;
+template class local_processor_context_computation_task<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor_context_computation_task<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class local_processor_context_computation_task<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::EdgePair>;
+template class local_processor_context_computation_task<geo::Polygon, geo::Polygon, geo::Edge>;
+template class local_processor_context_computation_task<geo::Edge, geo::Edge, geo::Edge>;
+template class local_processor_context_computation_task<geo::Edge, geo::PolygonRef, geo::Edge>;
+template class local_processor_context_computation_task<geo::Edge, geo::Edge, geo::EdgePair>;
 
 // ---------------------------------------------------------------------------------------------
 //  LocalProcessorResultComputationTask implementation
@@ -1241,18 +1241,18 @@ local_processor_result_computation_task<TS, TI, TR>::perform ()
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Text, geo::Polygon>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Text, geo::Text>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Edge, geo::Polygon>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Polygon, geo::Polygon, geo::EdgePair>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Edge, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Edge, geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC local_processor_result_computation_task<geo::Edge, geo::Edge, geo::EdgePair>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Text, geo::Polygon>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Text, geo::Text>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Edge, geo::Polygon>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Edge, geo::Edge>;
+template class local_processor_result_computation_task<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor_result_computation_task<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class local_processor_result_computation_task<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
+template class local_processor_result_computation_task<geo::Polygon, geo::Polygon, geo::EdgePair>;
+template class local_processor_result_computation_task<geo::Edge, geo::Edge, geo::Edge>;
+template class local_processor_result_computation_task<geo::Edge, geo::PolygonRef, geo::Edge>;
+template class local_processor_result_computation_task<geo::Edge, geo::Edge, geo::EdgePair>;
 
 // ---------------------------------------------------------------------------------------------
 //  LocalProcessor implementation
@@ -2368,26 +2368,26 @@ local_processor<TS, TI, TR>::run_flat (const generic_shape_iterator<TS> &subject
 }
 
 //  explicit instantiations
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Polygon, geo::Polygon>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Text, geo::Polygon>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Text, geo::Text>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Edge, geo::Polygon>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::TextRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::TextRef, geo::TextRef>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
-template class DB_PUBLIC local_processor<geo::PolygonRef, geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Polygon, geo::EdgePair>;
-template class DB_PUBLIC local_processor<geo::Polygon, geo::Polygon, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::Edge, geo::Edge, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::Edge, geo::PolygonRef, geo::Edge>;
-template class DB_PUBLIC local_processor<geo::Edge, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC local_processor<geo::Edge, geo::Edge, geo::EdgePair>;
-template class DB_PUBLIC local_processor<geo::TextRef, geo::PolygonRef, geo::TextRef>;
-template class DB_PUBLIC local_processor<geo::TextRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class local_processor<geo::Polygon, geo::Text, geo::Polygon>;
+template class local_processor<geo::Polygon, geo::Text, geo::Text>;
+template class local_processor<geo::Polygon, geo::Edge, geo::Polygon>;
+template class local_processor<geo::Polygon, geo::Edge, geo::Edge>;
+template class local_processor<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class local_processor<geo::PolygonRef, geo::Edge, geo::Edge>;
+template class local_processor<geo::PolygonRef, geo::TextRef, geo::PolygonRef>;
+template class local_processor<geo::PolygonRef, geo::TextRef, geo::TextRef>;
+template class local_processor<geo::PolygonRef, geo::PolygonRef, geo::EdgePair>;
+template class local_processor<geo::PolygonRef, geo::PolygonRef, geo::Edge>;
+template class local_processor<geo::Polygon, geo::Polygon, geo::EdgePair>;
+template class local_processor<geo::Polygon, geo::Polygon, geo::Edge>;
+template class local_processor<geo::Edge, geo::Edge, geo::Edge>;
+template class local_processor<geo::Edge, geo::PolygonRef, geo::Edge>;
+template class local_processor<geo::Edge, geo::PolygonRef, geo::PolygonRef>;
+template class local_processor<geo::Edge, geo::Edge, geo::EdgePair>;
+template class local_processor<geo::TextRef, geo::PolygonRef, geo::TextRef>;
+template class local_processor<geo::TextRef, geo::PolygonRef, geo::PolygonRef>;
 
 }
 

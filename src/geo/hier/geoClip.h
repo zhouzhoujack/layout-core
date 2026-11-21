@@ -1,7 +1,6 @@
 #ifndef HDR_geoClip
 #define HDR_geoClip
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoBox.h"
@@ -24,7 +23,7 @@ class Layout;
  *  @param layer The layer index from which to take the boxes
  *  @param boxes Where the boxes are stored
  */
-DB_PUBLIC void collect_clip_boxes (const geo::Layout &layout, geo::cell_index_type cell_index, unsigned int layer, std::vector <geo::Box> &boxes);
+void collect_clip_boxes (const geo::Layout &layout, geo::cell_index_type cell_index, unsigned int layer, std::vector <geo::Box> &boxes);
 
 /**
  *  @brief Clip a given simple polygon with the given box
@@ -35,7 +34,7 @@ DB_PUBLIC void collect_clip_boxes (const geo::Layout &layout, geo::cell_index_ty
  *  @param box The box at which to clip
  *  @param clipped_poly Where the clip results are stored. The clip results are appended to this vector
  */
-DB_PUBLIC void clip_poly (const geo::SimplePolygon &poly, const geo::Box &box, std::vector <geo::SimplePolygon> &clipped_poly, bool resolve_holes = true);
+void clip_poly (const geo::SimplePolygon &poly, const geo::Box &box, std::vector <geo::SimplePolygon> &clipped_poly, bool resolve_holes = true);
 
 /**
  *  @brief Clip a given polygon with the given box
@@ -46,7 +45,7 @@ DB_PUBLIC void clip_poly (const geo::SimplePolygon &poly, const geo::Box &box, s
  *  @param box The box at which to clip
  *  @param clipped_poly Where the clip results are stored. The clip results are appended to this vector
  */
-DB_PUBLIC void clip_poly (const geo::Polygon &poly, const geo::Box &box, std::vector <geo::Polygon> &clipped_poly, bool resolve_holes = true);
+void clip_poly (const geo::Polygon &poly, const geo::Box &box, std::vector <geo::Polygon> &clipped_poly, bool resolve_holes = true);
 
 /**
  *  @brief Clip a layout
@@ -61,7 +60,7 @@ DB_PUBLIC void clip_poly (const geo::Polygon &poly, const geo::Box &box, std::ve
  *  @param stable If true, the function will return corresponding clip cells for each clip box. The clip cells may be empty.
  *  @return A set of cells which contain the clips. If the layout and target layout is identical, these cells may be identical with original cells.
  */
-DB_PUBLIC std::vector <geo::cell_index_type> clip_layout (const Layout &layout, Layout &target_layout, geo::cell_index_type cell_index, const std::vector <geo::Box> &clip_boxes, bool stable);
+std::vector <geo::cell_index_type> clip_layout (const Layout &layout, Layout &target_layout, geo::cell_index_type cell_index, const std::vector <geo::Box> &clip_boxes, bool stable);
 
 } // namespace geo
 

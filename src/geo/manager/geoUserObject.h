@@ -1,14 +1,13 @@
 #ifndef HDR_geoUserObject
 #define HDR_geoUserObject
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoPoint.h"
 #include "geoTrans.h"
 #include "geoObjectTag.h"
 #include "geoBox.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 
 #include "utilsClassRegistry.h"
 
@@ -23,7 +22,7 @@ class ArrayRepository;
 /**
  *  @brief Deliver unique and incremental class ID's (once)
  */
-DB_PUBLIC unsigned int get_unique_user_object_class_id ();
+unsigned int get_unique_user_object_class_id ();
 
 /**
  *  @brief The base class for the user object class
@@ -32,7 +31,7 @@ DB_PUBLIC unsigned int get_unique_user_object_class_id ();
  *  in order to be able to be put into a user_object<C>.
  */
 template <class C>
-class DB_PUBLIC_TEMPLATE user_object_base
+class user_object_base
 {
 public:
   typedef C coord_type;
@@ -398,7 +397,7 @@ typedef user_object<geo::DCoord> DUserObject;
  *  @brief The base object of a factory-instantiable object
  */
 template <class C>
-class DB_PUBLIC_TEMPLATE user_object_factory_base
+class user_object_factory_base
 {
 public:
   user_object_factory_base () { }
@@ -413,7 +412,7 @@ public:
  *  This implements a factory for objects of class X with coordinate base type C.
  */
 template <class X, class C>
-class DB_PUBLIC_TEMPLATE user_object_factory_impl
+class user_object_factory_impl
   : public user_object_factory_base <C>
 {
 public:

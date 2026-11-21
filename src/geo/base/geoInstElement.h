@@ -1,7 +1,6 @@
 #ifndef HDR_geoInstElement
 #define HDR_geoInstElement
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 
@@ -10,7 +9,7 @@ namespace geo {
 /**
  *  @brief A struct that describes a level of instantiation in the selection, hence a specific instance of an array (if the instance is one) 
  */
-struct DB_PUBLIC InstElement
+struct InstElement
 {
   geo::Instance inst_ptr;
   geo::CellInstArray::iterator array_inst;

@@ -48,7 +48,7 @@ class LayoutQuery;
  *  A filter component is one stage in the query path. It defines what items to look for below a given item. 
  *  This is the base class for all filters.
  */
-class DB_PUBLIC FilterBase
+class FilterBase
 {
 public:
   /**
@@ -153,7 +153,7 @@ private:
  *  The entry node is the input of the filter and internally connected to the inputs of the children.
  *  The exit node is the output of the filter and the node the children connect to.
  */
-class DB_PUBLIC FilterBracket : 
+class FilterBracket : 
   public FilterBase
 {
 public:
@@ -239,7 +239,7 @@ private:
 /**
  *  @brief A structure representing optimization hints for the states
  */
-struct DB_PUBLIC FilterStateObjectives
+struct FilterStateObjectives
 {
 public:
   typedef std::set<geo::cell_index_type>::const_iterator cell_iterator;
@@ -279,7 +279,7 @@ private:
  *
  *  See \FilterBase for a brief description of the state objects.
  */
-class DB_PUBLIC FilterStateBase 
+class FilterStateBase 
 {
 public:
   /**
@@ -435,7 +435,7 @@ private:
 /**
  *  @brief the layout query
  */
-class DB_PUBLIC LayoutQuery
+class LayoutQuery
   : public geo::RefCounted
 {
 public:
@@ -542,7 +542,7 @@ private:
 /**
  *  @brief An iterator used to iterate over the query
  */
-class DB_PUBLIC LayoutQueryIterator
+class LayoutQueryIterator
   : public geo::RefCounted
 {
 public:

@@ -1668,21 +1668,21 @@ void Instances::transform_into (const T &tr)
 }
 
 //  explicit instantiations
-template DB_PUBLIC void Instances::replace<> (const Instances::cell_inst_array_type *replace, const Instances::cell_inst_array_type &with);
-template DB_PUBLIC void Instances::replace<> (const Instances::cell_inst_wp_array_type *replace, const Instances::cell_inst_wp_array_type &with);
-template DB_PUBLIC Instance Instances::insert<> (const Instances::cell_inst_wp_array_type &with);
-template DB_PUBLIC Instance Instances::insert<> (const Instances::cell_inst_array_type &with);
-template DB_PUBLIC void Instances::transform<> (const Trans &t);
-template DB_PUBLIC void Instances::transform<> (const ICplxTrans &t);
-template DB_PUBLIC void Instances::transform_into<> (const Trans &t);
-template DB_PUBLIC void Instances::transform_into<> (const ICplxTrans &t);
+template void Instances::replace<> (const Instances::cell_inst_array_type *replace, const Instances::cell_inst_array_type &with);
+template void Instances::replace<> (const Instances::cell_inst_wp_array_type *replace, const Instances::cell_inst_wp_array_type &with);
+template Instance Instances::insert<> (const Instances::cell_inst_wp_array_type &with);
+template Instance Instances::insert<> (const Instances::cell_inst_array_type &with);
+template void Instances::transform<> (const Trans &t);
+template void Instances::transform<> (const ICplxTrans &t);
+template void Instances::transform_into<> (const Trans &t);
+template void Instances::transform_into<> (const ICplxTrans &t);
 
 //  This should not be instantiated explicitly, but without that we'd have to expose the undo/redo code in the 
 //  header
-template DB_PUBLIC void Instances::insert<> (std::vector<Instances::cell_inst_wp_array_type>::const_iterator from, std::vector<Instances::cell_inst_wp_array_type>::const_iterator to);
-template DB_PUBLIC void Instances::insert<> (std::vector<Instances::cell_inst_array_type>::const_iterator from, std::vector<Instances::cell_inst_array_type>::const_iterator to);
-template DB_PUBLIC void Instances::insert<> (std::vector<Instances::cell_inst_wp_array_type>::iterator from, std::vector<Instances::cell_inst_wp_array_type>::iterator to);
-template DB_PUBLIC void Instances::insert<> (std::vector<Instances::cell_inst_array_type>::iterator from, std::vector<Instances::cell_inst_array_type>::iterator to);
+template void Instances::insert<> (std::vector<Instances::cell_inst_wp_array_type>::const_iterator from, std::vector<Instances::cell_inst_wp_array_type>::const_iterator to);
+template void Instances::insert<> (std::vector<Instances::cell_inst_array_type>::const_iterator from, std::vector<Instances::cell_inst_array_type>::const_iterator to);
+template void Instances::insert<> (std::vector<Instances::cell_inst_wp_array_type>::iterator from, std::vector<Instances::cell_inst_wp_array_type>::iterator to);
+template void Instances::insert<> (std::vector<Instances::cell_inst_array_type>::iterator from, std::vector<Instances::cell_inst_array_type>::iterator to);
 
 }
 

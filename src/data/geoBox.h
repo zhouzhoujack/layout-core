@@ -1,20 +1,17 @@
 #ifndef HDR_geoBox
 #define HDR_geoBox
 
-#include "geoCommon.h"
-
 #include "geoPoint.h"
 #include "geoTrans.h"
-#include "geoObjectTag.h"
-#include "utilsTypeTraits.h"
+#include "geoVector.h"
+#include "dataObjectTag.h"
 
 #include <limits>
-#include <string>
-#include <functional>
 
 namespace geo {
 
 template <class Coord> class generic_repository;
+
 class ArrayRepository;
 
 /**
@@ -34,7 +31,7 @@ class ArrayRepository;
  */
 
 template <class C, class R = C>
-struct DB_PUBLIC_TEMPLATE box
+struct box
 {
   typedef C coord_type;
   typedef box<C, R> box_type;
@@ -310,47 +307,6 @@ struct DB_PUBLIC_TEMPLATE box
    *  @return The moved box.
    */
   box<C, R> &move (const vector<C> &p);
-
-  /**
-   *  @brief Reduce the box
-   *
-   *  This method is mainly provided for template argument substitution
-   *  of path and polygon objects by boxes. It basically moves the box.
-   *
-   *  @param tr Receives the transformation that must be applied to render the original box
-   */
-  void reduce (simple_trans<coord_type> &tr)
-  {
-    vector_type d (p1 () - point_type ());
-    move (-d);
-    tr = simple_trans<coord_type> (simple_trans<coord_type>::r0, d);
-  }
-
-  /**
-   *  @brief Reduce the box
-   *
-   *  This method is mainly provided for template argument substitution
-   *  of path and polygon objects by boxes. It basically moves the box.
-   *
-   *  @param tr Receives the transformation that must be applied to render the original box
-   */
-  void reduce (disp_trans<coord_type> &tr)
-  {
-    vector_type d (p1 () - point_type ());
-    move (-d);
-    tr = disp_trans<coord_type> (d);
-  }
-
-  /**
-   *  @brief Reduce the box
-   *
-   *  This method is mainly provided for template argument substitution
-   *  of path and polygon objects by boxes. It basically does nothing (like the same methods in path etc.)
-   */
-  void reduce (unit_trans<coord_type> &)
-  {
-    //  .. nothing ..
-  }
 
   /**
    *  @brief Enlarges the box
@@ -1385,33 +1341,6 @@ typedef box<geo::Coord> Box;
  *  @brief The double coordinate box
  */
 typedef box<geo::DCoord> DBox;
-
-} // namespace geo
-
-/**
- *  @brief Special extractors for the boxes
- */
-
-namespace geo 
-{
-  /**
-   *  @brief The type traits for the box type
-   */
-  template <class C, class R>
-  struct type_traits <geo::box<C, R> > : public type_traits<void> 
-  {
-    typedef trivial_relocate_required relocate_requirements;
-    typedef true_tag supports_extractor;
-    typedef true_tag supports_to_string;
-    typedef true_tag has_less_operator;
-    typedef true_tag has_equal_operator;
-  };
-
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Box &b);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DBox &b);
-
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Box &b);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DBox &b);
 
 } // namespace geo
 

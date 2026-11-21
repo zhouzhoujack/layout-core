@@ -1,7 +1,6 @@
 #ifndef HDR_geoMutableEdgePairs
 #define HDR_geoMutableEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatEdgePairs.h"
 
@@ -14,7 +13,7 @@ namespace geo {
  *
  *  Mutable edge pair collections offer insert, transform, flatten and other manipulation functions.
  */
-class DB_PUBLIC MutableEdgePairs
+class MutableEdgePairs
   : public AsIfFlatEdgePairs
 {
 public:

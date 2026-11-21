@@ -490,8 +490,8 @@ check_local_operation<TS, TI>::description () const
 }
 
 //  explicit instantiations
-template class DB_PUBLIC check_local_operation<geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC check_local_operation<geo::Polygon, geo::Polygon>;
+template class check_local_operation<geo::PolygonRef, geo::PolygonRef>;
+template class check_local_operation<geo::Polygon, geo::Polygon>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -688,8 +688,8 @@ std::string interacting_local_operation<TS, TI, TR>::description () const
 }
 
 //  explicit instantiations
-template class DB_PUBLIC interacting_local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC interacting_local_operation<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class interacting_local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class interacting_local_operation<geo::Polygon, geo::Polygon, geo::Polygon>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -767,8 +767,8 @@ std::string pull_local_operation<TS, TI, TR>::description () const
   return geo::to_string (tr ("Pull regions by their geometrical relation to first"));
 }
 
-template class DB_PUBLIC pull_local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
-template class DB_PUBLIC pull_local_operation<geo::Polygon, geo::Polygon, geo::Polygon>;
+template class pull_local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>;
+template class pull_local_operation<geo::Polygon, geo::Polygon, geo::Polygon>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -895,8 +895,8 @@ std::string interacting_with_edge_local_operation<TS, TI, TR>::description () co
   return geo::to_string (tr ("Select regions by their geometric relation to edges"));
 }
 
-template class DB_PUBLIC interacting_with_edge_local_operation<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
-template class DB_PUBLIC interacting_with_edge_local_operation<geo::Polygon, geo::Edge, geo::Polygon>;
+template class interacting_with_edge_local_operation<geo::PolygonRef, geo::Edge, geo::PolygonRef>;
+template class interacting_with_edge_local_operation<geo::Polygon, geo::Edge, geo::Polygon>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -956,8 +956,8 @@ std::string pull_with_edge_local_operation<TS, TI, TR>::description () const
   return geo::to_string (tr ("Pull edges from second by their geometric relation to first"));
 }
 
-template class DB_PUBLIC pull_with_edge_local_operation<geo::PolygonRef, geo::Edge, geo::Edge>;
-template class DB_PUBLIC pull_with_edge_local_operation<geo::Polygon, geo::Edge, geo::Edge>;
+template class pull_with_edge_local_operation<geo::PolygonRef, geo::Edge, geo::Edge>;
+template class pull_with_edge_local_operation<geo::Polygon, geo::Edge, geo::Edge>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -1023,8 +1023,8 @@ std::string pull_with_text_local_operation<TS, TI, TR>::description () const
   return geo::to_string (tr ("Pull texts from second by their geometric relation to first"));
 }
 
-template class DB_PUBLIC pull_with_text_local_operation<geo::PolygonRef, geo::TextRef, geo::TextRef>;
-template class DB_PUBLIC pull_with_text_local_operation<geo::Polygon, geo::Text, geo::Text>;
+template class pull_with_text_local_operation<geo::PolygonRef, geo::TextRef, geo::TextRef>;
+template class pull_with_text_local_operation<geo::Polygon, geo::Text, geo::Text>;
 
 // ---------------------------------------------------------------------------------------------------------------
 
@@ -1127,7 +1127,7 @@ std::string interacting_with_text_local_operation<TS, TI, TR>::description () co
 }
 
 //  explicit instantiations
-template class DB_PUBLIC interacting_with_text_local_operation<geo::PolygonRef, geo::TextRef, geo::PolygonRef>;
-template class DB_PUBLIC interacting_with_text_local_operation<geo::Polygon, geo::Text, geo::Polygon>;
+template class interacting_with_text_local_operation<geo::PolygonRef, geo::TextRef, geo::PolygonRef>;
+template class interacting_with_text_local_operation<geo::Polygon, geo::Text, geo::Polygon>;
 
 }

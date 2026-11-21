@@ -12,7 +12,7 @@ namespace geo
 // -----------------------------------------------------------
 //  editable mode
 
-DB_PUBLIC bool ms_editable = false;
+bool ms_editable = false;
 
 void set_default_editable_mode (bool editable)
 {
@@ -36,7 +36,7 @@ void check_editable_mode ()
 // -----------------------------------------------------------
 //  number of points per circle
 
-DB_PUBLIC unsigned int ms_num_circle_points = 32;
+unsigned int ms_num_circle_points = 32;
 
 void set_num_circle_points (unsigned int n)
 {
@@ -46,7 +46,7 @@ void set_num_circle_points (unsigned int n)
 // -----------------------------------------------------------
 //  undo enable 
 
-DB_PUBLIC bool ms_transactions_enabled = true;
+bool ms_transactions_enabled = true;
 
 void enable_transactions (bool enable)
 {

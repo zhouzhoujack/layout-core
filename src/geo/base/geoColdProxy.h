@@ -1,7 +1,6 @@
 #ifndef HDR_geoColdProxy
 #define HDR_geoColdProxy
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoCell.h"
@@ -21,7 +20,7 @@ struct ProxyContextInfo;
  *  development of PCell code - this proxy replaces the original one. It stores the connection information, so
  *  it can be regenerated when it becomes valid again.
  */
-class DB_PUBLIC ColdProxy 
+class ColdProxy 
   : public Cell, public geo::RefCounted
 {
 public:

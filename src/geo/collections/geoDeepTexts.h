@@ -1,7 +1,6 @@
 #ifndef HDR_geoDeepTexts
 #define HDR_geoDeepTexts
 
-#include "geoCommon.h"
 
 #include "geoMutableTexts.h"
 #include "geoDeepShapeStore.h"
@@ -12,7 +11,7 @@ namespace geo {
 /**
  *  @brief Provides hierarchical edges implementation
  */
-class DB_PUBLIC DeepTexts
+class DeepTexts
   : public geo::MutableTexts, public geo::DeepShapeCollectionDelegateBase
 {
 public:

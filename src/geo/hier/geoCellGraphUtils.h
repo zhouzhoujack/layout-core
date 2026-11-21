@@ -1,7 +1,6 @@
 #ifndef HDR_geoCellGraphUtils
 #define HDR_geoCellGraphUtils
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 
@@ -20,7 +19,7 @@ namespace geo
  *  this object once and use it as often as possible.
  */
 
-class DB_PUBLIC CellCounter 
+class CellCounter 
 {
 public:
   typedef std::map <geo::cell_index_type, size_t> cache_t;

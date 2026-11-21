@@ -1,7 +1,6 @@
 #ifndef HDR_geoEmptyEdgePairs
 #define HDR_geoEmptyEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoEdgePairsDelegate.h"
 #include "geoRecursiveShapeIterator.h"
@@ -11,7 +10,7 @@ namespace geo {
 /**
  *  @brief The delegate for the actual edge set implementation
  */
-class DB_PUBLIC EmptyEdgePairs
+class EmptyEdgePairs
   : public EdgePairsDelegate
 {
 public:

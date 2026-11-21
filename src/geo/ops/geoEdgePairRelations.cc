@@ -1,4 +1,3 @@
-#include "geoCommon.h"
 
 #include "geoEdgePairRelations.h"
 

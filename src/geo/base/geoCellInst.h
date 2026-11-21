@@ -1,7 +1,6 @@
 #ifndef HDR_geoCellInst
 #define HDR_geoCellInst
 
-#include "geoCommon.h"
 
 #include "geoBox.h"
 
@@ -16,7 +15,7 @@ class Layout;
  *  cell. The transformation is added through the "geo::array" framework. A geo::CellInst
  *  within a geo::array forms a geo::CellInstArray which is the actual cell instance.
  */
-class DB_PUBLIC CellInst
+class CellInst
 {
 public:
   typedef geo::Layout layout_type;

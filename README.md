@@ -8,13 +8,13 @@
 | `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`（自动生成） |
 | `include/` | 构建产物：**全部头文件平铺**（geo 公共头 + utils + gsi_shim） |
 | `src/CMakeLists.txt` | **工程根**：project / 工具链 / 构建开关 / 引入模块与测试 |
-| `src/utils/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
+| `src/utils/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程 / 内存统计（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
 | `src/utils/test/` | utils 的 gtest 单元测试（`ut_utils`） |
 | `src/geo/` | 几何与 IO：`geo::` 命名空间下的 Polygon / Region / Edges / Layout / Reader / Writer / 布尔引擎 → `libdb-io.so` |
 | `src/geo/gds/` | GDS2 读写（`GDS2Reader` / `GDS2Writer` / 格式声明） |
 | `src/geo/oas/` | **OASIS 读写**（`OASIS2Reader` / `OASIS2Writer` / 格式声明） |
 | `src/geo/test/` | geo 的 gtest 单元测试（`ut_geo`） |
-| `src/data/` | layout data 基础类型（`geo::point` / `ShortPoint` / `Point` / `DPoint`）→ `libdata.so`（geo 依赖它） |
+| `src/data/` | layout data 基础类型（`geo::Coord` / `coord_traits` / `geo::point` / `ShortPoint` / `Point` / `DPoint` / `geo::vector` / `geo::matrix` / `geo::Trans` 等变换 / `geo::box` / `geo::edge` / `geo::MetaInfo`）→ `libdata.so`（geo 依赖它，data 不反向依赖 geo） |
 | `demo/` | **独立工程**：纯可执行 demo（无 gtest），演示如何用 `lib/` 与 `include/` |
 
 （源码目录是 `src/utils` / `src/geo`，CMake 目标名分别是 `utils` / `db-io`。

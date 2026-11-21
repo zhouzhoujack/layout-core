@@ -948,7 +948,7 @@ LayerMap::from_string_file_format (const std::string &s)
 
 namespace geo
 {
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::LayerMap &t)
+  template<> void extractor_impl (geo::Extractor &ex, geo::LayerMap &t)
   {
     t = geo::LayerMap ();
 
@@ -965,7 +965,7 @@ namespace geo
     }
   }
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::LayerMap &t)
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::LayerMap &t)
   {
     t = geo::LayerMap ();
 

@@ -1,7 +1,6 @@
 #ifndef HDR_geoSaveLayoutOptions
 #define HDR_geoSaveLayoutOptions
 
-#include "geoCommon.h"
 
 #include <string>
 #include <set>
@@ -19,7 +18,7 @@ namespace geo
 /**
  *  @brief Base class for specific options for a certain format
  */
-class DB_PUBLIC FormatSpecificWriterOptions
+class FormatSpecificWriterOptions
 {
 public:
   FormatSpecificWriterOptions () { }  
@@ -32,7 +31,7 @@ public:
 /**
  *  @brief Options for saving layouts
  */
-class DB_PUBLIC SaveLayoutOptions
+class SaveLayoutOptions
 {
 public:
   /**

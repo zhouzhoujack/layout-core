@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayerProperties
 #define HDR_geoLayerProperties
 
-#include "geoCommon.h"
 
 #include "utilsString.h"
 #include "utilsTypeTraits.h"
@@ -21,7 +20,7 @@ namespace geo
  *  In this case, the layer properties can make use of the relative
  *  layer/datatype specifications.
  */
-struct DB_PUBLIC LayerProperties
+struct LayerProperties
 {
   /**
    *  @brief Default constructor
@@ -125,7 +124,7 @@ struct LPLogicalLessFunc
  *  is replaced with the original name. This way, applying "*_A" with "+" yields a 
  *  postfix "_A" to the original layer name (if it is named).
  */
-struct DB_PUBLIC LayerOffset
+struct LayerOffset
 {
   /**
    *  @brief Default constructor

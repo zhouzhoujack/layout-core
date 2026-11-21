@@ -1,7 +1,6 @@
 #ifndef HDR_geoLibraryDescriptor
 #define HDR_geoLibraryDescriptor
 
-#include "geoCommon.h"
 #include "gsiObject.h"
 #include "geoLayout.h"
 #include "utilsTypeTraits.h"
@@ -23,7 +22,7 @@ class Layout;
  *  A library must provide a layout. This class does not specify how the layout 
  *  is provided. To do so, this class must be reimplemented.
  */
-class DB_PUBLIC Library
+class Library
   : public gsi::ObjectBase, public geo::RefCounted
 {
 public:

@@ -36,6 +36,6 @@ add_custom_command(TARGET data POST_BUILD
     COMMENT "Staging data headers -> ${LAYOUTIO_STAGE_INCLUDE}"
 )
 
-if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt")
-    add_subdirectory(test)
-endif()
+
+add_subdirectory(test)
+

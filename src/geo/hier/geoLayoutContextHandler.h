@@ -3,7 +3,6 @@
 
 #include "utilsExpression.h"
 #include "geoLayout.h"
-#include "geoCommon.h"
 
 namespace geo
 {
@@ -11,7 +10,7 @@ namespace geo
 /**
  * @brief  A layout providing a context for the expression evaluation
  */
-class DB_PUBLIC LayoutContextHandler
+class LayoutContextHandler
   : public geo::ContextHandler
 {
 public:

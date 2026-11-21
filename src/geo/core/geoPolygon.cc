@@ -458,28 +458,28 @@ template class polygon_contour<geo::DCoord>;
 namespace geo
 {
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Polygon &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::Polygon &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a polygon specification")));
   }
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DPolygon &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::DPolygon &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a polygon specification")));
   }
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a polygon specification")));
   }
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p)
+template<> void extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p)
 {
   if (! test_extractor_impl (ex, p)) {
     ex.error (geo::to_string (tr ("Expected a polygon specification")));
@@ -487,7 +487,7 @@ template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DSimplePolygo
 }
 
 
-template<class C> DB_PUBLIC bool _test_extractor_impl (geo::Extractor &ex, geo::polygon<C> &p)
+template<class C> bool _test_extractor_impl (geo::Extractor &ex, geo::polygon<C> &p)
 {
   typedef geo::point<C> point_type;
   std::vector <point_type> points;
@@ -527,17 +527,17 @@ template<class C> DB_PUBLIC bool _test_extractor_impl (geo::Extractor &ex, geo::
   }
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Polygon &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::Polygon &p)
 {
   return _test_extractor_impl (ex, p);
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DPolygon &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::DPolygon &p)
 {
   return _test_extractor_impl (ex, p);
 }
 
-template<class C> DB_PUBLIC bool _test_extractor_impl (geo::Extractor &ex, geo::simple_polygon<C> &p)
+template<class C> bool _test_extractor_impl (geo::Extractor &ex, geo::simple_polygon<C> &p)
 {
   typedef geo::point<C> point_type;
   std::vector <point_type> points;
@@ -561,12 +561,12 @@ template<class C> DB_PUBLIC bool _test_extractor_impl (geo::Extractor &ex, geo::
   }
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::SimplePolygon &p)
 {
   return _test_extractor_impl (ex, p);
 }
 
-template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p)
+template<> bool test_extractor_impl (geo::Extractor &ex, geo::DSimplePolygon &p)
 {
   return _test_extractor_impl (ex, p);
 }

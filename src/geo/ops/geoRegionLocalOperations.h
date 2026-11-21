@@ -1,7 +1,6 @@
 #ifndef HDR_geoRegionLocalOperations
 #define HDR_geoRegionLocalOperations
 
-#include "geoCommon.h"
 #include "geoEdgePairRelations.h"
 #include "geoLocalOperation.h"
 #include "geoEdgeProcessor.h"
@@ -85,7 +84,7 @@ enum OppositeFilter
 /**
  *  @brief A structure holding the options for the region checks (space, width, ...)
  */
-struct DB_PUBLIC RegionCheckOptions
+struct RegionCheckOptions
 {
   typedef geo::coord_traits<geo::Coord>::distance_type distance_type;
 

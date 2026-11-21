@@ -321,7 +321,7 @@ private:
 /**
  *  @brief A helper class to use geo::Shapes as container for EdgeBooleanClusterCollector
  */
-struct DB_PUBLIC ShapesToOutputContainerAdaptor
+struct ShapesToOutputContainerAdaptor
 {
 public:
   struct Iterator
@@ -383,7 +383,7 @@ private:
 /**
  *  @brief A specialization of the EdgeBooleanClusterCollector for a Shapes output container
  */
-struct DB_PUBLIC EdgeBooleanClusterCollectorToShapes
+struct EdgeBooleanClusterCollectorToShapes
   : EdgeBooleanClusterCollector<ShapesToOutputContainerAdaptor>
 {
   EdgeBooleanClusterCollectorToShapes (geo::Shapes *output, EdgeBoolOp op)

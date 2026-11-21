@@ -1,7 +1,6 @@
 #ifndef HDR_geoAsIfFlatEdgePairs
 #define HDR_geoAsIfFlatEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoEdgePairsDelegate.h"
 
@@ -10,7 +9,7 @@ namespace geo {
 /**
  *  @brief Provides default flat implementations
  */
-class DB_PUBLIC AsIfFlatEdgePairs
+class AsIfFlatEdgePairs
   : public EdgePairsDelegate
 {
 public:

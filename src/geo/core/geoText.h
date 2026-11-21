@@ -1,16 +1,16 @@
 #ifndef HDR_geoText
 #define HDR_geoText
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoBox.h"
 #include "geoTrans.h"
 #include "geoShapeRepository.h"
 #include "geoObjectTag.h"
 #include "geoHersheyFont.h"
+
 #include "utilsString.h"
 
 #include <string>
@@ -32,7 +32,7 @@ class StringRepository;
  *  reader in some cases.
  *  String references are reference counted and remove themselves. 
  */
-class DB_PUBLIC StringRef
+class StringRef
 {
 public:
   /**
@@ -133,7 +133,7 @@ inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int
  *  A string repository holds StringRef objects.
  *  It acts as a factory for StringRef objects and allows one to rename strings.
  */
-class DB_PUBLIC StringRepository
+class StringRepository
 {
 public:
   typedef std::set<StringRef *> string_refs_type;
@@ -253,7 +253,7 @@ inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int
  */
 
 template <class C>
-class DB_PUBLIC_TEMPLATE text
+class text
 {
 public:
   typedef C coord_type;
@@ -1111,11 +1111,11 @@ namespace geo
     typedef true_tag has_equal_operator;
   };
 
-  template<> void DB_PUBLIC extractor_impl (geo::Extractor &ex, geo::Text &p);
-  template<> void DB_PUBLIC extractor_impl (geo::Extractor &ex, geo::DText &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Text &p);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DText &p);
 
-  template<> bool DB_PUBLIC test_extractor_impl (geo::Extractor &ex, geo::Text &p);
-  template<> bool DB_PUBLIC test_extractor_impl (geo::Extractor &ex, geo::DText &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Text &p);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DText &p);
 
 } // namespace geo
 

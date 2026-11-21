@@ -1,7 +1,6 @@
 #ifndef HDR_geoOriginalLayerEdges
 #define HDR_geoOriginalLayerEdges
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatEdges.h"
 #include "geoShapes.h"
@@ -12,7 +11,7 @@ namespace geo {
 /**
  *  @brief An original layerregion based on a RecursiveShapeIterator
  */
-class DB_PUBLIC OriginalLayerEdges
+class OriginalLayerEdges
   : public AsIfFlatEdges
 {
 public:

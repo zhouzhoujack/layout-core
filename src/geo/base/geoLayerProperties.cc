@@ -355,14 +355,14 @@ template<> bool test_extractor_impl (geo::Extractor &ex, geo::LayerOffset &e)
   return true; // TODO: never returns false!
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::LayerProperties &e)
+template<> void extractor_impl (geo::Extractor &ex, geo::LayerProperties &e)
 {
   if (! test_extractor_impl (ex, e)) {
     ex.error (geo::to_string (tr ("Expected a layer specification")));
   }
 }
 
-template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::LayerOffset &e)
+template<> void extractor_impl (geo::Extractor &ex, geo::LayerOffset &e)
 {
   if (! test_extractor_impl (ex, e)) {
     ex.error (geo::to_string (tr ("Expected a layer offset specification")));

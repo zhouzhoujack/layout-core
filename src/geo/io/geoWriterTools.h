@@ -1,7 +1,6 @@
 #ifndef HDR_geoWriterTools
 #define HDR_geoWriterTools
 
-#include "geoCommon.h"
 
 #include "geoTypes.h" 
 
@@ -20,7 +19,7 @@ class Layout;
  *  The default settings are: allow upper and lower case characters and digits.
  *  Replace all other characters with a '$'.
  */
-class DB_PUBLIC WriterCellNameMap
+class WriterCellNameMap
 {
 public:
   /**

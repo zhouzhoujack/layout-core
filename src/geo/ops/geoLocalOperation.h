@@ -1,7 +1,6 @@
 #ifndef HDR_geoLocalOperation
 #define HDR_geoLocalOperation
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoEdgeBoolean.h"
@@ -53,7 +52,7 @@ enum OnEmptyIntruderHint {
  *  cluster of subject shapes vs. corresponding intruder shapes.
  */
 template <class TS, class TI, class TR>
-class DB_PUBLIC local_operation
+class local_operation
 {
 public:
   /**
@@ -107,7 +106,7 @@ protected:
 /**
  *  @brief Implements a boolean AND or NOT operation
  */
-class DB_PUBLIC BoolAndOrNotLocalOperation
+class BoolAndOrNotLocalOperation
   : public local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>
 {
 public:
@@ -127,7 +126,7 @@ private:
  *  This processor delivers two outputs: the first one having the AND result, the second
  *  one having the NOT result.
  */
-class DB_PUBLIC TwoBoolAndNotLocalOperation
+class TwoBoolAndNotLocalOperation
   : public local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>
 {
 public:
@@ -142,7 +141,7 @@ public:
  *  With a given wrap_count, the result will only contains shapes where
  *  the original shapes overlap at least "wrap_count" times.
  */
-class DB_PUBLIC SelfOverlapMergeLocalOperation
+class SelfOverlapMergeLocalOperation
   : public local_operation<geo::PolygonRef, geo::PolygonRef, geo::PolygonRef>
 {
 public:
@@ -159,7 +158,7 @@ private:
 /**
  *  @brief Implements a boolean AND or NOT operation between edges
  */
-class DB_PUBLIC EdgeBoolAndOrNotLocalOperation
+class EdgeBoolAndOrNotLocalOperation
   : public local_operation<geo::Edge, geo::Edge, geo::Edge>
 {
 public:
@@ -182,7 +181,7 @@ private:
  *  "AND" is implemented by "outside == false", "NOT" by "outside == true" with "include_borders == true".
  *  With "include_borders == false" the operations are "INSIDE" and "OUTSIDE".
  */
-class DB_PUBLIC EdgeToPolygonLocalOperation
+class EdgeToPolygonLocalOperation
   : public local_operation<geo::Edge, geo::PolygonRef, geo::Edge>
 {
 public:
