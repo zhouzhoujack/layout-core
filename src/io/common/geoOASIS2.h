@@ -2,6 +2,7 @@
 #define HDR_geoOASIS2
 
 #include <stdint.h>
+#include <stddef.h>
 
 namespace geo
 {
@@ -10,8 +11,11 @@ namespace geo
  *  @brief The OASIS magic bytes (SEMI P39)
  *
  *  "%SEMI-OASIS" followed by CR LF.
+ *
+ *  Defined in the header (internal linkage) so that both the reader and the
+ *  writer libraries can use it without depending on a shared object file.
  */
-extern const char oasis_magic [];
+static const char oasis_magic [] = "%SEMI-OASIS\015\012";
 
 /**
  *  @brief The length of the OASIS magic byte sequence (13 bytes)
