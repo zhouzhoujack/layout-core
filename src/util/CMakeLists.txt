@@ -9,7 +9,6 @@ file(GLOB TL_CORE_SOURCES
     "exception/*.cc"
     "io/*.cc"
     "thread/*.cc"
-    "registrar/*.cc"
     "text/*.cc"
 )
 
@@ -25,7 +24,6 @@ target_include_directories(utils PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/exception
     ${CMAKE_CURRENT_SOURCE_DIR}/io
     ${CMAKE_CURRENT_SOURCE_DIR}/thread
-    ${CMAKE_CURRENT_SOURCE_DIR}/registrar
     ${CMAKE_CURRENT_SOURCE_DIR}/text
 )
 

@@ -5,25 +5,27 @@
 
 | 目录 | 内容 |
 | --- | --- |
-| `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`、`libreader.so`、`libwriter.so`（自动生成） |
+| `lib/` | 构建产物：`libutils.so`、`libdata.so`、`libdb-io.so`、`libio.so`（自动生成） |
 | `include/` | 构建产物：**全部头文件平铺**（geo 公共头 + utils + gsi_shim） |
 | `src/CMakeLists.txt` | **工程根**：project / 工具链 / 构建开关 / 引入模块与测试 |
 | `src/util/` | 基础设施：字符串 / 变体 / 容器 / 异常 / 流 / XML / 线程 / 内存统计（命名空间 `geo::`，文件前缀 `utils*`）→ `libutils.so` |
 | `src/util/test/` | util 的 gtest 单元测试（`ut_utils`） |
 | `src/geo/` | 剩余几何与算法层：`Region` / `Edges` / `EdgePairs` / `Texts` 等集合、布尔与层次处理、GDS2/OASIS 写入对接 → `libdb-io.so`（依赖 `libdata.so`） |
 | `src/geo/test/` | geo 的 gtest 单元测试（`ut_geo`） |
-| `src/reader/` | **读取器**：GDS2 / OASIS 的 Reader 实现与格式注册（`geo::GDS2Reader` / `geo::OASIS2Reader` / `geo::CommonReader`，含 `GDS2FormatDeclaration` / `OASIS2FormatDeclaration`）→ `libreader.so`（**只依赖 `libdata.so`**，不依赖 `libdb-io.so` / `libwriter.so`；写入实现通过 data 里的 `WriterFactoryRegistration` 自注册，需要写文件时额外链接 `libwriter.so`） |
-| `src/data/` | layout 数据与模型层：坐标/box/polygon/edge/edge_pair/path/text 等基础类型，`Layout` / `Cell` / `Instances` / `Layer` / `Library` / `PCell`，动画/层次工具，以及 `ReaderBase` / `WriterBase` / `Stream` / 读写选项与格式声明（`geoGDS2*` / `geoOASIS2*`）→ `libdata.so`（只依赖 `libutils.so`） |
+| `src/io/` | **IO 层**：`common/`（读写共用代码）、`reader/`（读取）、`writer/`（写入）；`io` INTERFACE 目标提供根目录与 `common/` 的 include 路径并平铺头文件 |
+| `src/io/common/` | **读写共用的格式定义**：`geoGDS2.h` / `geoGDS2Format.h` / `geoOASIS2.h`（含 `oasis_magic`，头内定义，静态链接，无需额外目标）/ `geoOASIS2Format.h` |
+| `src/io/reader/` | **读取器**：GDS2 / OASIS 的 Reader 实现与格式注册（`geo::GDS2Reader` / `geo::OASIS2Reader` / `geo::CommonReader` / `geo::Reader`，含 `GDS2FormatDeclaration` / `OASIS2FormatDeclaration`）→ 编进 `libio.so`（写入实现由同库 writer 部分通过 data 的 `WriterFactoryRegistration` 自注册） |
+| `src/data/` | layout 数据与模型层：坐标/box/polygon/edge/edge_pair/path/text 等基础类型，`Layout` / `Cell` / `Instances` / `Layer` / `Library` / `PCell`，动画/层次工具，以及 `WriterBase` / `Stream` / 读写选项 → `libdata.so`（只依赖 `libutils.so`） |
 | `demo/` | **独立工程**：纯可执行 demo（无 gtest），演示如何用 `lib/` 与 `include/` |
-| `src/writer/` | **写入器**：GDS2 / OASIS 的 Writer 实现（`geo::GDS2Writer` / `geo::OASIS2Writer`）→ `libwriter.so`（只依赖 `libdata.so`；启动时用 `WriterFactoryRegistration` 把工厂注册到 data，因此消费者需链接它（配 `--no-as-needed`）才能获得写入能力） |
+| `src/io/writer/` | **写入器**：GDS2 / OASIS 的 Writer 实现（`geo::GDS2Writer` / `geo::OASIS2Writer`）→ 编进 `libio.so`（启动时用 `WriterFactoryRegistration` 把工厂注册到 data） |
 
-（源码目录是 `src/util` / `src/data` / `src/geo` / `src/reader` / `src/writer`，CMake 目标名分别是 `utils` / `data` / `db-io` / `reader` / `writer`。
+（源码目录是 `src/util` / `src/data` / `src/geo` / `src/io/reader` / `src/io/writer`，CMake 目标名分别是 `utils` / `data` / `db-io` / `reader` / `writer`。
 构建完成后，`.so` 输出到 `lib/`，所有头文件（data / geo / utils / gsi_shim）平铺到
 `include/`，使用方只需一个 `-I include`。）
 
 ## 命名空间
 
-五个库（`libutils.so` 基础设施 + `libdata.so` 数据/模型 + `libdb-io.so` 集合与算法 + `libwriter.so` 写入器 + `libreader.so` 读取器）统一使用 **`geo`** 一个命名空间，
+四个库（`libutils.so` 基础设施 + `libdata.so` 数据/模型 + `libdb-io.so` 集合与算法 + `libio.so` 读写）统一使用 **`geo`** 一个命名空间，
 使用方不需要区分前缀：
 
 ```cpp
@@ -109,7 +111,7 @@ google::SetStderrLogging (google::GLOG_INFO);
 查看方式：`ctest --test-dir build -V`，或直接执行测试可执行文件；日志级别可用
 `GLOG_minloglevel=0/1/2` 过滤。
 
-## OASIS 读写（`src/reader` + `src/writer`）
+## OASIS 读写（`src/io/reader` + `src/io/writer`）
 
 除了 GDS2，库还提供 **OASIS（SEMI P39，`%SEMI-OASIS` 1.0）** 的读写能力。使用方式与 GDS2
 完全一致：格式按**文件名后缀**自动选择，`Reader` / `Writer` 不需要改动。

@@ -3,6 +3,7 @@
 
 #include "geoGDS2WriterBase.h"
 #include "geoWriterTools.h"
+
 #include "utilsProgress.h"
 
 namespace geo

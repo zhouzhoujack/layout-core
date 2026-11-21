@@ -1,10 +1,10 @@
 #ifndef HDR_geoStreamLayers
 #define HDR_geoStreamLayers
 
-
 #include "utilsException.h"
 #include "utilsIntervalMap.h"
 #include "utilsString.h"
+
 #include "geoLayerProperties.h"
 #include "gsiObject.h"
 

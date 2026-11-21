@@ -5,8 +5,8 @@
 #include "utilsException.h"
 #include "utilsInternational.h"
 #include "utilsString.h"
-
 #include "utilsStream.h"
+
 #include "geoLoadLayoutOptions.h"
 
 #include <vector>

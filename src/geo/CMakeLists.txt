@@ -5,8 +5,6 @@ file(GLOB DB_IO_SOURCES
     "collections/*.cc"
     "ops/*.cc"
     "hier/*.cc"
-    "manager/*.cc"
-    "io/*.cc"
 )
 
 list(FILTER DB_IO_SOURCES EXCLUDE REGEX ".*/hier/(geoTilingProcessor|geoLayoutQuery)\\.cc$")
@@ -21,8 +19,6 @@ target_include_directories(db-io PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/collections
     ${CMAKE_CURRENT_SOURCE_DIR}/ops
     ${CMAKE_CURRENT_SOURCE_DIR}/hier
-    ${CMAKE_CURRENT_SOURCE_DIR}/manager
-    ${CMAKE_CURRENT_SOURCE_DIR}/io
 )
 
 target_link_libraries(db-io PUBLIC
