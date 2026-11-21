@@ -21,6 +21,13 @@
 namespace geo
 {
 
+namespace
+{
+//  self-registration of the OASIS writer implementation
+geo::WriterFactoryRegistration s_oasis2_writer_factory (
+    "OASIS", []() -> geo::WriterBase * { return new geo::OASIS2Writer (); });
+}
+
 // -----------------------------------------------------------------------------
 //  OASIS2Writer implementation
 

@@ -23,7 +23,6 @@ target_include_directories(db-io PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/hier
     ${CMAKE_CURRENT_SOURCE_DIR}/manager
     ${CMAKE_CURRENT_SOURCE_DIR}/io
-    ${CMAKE_CURRENT_SOURCE_DIR}/gsi_shim
 )
 
 target_link_libraries(db-io PUBLIC

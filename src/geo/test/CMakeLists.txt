@@ -9,6 +9,7 @@ add_executable(ut_geo
 )
 
 target_link_libraries(ut_geo PRIVATE
+    writer
     reader
     db-io
     GTest::gtest

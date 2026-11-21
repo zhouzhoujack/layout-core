@@ -20,7 +20,7 @@ target_include_directories(writer PUBLIC
 )
 
 target_link_libraries(writer PUBLIC
-    db-io
+    data
 )
 
 target_compile_definitions(writer PUBLIC HAVE_QT)

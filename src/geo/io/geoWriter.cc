@@ -1,5 +1,7 @@
 #include "geoWriter.h"
+
 #include "geoStream.h"
+
 #include "utilsClassRegistry.h"
 #include "utilsAssert.h"
 #include "utilsStream.h"

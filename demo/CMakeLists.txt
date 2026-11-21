@@ -13,7 +13,7 @@ get_filename_component(LAYOUTIO_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 set(LAYOUTIO_LIB_DIR     "${LAYOUTIO_ROOT}/lib")
 set(LAYOUTIO_INCLUDE_DIR "${LAYOUTIO_ROOT}/include")
 
-foreach (_f lib/libdb-io.so lib/libreader.so lib/libutils.so lib/libdata.so include/geoRegion.h)
+foreach (_f lib/libdb-io.so lib/libreader.so lib/libwriter.so lib/libutils.so lib/libdata.so include/geoRegion.h)
     if (NOT EXISTS "${LAYOUTIO_ROOT}/${_f}")
         message(FATAL_ERROR "未找到 ${LAYOUTIO_ROOT}/${_f}，请先在 layout-io 目录执行 ./compile.sh")
     endif()
@@ -36,13 +36,14 @@ endfunction()
 layoutio_import(utils Qt5::Core Qt5::Gui Qt5::Xml glog::glog toolkit::toolkit ZLIB::ZLIB)
 layoutio_import(data layoutio::utils)
 layoutio_import(db-io layoutio::data layoutio::utils)
-layoutio_import(reader layoutio::db-io)
+layoutio_import(reader layoutio::data)
+layoutio_import(writer layoutio::data)
 
 add_executable(layoutio_demo
     main.cpp
     demoCase.cpp
 )
-target_link_libraries(layoutio_demo PRIVATE layoutio::db-io layoutio::reader)
+target_link_libraries(layoutio_demo PRIVATE layoutio::db-io layoutio::reader layoutio::writer)
 
 # reader 只做格式注册（静态初始化），demo 不直接引用其符号，
 # 需要 --no-as-needed 防止链接器把它丢掉。

@@ -5,6 +5,8 @@
 #include "utilsException.h"
 #include "geoSaveLayoutOptions.h"
 
+#include <string>
+
 namespace geo 
 {
   class OutputStream;
@@ -37,6 +39,33 @@ public:
    *  The layout is non-const since the writer may modify the meta information of the layout.
    */
   virtual void write (geo::Layout &layout, geo::OutputStream &stream, const geo::SaveLayoutOptions &options) = 0;
+};
+
+/**
+ *  @brief Type of a writer factory function
+ */
+typedef WriterBase *(*writer_factory_type) ();
+
+/**
+ *  @brief Creates a writer for the given format name
+ *
+ *  Returns 0 if no writer implementation is registered for that format.
+ *  Writer implementations register themselves with WriterFactoryRegistration,
+ *  so the reader library does not have to link against the writer library.
+ */
+WriterBase *create_writer_for_format (const std::string &format_name);
+
+/**
+ *  @brief Registers a writer factory for a format name
+ *
+ *  Instantiate this class as a static object inside a writer implementation
+ *  translation unit to make the writer available through
+ *  create_writer_for_format.
+ */
+class WriterFactoryRegistration
+{
+public:
+  WriterFactoryRegistration (const std::string &format_name, writer_factory_type factory);
 };
 
 /**
