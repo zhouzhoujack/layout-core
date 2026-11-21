@@ -1,7 +1,6 @@
 #ifndef HDR_geoTextsDelegate
 #define HDR_geoTextsDelegate
 
-#include "geoCommon.h"
 #include "geoShapeCollection.h"
 #include "geoShapeCollectionUtils.h"
 #include "geoGenericShapeIterator.h"
@@ -24,7 +23,7 @@ typedef geo::generic_shape_iterator_delegate_base <geo::Text> TextsIteratorDeleg
 /**
  *  @brief The delegate for the actual edge set implementation
  */
-class DB_PUBLIC TextsDelegate
+class TextsDelegate
   : public ShapeCollectionDelegateBase
 {
 public:

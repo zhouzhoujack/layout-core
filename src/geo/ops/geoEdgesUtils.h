@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdgesUtils
 #define HDR_geoEdgesUtils
 
-#include "geoCommon.h"
 #include "geoHash.h"
 #include "geoEdges.h"
 #include "geoBoxScanner.h"
@@ -23,7 +22,7 @@ class PolygonSink;
  *  matching the criterion.
  */
 
-struct DB_PUBLIC EdgeLengthFilter
+struct EdgeLengthFilter
   : public EdgeFilterBase
 {
   typedef geo::Edge::distance_type length_type;
@@ -112,7 +111,7 @@ private:
  *  angle value itself is included. The operator() will return true, if the angle between the given
  *  edges a and b in matching the constraint.
  */
-class DB_PUBLIC EdgeAngleChecker
+class EdgeAngleChecker
 {
 public:
   EdgeAngleChecker (double angle_start, bool include_angle_start, double angle_end, bool include_angle_end);
@@ -145,7 +144,7 @@ private:
  *  matching the criterion.
  */
 
-struct DB_PUBLIC EdgeOrientationFilter
+struct EdgeOrientationFilter
   : public EdgeFilterBase
 {
   /**
@@ -357,7 +356,7 @@ geo::Polygon extended_edge (const geo::Edge &edge, geo::Coord ext_b, geo::Coord 
 /**
  *  @brief Wraps the extension algorithm into a edge to polygon processor
  */
-class DB_PUBLIC ExtendedEdgeProcessor
+class ExtendedEdgeProcessor
   : public geo::EdgeToPolygonProcessorBase
 {
 public:
@@ -381,7 +380,7 @@ private:
 /**
  * @brief The EdgeSegmentSelector class
  */
-class DB_PUBLIC EdgeSegmentSelector
+class EdgeSegmentSelector
   : public EdgeProcessorBase
 {
 public:

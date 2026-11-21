@@ -1,7 +1,6 @@
 #ifndef HDR_geoMutableTexts
 #define HDR_geoMutableTexts
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatTexts.h"
 
@@ -14,7 +13,7 @@ namespace geo {
  *
  *  Mutable text collections offer insert, transform, flatten and other manipulation functions.
  */
-class DB_PUBLIC MutableTexts
+class MutableTexts
   : public AsIfFlatTexts
 {
 public:

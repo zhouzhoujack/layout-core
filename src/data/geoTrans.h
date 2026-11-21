@@ -1,17 +1,15 @@
 #ifndef HDR_geoTrans
 #define HDR_geoTrans
 
-#include "geoCommon.h"
 
 #include "geoPoint.h"
+
 #include "geoVector.h"
 #include "geoMatrix.h"
+
 #include "utilsString.h"
 #include "utilsAssert.h"
 
-#include <string>
-#include <iostream>
-#include <math.h>
 
 namespace geo {
   class Extractor;
@@ -19,10 +17,10 @@ namespace geo {
 
 namespace geo {
 
-template <class I, class F, class R = double> class DB_PUBLIC_TEMPLATE complex_trans;
-template <class C> class DB_PUBLIC_TEMPLATE simple_trans;
-template <class C> class DB_PUBLIC_TEMPLATE disp_trans;
-template <class C> class DB_PUBLIC_TEMPLATE fixpoint_trans;
+template <class I, class F, class R = double> class complex_trans;
+template <class C> class simple_trans;
+template <class C> class disp_trans;
+template <class C> class fixpoint_trans;
 
 /**
  *  @brief Provide the default predicates and properties for transformations for the coordinate type C
@@ -1094,7 +1092,7 @@ operator<< (std::ostream &os, const disp_trans<C> &t)
  */
 
 template <class C>
-class DB_PUBLIC_TEMPLATE simple_trans
+class simple_trans
   : public fixpoint_trans<C>
 {
 public:
@@ -1526,7 +1524,7 @@ operator<< (std::ostream &os, const simple_trans<C> &t)
  *  type used internally for representing the floating-point members).
  */
 template <class I, class F, class R>
-class DB_PUBLIC_TEMPLATE complex_trans
+class complex_trans
 {
 public:
   typedef I coord_type;
@@ -2636,29 +2634,29 @@ public:
 
 namespace geo 
 {
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::UnitTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DUnitTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::FTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DFTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Trans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Disp &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DDisp &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::CplxTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::UnitTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DUnitTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::FTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DFTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Trans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::Disp &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DDisp &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::CplxTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t);
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::UnitTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DUnitTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::FTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DFTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Trans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Disp &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DDisp &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::CplxTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::UnitTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DUnitTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::FTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DFTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Trans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::Disp &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DDisp &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::CplxTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::VCplxTrans &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DCplxTrans &t);
 
 } // namespace geo
 

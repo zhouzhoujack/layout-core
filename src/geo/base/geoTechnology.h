@@ -1,7 +1,6 @@
 #ifndef HDR_geoTechnology
 #define HDR_geoTechnology
 
-#include "geoCommon.h"
 
 #include "utilsStableVector.h"
 #include "utilsString.h"
@@ -28,7 +27,7 @@ class TechnologyComponent;
  *  present in any case. If a technology with an unknown name is requested,
  *  this default technology is returned.
  */
-class DB_PUBLIC Technologies
+class Technologies
   : public geo::RefCounted
 {
 public:
@@ -230,7 +229,7 @@ private:
  *  This class represents one technology.
  *  A technology has a name and a description.
  */
-class DB_PUBLIC Technology
+class Technology
   : public geo::RefCounted
 {
 public:
@@ -648,7 +647,7 @@ private:
  *  in the setup dialogs.
  *  This class is the base class for all technology components.
  */
-class DB_PUBLIC TechnologyComponent
+class TechnologyComponent
 {
 public:
   /**
@@ -699,7 +698,7 @@ private:
 /**
  *  @brief A base class for a technology component provider
  */
-class DB_PUBLIC TechnologyComponentProvider
+class TechnologyComponentProvider
 {
 public:
   /**

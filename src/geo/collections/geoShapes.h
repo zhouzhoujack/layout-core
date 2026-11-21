@@ -1,7 +1,6 @@
 #ifndef HDR_geoShapes
 #define HDR_geoShapes
 
-#include "geoCommon.h"
 
 #include "geoObject.h"
 #include "geoStatic.h"
@@ -38,7 +37,7 @@ class ArrayRepository;
  *  The iterator is incremented as usual with the ++ operator. The end of the
  *  sequence is tested with the at_end method.
  */
-class DB_PUBLIC ShapeIterator
+class ShapeIterator
 {
 public:
   typedef geo::Coord coord_type;
@@ -447,7 +446,7 @@ private:
  *  provides some common methods though it's interface
  */
 
-class DB_PUBLIC LayerBase 
+class LayerBase 
 {
 public:
   typedef geo::func_delegate_base <geo::properties_id_type> pm_delegate_type;
@@ -496,7 +495,7 @@ public:
  *  a certain shape type.
  */
 
-class DB_PUBLIC Shapes 
+class Shapes 
   : public geo::Object
 {
 public:
@@ -1630,7 +1629,7 @@ private:
  *
  *  This class is used for the Op classes for the undo/redo queuing mechanism.
  */
-class DB_PUBLIC LayerOpBase
+class LayerOpBase
   : public geo::Op
 {
 public:
@@ -1655,7 +1654,7 @@ inline void mem_stat (MemStatistics *stat, MemStatistics::purpose_t purpose, int
  *  into the geo::Object manager's undo/redo queue.
  */
 template <class Sh, class StableTag>
-class DB_PUBLIC_TEMPLATE layer_op
+class layer_op
   : public LayerOpBase
 {
 public:

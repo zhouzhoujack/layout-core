@@ -23,7 +23,7 @@ class TilingProcessor;
 /**
  *  @brief A receiver for the output data 
  */
-class DB_PUBLIC TileOutputReceiver
+class TileOutputReceiver
   : public gsi::ObjectBase, public geo::RefCounted
 {
 public:
@@ -408,7 +408,7 @@ bool insert_var (X &inserter, const geo::Variant &obj, const geo::Box &tile, boo
  *   _count      report a count for a specific output for display during execution
  *   <name>      fetch the input <name> as specified in the "input" method
  */
-class DB_PUBLIC TilingProcessor
+class TilingProcessor
 {
 public:
   enum Type { TypeRegion, TypeEdges, TypeEdgePairs, TypeTexts };

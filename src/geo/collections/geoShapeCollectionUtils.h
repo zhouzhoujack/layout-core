@@ -1,7 +1,6 @@
 #ifndef HDR_geoShapeCollectionUtils
 #define HDR_geoShapeCollectionUtils
 
-#include "geoCommon.h"
 
 #include "geoShape.h"
 #include "geoShapes.h"
@@ -21,7 +20,7 @@ namespace geo {
  *  A polygon processor can turn a edge into something else.
  */
 template <class Shape, class Result>
-class DB_PUBLIC_TEMPLATE shape_collection_processor
+class shape_collection_processor
   : public geo::RefCounted
 {
 public:
@@ -81,7 +80,7 @@ template <class Result> struct shape_collection_processor_delivery;
  *  @brief A shape delivery implementation for polygons
  */
 template <>
-struct DB_PUBLIC shape_collection_processor_delivery<geo::Polygon>
+struct shape_collection_processor_delivery<geo::Polygon>
 {
   shape_collection_processor_delivery (geo::Layout *layout, geo::Shapes *shapes)
     : mp_layout (layout), mp_shapes (shapes)
@@ -102,7 +101,7 @@ private:
  *  @brief A shape delivery implementation for texts
  */
 template <>
-struct DB_PUBLIC shape_collection_processor_delivery<geo::Text>
+struct shape_collection_processor_delivery<geo::Text>
 {
   shape_collection_processor_delivery (geo::Layout *layout, geo::Shapes *shapes)
     : mp_layout (layout), mp_shapes (shapes)
@@ -123,7 +122,7 @@ private:
  *  @brief A generic delivery
  */
 template <class Result>
-struct DB_PUBLIC shape_collection_processor_delivery
+struct shape_collection_processor_delivery
 {
   shape_collection_processor_delivery (geo::Layout *, geo::Shapes *shapes)
     : mp_shapes (shapes)
@@ -142,7 +141,7 @@ private:
  *  @brief Provides a generic implementation of the shape collection processor
  */
 template <class Shape, class Result, class OutputContainer>
-DB_PUBLIC_TEMPLATE
+
 OutputContainer *
 shape_collection_processed_impl (const geo::DeepLayer &input, const shape_collection_processor<Shape, Result> &filter)
 {

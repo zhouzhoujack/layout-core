@@ -1,7 +1,6 @@
 #ifndef HDR_geoInit
 #define HDR_geoInit
 
-#include "geoCommon.h"
 
 #include <string>
 #include <list>
@@ -29,12 +28,12 @@ struct PluginDescriptor
  *  module. It will load the plugins and perform initialization of all
  *  of them.
  */
-DB_PUBLIC void init (const std::vector<std::string> &paths = std::vector<std::string> ());
+void init (const std::vector<std::string> &paths = std::vector<std::string> ());
 
 /**
  *  @brief Gets a list of all plugins registered
  */
-DB_PUBLIC const std::list<geo::PluginDescriptor> &plugins ();
+const std::list<geo::PluginDescriptor> &plugins ();
 
 }
 

@@ -1,7 +1,6 @@
 #ifndef HDR_geoDeepEdges
 #define HDR_geoDeepEdges
 
-#include "geoCommon.h"
 
 #include "geoMutableEdges.h"
 #include "geoDeepShapeStore.h"
@@ -16,7 +15,7 @@ class DeepRegion;
 /**
  *  @brief Provides hierarchical edges implementation
  */
-class DB_PUBLIC DeepEdges
+class DeepEdges
   : public geo::MutableEdges, public geo::DeepShapeCollectionDelegateBase
 {
 public:

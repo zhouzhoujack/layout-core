@@ -1,7 +1,6 @@
 #ifndef HDR_geoRegionDelegate
 #define HDR_geoRegionDelegate
 
-#include "geoCommon.h"
 
 #include "geoPolygon.h"
 #include "geoEdges.h"
@@ -27,7 +26,7 @@ class CompoundRegionOperationNode;
 /**
  *  @brief A base class for polygon filters
  */
-class DB_PUBLIC PolygonFilterBase
+class PolygonFilterBase
 {
 public:
   /**
@@ -85,7 +84,7 @@ public:
  *  A polygon processor can turn a polygon into something else.
  */
 template <class Result>
-class DB_PUBLIC polygon_processor
+class polygon_processor
 {
 public:
   /**
@@ -147,7 +146,7 @@ typedef geo::generic_shape_iterator_delegate_base <geo::Polygon> RegionIteratorD
 /**
  *  @brief The delegate for the actual region implementation
  */
-class DB_PUBLIC RegionDelegate
+class RegionDelegate
   : public geo::ShapeCollectionDelegateBase
 {
 public:

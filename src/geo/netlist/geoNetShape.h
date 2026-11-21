@@ -16,7 +16,7 @@ class Shapes;
  *  This object is used in the netlist extractor and represents either a polygon or a text.
  *  The TextRef shall utilize a StringRef to represent the string.
  */
-class DB_PUBLIC NetShape
+class NetShape
 {
 public:
   enum shape_type { None, Text, Polygon };

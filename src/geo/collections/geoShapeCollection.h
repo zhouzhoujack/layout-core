@@ -1,7 +1,6 @@
 #ifndef HDR_geoShapeCollection
 #define HDR_geoShapeCollection
 
-#include "geoCommon.h"
 #include "geoDeepShapeStore.h"
 #include "utilsUniqueId.h"
 #include "gsiObject.h"
@@ -12,7 +11,7 @@ namespace geo
 /**
  *  @brief A base class for the deep collection delegates
  */
-class DB_PUBLIC DeepShapeCollectionDelegateBase
+class DeepShapeCollectionDelegateBase
 {
 public:
   DeepShapeCollectionDelegateBase () { }
@@ -53,7 +52,7 @@ private:
 /**
  *  @brief A base class for the shape collection delegates
  */
-class DB_PUBLIC ShapeCollectionDelegateBase
+class ShapeCollectionDelegateBase
   : public geo::UniqueId
 {
 public:
@@ -66,7 +65,7 @@ public:
 /**
  *  @brief A base class for the shape collections such as Region, Edges, EdgePairs etc.
  */
-class DB_PUBLIC ShapeCollection
+class ShapeCollection
   : public gsi::ObjectBase
 {
 public:

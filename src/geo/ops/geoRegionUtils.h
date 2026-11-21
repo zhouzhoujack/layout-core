@@ -1,7 +1,6 @@
 #ifndef HDR_geoRegionUtils
 #define HDR_geoRegionUtils
 
-#include "geoCommon.h"
 #include "geoRegion.h"
 #include "geoCellVariants.h"
 #include "geoBoxScanner.h"
@@ -17,7 +16,7 @@ namespace geo {
  *  matching the criterion.
  */
 
-struct DB_PUBLIC RegionPerimeterFilter
+struct RegionPerimeterFilter
   : public PolygonFilterBase
 {
   typedef geo::coord_traits<geo::Coord>::perimeter_type perimeter_type;
@@ -83,7 +82,7 @@ private:
  *  matching the criterion.
  */
 
-struct DB_PUBLIC RegionAreaFilter
+struct RegionAreaFilter
   : public PolygonFilterBase
 {
   typedef geo::Polygon::area_type area_type;
@@ -144,7 +143,7 @@ private:
  *  @brief A filter implementation which implements the set filters through "all must match"
  */
 
-struct DB_PUBLIC AllMustMatchFilter
+struct AllMustMatchFilter
   : public PolygonFilterBase
 {
   /**
@@ -180,7 +179,7 @@ struct DB_PUBLIC AllMustMatchFilter
  *  This filter will select all polygons which are rectilinear.
  */
 
-struct DB_PUBLIC RectilinearFilter
+struct RectilinearFilter
   : public AllMustMatchFilter
 {
   /**
@@ -224,7 +223,7 @@ private:
  *  This filter will select all polygons which are rectangles.
  */
 
-struct DB_PUBLIC RectangleFilter
+struct RectangleFilter
   : public AllMustMatchFilter
 {
   /**
@@ -269,7 +268,7 @@ private:
  *  This filter will select all polygons with a hole count between min_holes and max_holes (exclusively)
  */
 
-struct DB_PUBLIC HoleCountFilter
+struct HoleCountFilter
   : public AllMustMatchFilter
 {
   /**
@@ -324,7 +323,7 @@ private:
  *    - (BoxAverageDim) average of width and height
  */
 
-struct DB_PUBLIC RegionBBoxFilter
+struct RegionBBoxFilter
   : public AllMustMatchFilter
 {
   typedef geo::Box::distance_type value_type;
@@ -397,7 +396,7 @@ private:
  *    - (RelativeHeight) bounding box height to width (tallness)
  */
 
-struct DB_PUBLIC RegionRatioFilter
+struct RegionRatioFilter
   : public AllMustMatchFilter
 {
   /**
@@ -458,7 +457,7 @@ private:
  *  "strange polygons" are those which do not have a specific orientation, e.g.
  *  "8" shape polygons.
  */
-class DB_PUBLIC StrangePolygonCheckProcessor
+class StrangePolygonCheckProcessor
   : public PolygonProcessorBase
 {
 public:
@@ -477,7 +476,7 @@ public:
 /**
  *  @brief A polygon processor applying smoothing
  */
-class DB_PUBLIC SmoothingProcessor
+class SmoothingProcessor
   : public PolygonProcessorBase
 {
 public:
@@ -501,7 +500,7 @@ private:
 /**
  *  @brief A polygon processor generating rounded corners
  */
-class DB_PUBLIC RoundedCornersProcessor
+class RoundedCornersProcessor
   : public PolygonProcessorBase
 {
 public:
@@ -525,7 +524,7 @@ private:
 /**
  *  @brief A polygon processor extracting the holes
  */
-class DB_PUBLIC HolesExtractionProcessor
+class HolesExtractionProcessor
   : public PolygonProcessorBase
 {
 public:
@@ -544,7 +543,7 @@ public:
 /**
  *  @brief A polygon processor extracting the hull
  */
-class DB_PUBLIC HullExtractionProcessor
+class HullExtractionProcessor
   : public PolygonProcessorBase
 {
 public:
@@ -563,7 +562,7 @@ public:
 /**
  *  @brief A helper class for the DRC functionality which acts as an edge pair receiver
  */
-class DB_PUBLIC Edge2EdgeCheckBase
+class Edge2EdgeCheckBase
   : public geo::box_scanner_receiver<geo::Edge, size_t>
 {
 public:
@@ -681,7 +680,7 @@ private:
  *  This class implements the edge-to-edge part of the polygon DRC.
  */
 template <class Output>
-class DB_PUBLIC_TEMPLATE edge2edge_check
+class edge2edge_check
   : public Edge2EdgeCheckBase
 {
 public:
@@ -719,7 +718,7 @@ private:
  *  This version allows delivery of the negative edges.
  */
 template <class Output, class NegativeEdgeOutput>
-class DB_PUBLIC_TEMPLATE edge2edge_check_with_negative_output
+class edge2edge_check_with_negative_output
   : public edge2edge_check<Output>
 {
 public:
@@ -761,7 +760,7 @@ private:
  *  This version has only negative edge output.
  */
 template <class NegativeEdgeOutput>
-class DB_PUBLIC_TEMPLATE edge2edge_check_negative
+class edge2edge_check_negative
   : public Edge2EdgeCheckBase
 {
 public:
@@ -797,7 +796,7 @@ private:
  *  as well.
  */
 template <class Output>
-class DB_PUBLIC_TEMPLATE edge2edge_check_negative_or_positive
+class edge2edge_check_negative_or_positive
   : public edge2edge_check<Output>
 {
 public:
@@ -835,7 +834,7 @@ protected:
  *  @brief A helper class for the DRC functionality which acts as an edge pair receiver
  */
 template <class PolygonType>
-class DB_PUBLIC poly2poly_check
+class poly2poly_check
   : public geo::box_scanner_receiver<PolygonType, size_t>
 {
 public:
@@ -855,7 +854,7 @@ private:
 /**
  *  @brief A class wrapping the single-polygon checks into a polygon-to-edge pair processor
  */
-class DB_PUBLIC SinglePolygonCheck
+class SinglePolygonCheck
   : public PolygonToEdgePairProcessorBase
 {
 public:
@@ -873,7 +872,7 @@ private:
  *  @brief A helper class for the region to edge interaction functionality
  */
 template <class PolygonType, class EdgeType, class OutputType>
-class DB_PUBLIC region_to_edge_interaction_filter_base
+class region_to_edge_interaction_filter_base
   : public geo::box_scanner_receiver2<PolygonType, size_t, geo::Edge, size_t>
 {
 public:
@@ -895,7 +894,7 @@ private:
  *  @brief A helper class for the region to edge interaction functionality
  */
 template <class PolygonType, class EdgeType, class OutputContainer, class OutputType = typename OutputContainer::value_type>
-class DB_PUBLIC_TEMPLATE region_to_edge_interaction_filter
+class region_to_edge_interaction_filter
   : public region_to_edge_interaction_filter_base<PolygonType, EdgeType, OutputType>
 {
 public:
@@ -919,7 +918,7 @@ private:
  *  @brief A helper class for the region to text interaction functionality
  */
 template <class PolygonType, class TextType, class OutputType>
-class DB_PUBLIC region_to_text_interaction_filter_base
+class region_to_text_interaction_filter_base
   : public geo::box_scanner_receiver2<PolygonType, size_t, TextType, size_t>
 {
 public:
@@ -941,7 +940,7 @@ private:
  *  @brief A helper class for the region to text interaction functionality
  */
 template <class PolygonType, class TextType, class OutputContainer, class OutputType = typename OutputContainer::value_type>
-class DB_PUBLIC_TEMPLATE region_to_text_interaction_filter
+class region_to_text_interaction_filter
   : public region_to_text_interaction_filter_base<PolygonType, TextType, OutputType>
 {
 public:
@@ -977,20 +976,20 @@ static inline C snap_to_grid (C c, C g)
  *  @brief Snaps a polygon to the given grid
  *  Heap is a vector of points reused for the point list
  */
-DB_PUBLIC geo::Polygon snapped_polygon (const geo::Polygon &poly, geo::Coord gx, geo::Coord gy, std::vector<geo::Point> &heap);
+geo::Polygon snapped_polygon (const geo::Polygon &poly, geo::Coord gx, geo::Coord gy, std::vector<geo::Point> &heap);
 
 /**
  *  @brief Scales and snaps a polygon to the given grid
  *  Heap is a vector of points reused for the point list
  *  The coordinate transformation is q = ((p * m + o) snap (g * d)) / d.
  */
-DB_PUBLIC geo::Polygon scaled_and_snapped_polygon (const geo::Polygon &poly, geo::Coord gx, geo::Coord mx, geo::Coord dx, geo::Coord ox, geo::Coord gy, geo::Coord my, geo::Coord dy, geo::Coord oy, std::vector<geo::Point> &heap);
+geo::Polygon scaled_and_snapped_polygon (const geo::Polygon &poly, geo::Coord gx, geo::Coord mx, geo::Coord dx, geo::Coord ox, geo::Coord gy, geo::Coord my, geo::Coord dy, geo::Coord oy, std::vector<geo::Point> &heap);
 
 /**
  *  @brief Scales and snaps a vector to the given grid
  *  The coordinate transformation is q = ((p * m + o) snap (g * d)) / d.
  */
-DB_PUBLIC geo::Vector scaled_and_snapped_vector (const geo::Vector &v, geo::Coord gx, geo::Coord mx, geo::Coord dx, geo::Coord ox, geo::Coord gy, geo::Coord my, geo::Coord dy, geo::Coord oy);
+geo::Vector scaled_and_snapped_vector (const geo::Vector &v, geo::Coord gx, geo::Coord mx, geo::Coord dx, geo::Coord ox, geo::Coord gy, geo::Coord my, geo::Coord dy, geo::Coord oy);
 
 } // namespace geo
 

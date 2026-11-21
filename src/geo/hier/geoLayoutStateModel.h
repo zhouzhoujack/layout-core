@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayoutStateModel
 #define HDR_geoLayoutStateModel
 
-#include "geoCommon.h"
 
 #include "utilsEvents.h"
 
@@ -24,7 +23,7 @@ namespace geo
  *  state model to track if the layout changes it's state.
  */
 
-class DB_PUBLIC LayoutStateModel
+class LayoutStateModel
 {
 public:
   /**

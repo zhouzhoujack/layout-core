@@ -1,4 +1,3 @@
-#include "geoCommon.h"
 
 #include "geoPolygonTools.h"
 #include "geoPolygonGenerators.h"
@@ -73,10 +72,10 @@ int inside_poly_test<P>::operator() (const typename inside_poly_test<P>::point_t
   return (wrapcount_left != 0) ? 1 : -1;
 }
 
-template class DB_PUBLIC inside_poly_test<geo::SimplePolygon>;
-template class DB_PUBLIC inside_poly_test<geo::Polygon>;
-template class DB_PUBLIC inside_poly_test<geo::DSimplePolygon>;
-template class DB_PUBLIC inside_poly_test<geo::DPolygon>;
+template class inside_poly_test<geo::SimplePolygon>;
+template class inside_poly_test<geo::Polygon>;
+template class inside_poly_test<geo::DSimplePolygon>;
+template class inside_poly_test<geo::DPolygon>;
 
 // -------------------------------------------------------------------------
 //  Implementation of cut_polygon
@@ -587,22 +586,22 @@ namespace
 
 }
 
-template<> DB_PUBLIC void cut_polygon_internal (const geo::Polygon &polygon, const geo::Polygon::edge_type &line, cut_polygon_receiver_base<geo::Polygon> *right_of_line)
+template<> void cut_polygon_internal (const geo::Polygon &polygon, const geo::Polygon::edge_type &line, cut_polygon_receiver_base<geo::Polygon> *right_of_line)
 {
   cut_polygon_internal_int (polygon, line, right_of_line);
 }
 
-template<> DB_PUBLIC void cut_polygon_internal (const geo::SimplePolygon &polygon, const geo::SimplePolygon::edge_type &line, cut_polygon_receiver_base<geo::SimplePolygon> *right_of_line)
+template<> void cut_polygon_internal (const geo::SimplePolygon &polygon, const geo::SimplePolygon::edge_type &line, cut_polygon_receiver_base<geo::SimplePolygon> *right_of_line)
 {
   cut_polygon_internal_int (polygon, line, right_of_line);
 }
 
-template<> DB_PUBLIC void cut_polygon_internal (const geo::DPolygon &polygon, const geo::DPolygon::edge_type &line, cut_polygon_receiver_base<geo::DPolygon> *right_of_line)
+template<> void cut_polygon_internal (const geo::DPolygon &polygon, const geo::DPolygon::edge_type &line, cut_polygon_receiver_base<geo::DPolygon> *right_of_line)
 {
   cut_polygon_internal_double (polygon, line, right_of_line);
 }
 
-template<> DB_PUBLIC void cut_polygon_internal (const geo::DSimplePolygon &polygon, const geo::DSimplePolygon::edge_type &line, cut_polygon_receiver_base<geo::DSimplePolygon> *right_of_line)
+template<> void cut_polygon_internal (const geo::DSimplePolygon &polygon, const geo::DSimplePolygon::edge_type &line, cut_polygon_receiver_base<geo::DSimplePolygon> *right_of_line)
 {
   cut_polygon_internal_double (polygon, line, right_of_line);
 }
@@ -693,10 +692,10 @@ split_polygon (const PolygonType &polygon, std::vector<PolygonType> &output)
   }
 }
 
-template DB_PUBLIC void split_polygon<> (const geo::Polygon &polygon, std::vector<geo::Polygon> &output);
-template DB_PUBLIC void split_polygon<> (const geo::SimplePolygon &polygon, std::vector<geo::SimplePolygon> &output);
-template DB_PUBLIC void split_polygon<> (const geo::DPolygon &polygon, std::vector<geo::DPolygon> &output);
-template DB_PUBLIC void split_polygon<> (const geo::DSimplePolygon &polygon, std::vector<geo::DSimplePolygon> &output);
+template void split_polygon<> (const geo::Polygon &polygon, std::vector<geo::Polygon> &output);
+template void split_polygon<> (const geo::SimplePolygon &polygon, std::vector<geo::SimplePolygon> &output);
+template void split_polygon<> (const geo::DPolygon &polygon, std::vector<geo::DPolygon> &output);
+template void split_polygon<> (const geo::DSimplePolygon &polygon, std::vector<geo::DSimplePolygon> &output);
 
 // -------------------------------------------------------------------------
 //  Smoothing tools

@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdgePair
 #define HDR_geoEdgePair
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoPoint.h"
@@ -27,7 +26,7 @@ namespace geo {
  *  As a consequence, when the symmetric flag is used, edge_pair(e1, e2, true) == edge_pair(e2, e1, true).
  */
 template <class C>
-class DB_PUBLIC_TEMPLATE edge_pair
+class edge_pair
 {
 public:
   typedef C coord_type;
@@ -612,11 +611,11 @@ namespace geo
     typedef true_tag has_equal_operator;
   };
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::EdgePair &b);
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DEdgePair &b);
+  template<> void extractor_impl (geo::Extractor &ex, geo::EdgePair &b);
+  template<> void extractor_impl (geo::Extractor &ex, geo::DEdgePair &b);
 
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::EdgePair &b);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DEdgePair &b);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::EdgePair &b);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::DEdgePair &b);
 
 } // namespace geo
 

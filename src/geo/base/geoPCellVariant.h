@@ -1,7 +1,6 @@
 #ifndef HDR_geoPCellVariant
 #define HDR_geoPCellVariant
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "utilsVariant.h"
@@ -17,7 +16,7 @@ namespace geo
 /**
  *  @brief A PCell variant
  */
-class DB_PUBLIC PCellVariant 
+class PCellVariant 
   : public geo::Cell
 {
 public:

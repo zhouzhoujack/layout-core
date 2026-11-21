@@ -1,7 +1,6 @@
 #ifndef HDR_geoReader
 #define HDR_geoReader
 
-#include "geoCommon.h"
 
 #include "utilsException.h"
 #include "utilsInternational.h"
@@ -21,7 +20,7 @@ class ReaderBase;
 /**
  *  @brief Generic base class of reader exceptions
  */
-class DB_PUBLIC ReaderException
+class ReaderException
   : public geo::Exception 
 {
 public:
@@ -35,13 +34,13 @@ public:
  *  @param s The first layer name and output
  *  @param n The name to add
  */
-DB_PUBLIC void
+void
 join_layer_names (std::string &s, const std::string &n);
 
 /**
  *  @brief The generic reader base class
  */
-class DB_PUBLIC ReaderBase
+class ReaderBase
 {
 public:
   ReaderBase ();
@@ -75,7 +74,7 @@ private:
  *  This reader is supposed to fork to one of the specific readers
  *  depending on the format detected.
  */
-class DB_PUBLIC Reader
+class Reader
 {
 public: 
   /**

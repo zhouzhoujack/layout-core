@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayerMapping
 #define HDR_geoLayerMapping
 
-#include "geoCommon.h"
 
 #include <map>
 
@@ -20,7 +19,7 @@ class Layout;
  *
  *  Layer mappings play a role in copy and compare operations.
  */
-class DB_PUBLIC LayerMapping
+class LayerMapping
 {
 public:
   typedef std::map <unsigned int, unsigned int>::const_iterator iterator;

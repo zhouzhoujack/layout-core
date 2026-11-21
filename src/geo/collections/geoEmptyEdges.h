@@ -1,7 +1,6 @@
 #ifndef HDR_geoEmptyEdges
 #define HDR_geoEmptyEdges
 
-#include "geoCommon.h"
 #include "geoEdgesDelegate.h"
 #include "geoRecursiveShapeIterator.h"
 
@@ -10,7 +9,7 @@ namespace geo {
 /**
  *  @brief An empty Edges
  */
-class DB_PUBLIC EmptyEdges
+class EmptyEdges
   : public EdgesDelegate
 {
 public:

@@ -1,19 +1,18 @@
 #ifndef HDR_geoArray
 #define HDR_geoArray
 
-#include "geoCommon.h"
-
 #include <algorithm> 
 #include <limits> 
 #include <vector> 
 
 #include "geoTypes.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoBox.h"
 #include "geoBoxTree.h"
 #include "geoTrans.h"
 #include "geoShapeRepository.h"
+
 #include "utilsException.h"
 
 namespace geo
@@ -220,7 +219,7 @@ struct array_base_ptr_cmp_f
  *  are managed by the repository.
  */
 
-class DB_PUBLIC ArrayRepository
+class ArrayRepository
 {
 public:
   typedef std::set<ArrayBase *, array_base_ptr_cmp_f> basic_repository;

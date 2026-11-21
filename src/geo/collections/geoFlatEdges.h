@@ -1,7 +1,6 @@
 #ifndef HDR_geoFlatEdges
 #define HDR_geoFlatEdges
 
-#include "geoCommon.h"
 
 #include "geoMutableEdges.h"
 #include "geoShapes.h"
@@ -19,7 +18,7 @@ typedef generic_shapes_iterator_delegate<geo::Edge> FlatEdgesIterator;
 /**
  *  @brief A flat, edge-set delegate
  */
-class DB_PUBLIC FlatEdges
+class FlatEdges
   : public MutableEdges
 {
 public:

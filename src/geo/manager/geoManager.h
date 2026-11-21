@@ -1,7 +1,6 @@
 #ifndef HDR_geoManager
 #define HDR_geoManager
 
-#include "geoCommon.h"
 
 #include "utilsTypeTraits.h"
 
@@ -21,7 +20,7 @@ class Object;
  *  See Manager::queue for a detailed description.
  */
 
-class DB_PUBLIC Op
+class Op
 {
 private:
   friend class Manager;
@@ -54,7 +53,7 @@ public:
  *  and to provide transaction management.
  */
 
-class DB_PUBLIC Manager
+class Manager
 {
 public:
   typedef size_t ident_t;
@@ -260,7 +259,7 @@ private:
  *  collection at the point when it was stopped with "close".
  */
 
-class DB_PUBLIC Transaction
+class Transaction
 {
 public:
   Transaction (geo::Manager *manager, const std::string &desc)

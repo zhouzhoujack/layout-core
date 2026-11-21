@@ -4,7 +4,6 @@
 #include "geoEdge.h"
 #include "geoBox.h"
 #include "geoHersheyFont.h"
-#include "geoCommon.h"
 
 #include <vector>
 
@@ -12,14 +11,14 @@ namespace geo {
 
 struct HersheyFont;
 
-DB_PUBLIC int hershey_font_width (unsigned int f);
-DB_PUBLIC int hershey_font_height (unsigned int f);
-DB_PUBLIC geo::DBox hershey_text_box (const std::string &s, unsigned int f);
-DB_PUBLIC void hershey_justify (const std::string &s, unsigned int f, geo::DBox bx, HAlign halign, VAlign valign, std::vector<geo::DPoint> &linestarts);
-DB_PUBLIC std::vector<std::string> hershey_font_names ();
-DB_PUBLIC size_t hershey_count_edges (const std::string &s, unsigned int f);
+int hershey_font_width (unsigned int f);
+int hershey_font_height (unsigned int f);
+geo::DBox hershey_text_box (const std::string &s, unsigned int f);
+void hershey_justify (const std::string &s, unsigned int f, geo::DBox bx, HAlign halign, VAlign valign, std::vector<geo::DPoint> &linestarts);
+std::vector<std::string> hershey_font_names ();
+size_t hershey_count_edges (const std::string &s, unsigned int f);
 
-class DB_PUBLIC basic_hershey_edge_iterator
+class basic_hershey_edge_iterator
 {
 public:
   basic_hershey_edge_iterator (const std::string &s, unsigned int f, const std::vector<geo::DPoint> &line_starts);
@@ -40,7 +39,7 @@ private:
 };
 
 template <class C>
-class DB_PUBLIC_TEMPLATE hershey_edge_iterator
+class hershey_edge_iterator
   : private basic_hershey_edge_iterator
 {
 public:
@@ -101,7 +100,7 @@ private:
  */
 
 template <class C>
-struct DB_PUBLIC_TEMPLATE hershey
+struct hershey
 {
   typedef C coord_type;
   typedef geo::coord_traits<C> coord_traits;

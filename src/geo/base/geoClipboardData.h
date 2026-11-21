@@ -1,7 +1,6 @@
 #ifndef HDR_geoClipboardData
 #define HDR_geoClipboardData
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoLayoutUtils.h"
@@ -15,7 +14,7 @@ namespace geo
 /**
  *  @brief A receiver for insert events of the clipboard data object
  */
-class DB_PUBLIC ClipboardDataInsertReceiver 
+class ClipboardDataInsertReceiver 
 {
 public:
   ClipboardDataInsertReceiver () 
@@ -58,7 +57,7 @@ public:
  *  This is basically a layout object enhanced with some special data to 
  *  represent the data on the clipboard.
  */
-class DB_PUBLIC ClipboardData
+class ClipboardData
 {
 public:
   /**

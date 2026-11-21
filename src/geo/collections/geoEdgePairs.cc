@@ -1,4 +1,3 @@
-#include "geoCommon.h"
 
 #include "geoEdgePairs.h"
 #include "geoEmptyEdgePairs.h"
@@ -76,7 +75,7 @@ void EdgePairs::insert (const Sh &shape)
   mutable_edge_pairs ()->insert (shape);
 }
 
-template DB_PUBLIC void EdgePairs::insert (const geo::EdgePair &);
+template void EdgePairs::insert (const geo::EdgePair &);
 
 void EdgePairs::insert (const geo::Shape &shape)
 {
@@ -89,9 +88,9 @@ void EdgePairs::insert (const geo::Shape &shape, const T &trans)
   mutable_edge_pairs ()->insert (shape, trans);
 }
 
-template DB_PUBLIC void EdgePairs::insert (const geo::Shape &, const geo::ICplxTrans &);
-template DB_PUBLIC void EdgePairs::insert (const geo::Shape &, const geo::Trans &);
-template DB_PUBLIC void EdgePairs::insert (const geo::Shape &, const geo::Disp &);
+template void EdgePairs::insert (const geo::Shape &, const geo::ICplxTrans &);
+template void EdgePairs::insert (const geo::Shape &, const geo::Trans &);
+template void EdgePairs::insert (const geo::Shape &, const geo::Disp &);
 
 void EdgePairs::clear ()
 {
@@ -116,11 +115,11 @@ EdgePairs &EdgePairs::transform (const T &trans)
 }
 
 //  explicit instantiations
-template DB_PUBLIC EdgePairs &EdgePairs::transform (const geo::ICplxTrans &);
-template DB_PUBLIC EdgePairs &EdgePairs::transform (const geo::Trans &);
-template DB_PUBLIC EdgePairs &EdgePairs::transform (const geo::Disp &);
-template DB_PUBLIC EdgePairs &EdgePairs::transform (const geo::IMatrix2d &);
-template DB_PUBLIC EdgePairs &EdgePairs::transform (const geo::IMatrix3d &);
+template EdgePairs &EdgePairs::transform (const geo::ICplxTrans &);
+template EdgePairs &EdgePairs::transform (const geo::Trans &);
+template EdgePairs &EdgePairs::transform (const geo::Disp &);
+template EdgePairs &EdgePairs::transform (const geo::IMatrix2d &);
+template EdgePairs &EdgePairs::transform (const geo::IMatrix3d &);
 
 const geo::RecursiveShapeIterator &
 EdgePairs::iter () const
@@ -187,7 +186,7 @@ MutableEdgePairs *EdgePairs::mutable_edge_pairs ()
 
 namespace geo
 {
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::EdgePairs &b)
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::EdgePairs &b)
   {
     geo::EdgePair ep;
 
@@ -207,7 +206,7 @@ namespace geo
     return true;
   }
 
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::EdgePairs &b)
+  template<> void extractor_impl (geo::Extractor &ex, geo::EdgePairs &b)
   {
     if (! test_extractor_impl (ex, b)) {
       ex.error (geo::to_string (tr ("Expected an edge pair collection specification")));

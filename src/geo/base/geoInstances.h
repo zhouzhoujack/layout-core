@@ -1,7 +1,6 @@
 #ifndef HDR_geoInstances
 #define HDR_geoInstances
 
-#include "geoCommon.h"
 
 #include "geoManager.h"
 #include "geoStatic.h"
@@ -81,7 +80,7 @@ struct instances_editable_traits<InstancesNonEditableTag>
  *  reference points to a certain instance and provides an abstract interface.
  */
 
-class DB_PUBLIC Instance
+class Instance
 {
 public:
   typedef geo::Layout layout_type;
@@ -487,9 +486,9 @@ private:
  */
 
 //  NOTE: we do explicit instantiation, so the exposure is declared
-//  as DB_PUBLIC - as if it wasn't a template
+//  as - as if it wasn't a template
 template <class IterTraits>
-class DB_PUBLIC instance_iterator
+class instance_iterator
 {
 public:
   typedef geo::Layout layout_type;
@@ -715,7 +714,7 @@ private:
  *  @brief IterTraits for the normal iterator
  */
 
-struct DB_PUBLIC NormalInstanceIteratorTraits
+struct NormalInstanceIteratorTraits
 {
   typedef geo::Layout layout_type;
   typedef geo::Box box_type;
@@ -760,7 +759,7 @@ public:
  *  @brief IterTraits for the touching iterator
  */
 
-struct DB_PUBLIC TouchingInstanceIteratorTraits
+struct TouchingInstanceIteratorTraits
 {
   typedef geo::Layout layout_type;
   typedef geo::Box box_type;
@@ -811,7 +810,7 @@ private:
  *  @brief IterTraits for the overlapping iterator
  */
 
-struct DB_PUBLIC OverlappingInstanceIteratorTraits
+struct OverlappingInstanceIteratorTraits
 {
   typedef geo::Layout layout_type;
   typedef geo::Box box_type;
@@ -864,7 +863,7 @@ private:
  *  The iterator will report just cell indices, not instances.
  */
 
-class DB_PUBLIC ChildCellIterator
+class ChildCellIterator
 {
 public: 
   typedef geo::Layout layout_type;
@@ -938,7 +937,7 @@ private:
  *  iterator takes care of producing the right sequence.
  */
 
-class DB_PUBLIC ParentInst
+class ParentInst
 {
 public: 
   /**
@@ -999,7 +998,7 @@ protected:
  *  For this, it requires a "Layout" object pointer for dereferencing.
  */
 
-class DB_PUBLIC ParentInstRep
+class ParentInstRep
   : public ParentInst
 {
 public: 
@@ -1068,7 +1067,7 @@ private:
  *  takes care of decomposing a single instance into a set of such.
  */
 
-class DB_PUBLIC ParentInstIterator
+class ParentInstIterator
 {
 public: 
   typedef geo::Layout layout_type;
@@ -1165,7 +1164,7 @@ private:
  *  The iterator will report just cell indices, not instances.
  */
 
-class DB_PUBLIC ParentCellIterator
+class ParentCellIterator
 {
 public: 
   typedef geo::Layout layout_type;
@@ -1241,7 +1240,7 @@ private:
  *  That allows retrieving such instances with a search.
  */
 
-class DB_PUBLIC Instances 
+class Instances 
 {
 public:
   typedef geo::Layout layout_type;

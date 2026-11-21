@@ -1,7 +1,6 @@
 #ifndef HDR_geoMutableEdges
 #define HDR_geoMutableEdges
 
-#include "geoCommon.h"
 
 #include "geoAsIfFlatEdges.h"
 
@@ -14,7 +13,7 @@ namespace geo {
  *
  *  Mutable edge collections offer insert, transform, flatten and other manipulation functions.
  */
-class DB_PUBLIC MutableEdges
+class MutableEdges
   : public AsIfFlatEdges
 {
 public:

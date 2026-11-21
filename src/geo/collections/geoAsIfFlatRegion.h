@@ -1,7 +1,6 @@
 #ifndef HDR_geoAsIfFlatRegion
 #define HDR_geoAsIfFlatRegion
 
-#include "geoCommon.h"
 
 #include "geoRegionDelegate.h"
 #include "geoPolygon.h"
@@ -16,7 +15,7 @@ namespace geo {
 /**
  *  @brief Provides default flat implementations
  */
-class DB_PUBLIC AsIfFlatRegion
+class AsIfFlatRegion
   : public RegionDelegate
 {
 public:

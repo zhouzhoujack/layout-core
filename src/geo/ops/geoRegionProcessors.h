@@ -1,7 +1,6 @@
 #ifndef HDR_geoRegionProcessors
 #define HDR_geoRegionProcessors
 
-#include "geoCommon.h"
 #include "geoRegionDelegate.h"
 #include "geoPolygonTools.h"
 #include "geoEdgesUtils.h"
@@ -15,7 +14,7 @@ namespace geo
 /**
  *  @brief An interface to accept corners
  */
-class DB_PUBLIC CornerPointDelivery
+class CornerPointDelivery
 {
 public:
   virtual void make_point (const geo::Point &pt, const geo::Edge &e1, const geo::Edge &e2) const = 0;
@@ -24,7 +23,7 @@ public:
 /**
  *  @brief An interface to accept corners and turns them into rectangles with 2*dim x 2*dim
  */
-class DB_PUBLIC CornerRectDelivery
+class CornerRectDelivery
   : public CornerPointDelivery
 {
 public:
@@ -45,7 +44,7 @@ private:
 /**
  *  @brief An interface to accept corners and turns them into degenerated edges (dots)
  */
-class DB_PUBLIC CornerDotDelivery
+class CornerDotDelivery
   : public CornerPointDelivery
 {
 public:
@@ -66,7 +65,7 @@ private:
 /**
  *  @brief An interface to accept corners and turns them into edge pairs
  */
-class DB_PUBLIC CornerEdgePairDelivery
+class CornerEdgePairDelivery
   : public CornerPointDelivery
 {
 public:
@@ -86,7 +85,7 @@ private:
 /**
  *  @brief A helper class implementing the core corner detection algorithm
  */
-class DB_PUBLIC CornerDetectorCore
+class CornerDetectorCore
 {
 public:
   CornerDetectorCore (double angle_start, bool include_angle_start, double angle_end, bool include_angle_end);
@@ -101,7 +100,7 @@ private:
 /**
  *  @brief A corner detector delivering small retangles (2*dim x 2*dim) per detected corner
  */
-class DB_PUBLIC CornersAsRectangles
+class CornersAsRectangles
   : public geo::PolygonProcessorBase, private CornerDetectorCore
 {
 public:
@@ -130,7 +129,7 @@ private:
 /**
  *  @brief A corner detector delivering degenerated edges (dots) for the corners
  */
-class DB_PUBLIC CornersAsDots
+class CornersAsDots
   : public geo::PolygonToEdgeProcessorBase, private CornerDetectorCore
 {
 public:
@@ -155,7 +154,7 @@ public:
 /**
  *  @brief A corner detector delivering edge pairs for the corners
  */
-class DB_PUBLIC CornersAsEdgePairs
+class CornersAsEdgePairs
   : public geo::PolygonToEdgePairProcessorBase, private CornerDetectorCore
 {
 public:
@@ -183,7 +182,7 @@ public:
 /**
  *  @brief A processor delivering the extents (bounding box) of the merged polygons
  */
-class DB_PUBLIC Extents
+class Extents
   : public geo::PolygonProcessorBase
 {
 public:
@@ -206,7 +205,7 @@ public:
  *  This processor allows over- or undersizing of the resulting box by a given amount and delivery
  *  of a box relative to the original box.
  */
-class DB_PUBLIC RelativeExtents
+class RelativeExtents
   : public geo::PolygonProcessorBase
 {
 public:
@@ -238,7 +237,7 @@ private:
  *  This processor allows over- or undersizing of the resulting box by a given amount and delivery
  *  of a box relative to the original box.
  */
-class DB_PUBLIC RelativeExtentsAsEdges
+class RelativeExtentsAsEdges
   : public geo::PolygonToEdgeProcessorBase
 {
 public:
@@ -264,7 +263,7 @@ private:
 /**
  *  @brief A processor that delivers all edges for a polygon
  */
-class DB_PUBLIC PolygonToEdgeProcessor
+class PolygonToEdgeProcessor
   : public geo::PolygonToEdgeProcessorBase
 {
 public:
@@ -279,7 +278,7 @@ public:
 /**
  *  @brief A decomposition processor to deliver convex-only polygons
  */
-class DB_PUBLIC ConvexDecomposition
+class ConvexDecomposition
   : public geo::PolygonProcessorBase
 {
 public:
@@ -305,7 +304,7 @@ private:
 /**
  *  @brief A decomposition processor to deliver trapezoids
  */
-class DB_PUBLIC TrapezoidDecomposition
+class TrapezoidDecomposition
   : public geo::PolygonProcessorBase
 {
 public:
@@ -334,7 +333,7 @@ private:
  *  an bbox-to-polygon area ratio bigger than max_area_ratio.
  *  A zero value for these parameters means "don't care".
  */
-class DB_PUBLIC PolygonBreaker
+class PolygonBreaker
   : public geo::PolygonProcessorBase
 {
 public:
@@ -360,7 +359,7 @@ private:
 /**
  *  @brief A sizing processor
  */
-class DB_PUBLIC PolygonSizer
+class PolygonSizer
   : public geo::PolygonProcessorBase
 {
 public:
@@ -387,7 +386,7 @@ private:
  *  The object can be Edge, Polygon, Box and std::vector<Point>
  */
 template <class K>
-class DB_PUBLIC_TEMPLATE minkowski_sum_computation
+class minkowski_sum_computation
   : public geo::PolygonProcessorBase
 {
 public:

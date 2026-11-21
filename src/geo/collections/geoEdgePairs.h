@@ -26,7 +26,7 @@ class EdgeFilterBase;
  *
  *  The iterator delivers the edge pairs of the edge pair set
  */
-class DB_PUBLIC EdgePairsIterator
+class EdgePairsIterator
   : public generic_shape_iterator<geo::EdgePair>
 {
 public:
@@ -84,7 +84,7 @@ class EdgePairs;
 /**
  *  @brief A base class for edge pair filters
  */
-class DB_PUBLIC EdgePairFilterBase
+class EdgePairFilterBase
 {
 public:
   EdgePairFilterBase () { }
@@ -107,7 +107,7 @@ public:
  *  Edge pair sets are created by Region::width_check for example. Edge pair sets
  *  can be converted to polygons or to individual edges.
  */
-class DB_PUBLIC EdgePairs
+class EdgePairs
   : public geo::ShapeCollection
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoWriter
 #define HDR_geoWriter
 
-#include "geoCommon.h"
 
 #include "utilsException.h"
 #include "geoSaveLayoutOptions.h"
@@ -20,7 +19,7 @@ class Layout;
 /**
  *  @brief The generic writer base class
  */
-class DB_PUBLIC WriterBase
+class WriterBase
 {
 public:
   /**
@@ -43,7 +42,7 @@ public:
 /**
  *  @brief A generic stream format writer
  */
-class DB_PUBLIC Writer
+class Writer
 {
 public:
   typedef std::vector<MetaInfo> meta_info;

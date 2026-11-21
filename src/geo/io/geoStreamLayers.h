@@ -1,7 +1,6 @@
 #ifndef HDR_geoStreamLayers
 #define HDR_geoStreamLayers
 
-#include "geoCommon.h"
 
 #include "utilsException.h"
 #include "utilsIntervalMap.h"
@@ -21,7 +20,7 @@ class Layout;
 /**
  *  @brief Layer spec string format error exception
  */
-class DB_PUBLIC LayerSpecFormatException
+class LayerSpecFormatException
   : public geo::Exception 
 {
 public:
@@ -90,7 +89,7 @@ inline ld_type ld_combine (ld_type a, ld_type b)
 /**
  *  @brief A struct for a layer/datatype pair)
  */
-struct DB_PUBLIC LDPair
+struct LDPair
 {
   LDPair ()
     : layer (0), datatype (0)
@@ -160,7 +159,7 @@ struct DB_PUBLIC LDPair
  *  formats: a compact format and a linewise format used for storing
  *  the information in setup files.
  */
-class DB_PUBLIC LayerMap
+class LayerMap
   : public gsi::ObjectBase
 {
 public:
@@ -619,8 +618,8 @@ private:
  */
 namespace geo
 {
-  template<> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::LayerMap &t);
-  template<> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::LayerMap &t);
+  template<> void extractor_impl (geo::Extractor &ex, geo::LayerMap &t);
+  template<> bool test_extractor_impl (geo::Extractor &ex, geo::LayerMap &t);
 } // namespace geo
 
 #endif

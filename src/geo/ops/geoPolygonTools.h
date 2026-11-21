@@ -1,7 +1,6 @@
 #ifndef HDR_geoPolygonTools
 #define HDR_geoPolygonTools
 
-#include "geoCommon.h"
 
 #include "geoPolygon.h"
 #include "geoText.h"
@@ -52,7 +51,7 @@ private:
 //  Some helper classes and functions for implementing cut_polygon
 
 template <class Polygon>
-class DB_PUBLIC cut_polygon_receiver_base
+class cut_polygon_receiver_base
 {
 public:
   virtual ~cut_polygon_receiver_base () { }
@@ -78,7 +77,7 @@ private:
 };
 
 template <class PolygonType, class Edge>
-void DB_PUBLIC cut_polygon_internal (const PolygonType &input, const Edge &line, cut_polygon_receiver_base<PolygonType> *right_of_line);
+void cut_polygon_internal (const PolygonType &input, const Edge &line, cut_polygon_receiver_base<PolygonType> *right_of_line);
 
 /**
  *  @brief Polygon cut function
@@ -104,7 +103,7 @@ void cut_polygon (const PolygonType &input, const typename PolygonType::edge_typ
  *  @param output The parts 
  */
 template <class PolygonType>
-void DB_PUBLIC split_polygon (const PolygonType &polygon, std::vector<PolygonType> &output);
+void split_polygon (const PolygonType &polygon, std::vector<PolygonType> &output);
 
 /**
  *  @brief Determines whether a polygon and a box interact
@@ -377,24 +376,24 @@ inline bool interact (const geo::DSimplePolygon &poly,   const geo::DText &text)
  *  @param fallback Fallback algorithm (less strict) if true 
  *  @return True, if the extraction was successful
  */
-bool DB_PUBLIC extract_rad_from_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, double &rinner, double &router, unsigned int &n, std::vector <geo::Point> *new_pts = 0, bool fallback = false);
+bool extract_rad_from_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, double &rinner, double &router, unsigned int &n, std::vector <geo::Point> *new_pts = 0, bool fallback = false);
 
 /**
  *  @brief Extract a corner radius from a contour (version for double coordinates)
  */
-bool DB_PUBLIC extract_rad_from_contour (geo::DPolygon::polygon_contour_iterator from, geo::DPolygon::polygon_contour_iterator to, double &rinner, double &router, unsigned int &n, std::vector <geo::DPoint> *new_pts = 0, bool fallback = false);
+bool extract_rad_from_contour (geo::DPolygon::polygon_contour_iterator from, geo::DPolygon::polygon_contour_iterator to, double &rinner, double &router, unsigned int &n, std::vector <geo::DPoint> *new_pts = 0, bool fallback = false);
 
 /**
  *  @brief Extract the radius (better: radii) from a polygon and if requested, compute the new polygon without the rounding
  *
  *  See extract_rad_from_contour for details.
  */
-bool DB_PUBLIC extract_rad (const geo::Polygon &polygon, double &rinner, double &router, unsigned int &n, geo::Polygon *new_polygon = 0);
+bool extract_rad (const geo::Polygon &polygon, double &rinner, double &router, unsigned int &n, geo::Polygon *new_polygon = 0);
 
 /**
  *  @brief Extract a corner radius from a polygon (version for double coordinates)
  */
-bool DB_PUBLIC extract_rad (const geo::DPolygon &polygon, double &rinner, double &router, unsigned int &n, geo::DPolygon *new_polygon = 0);
+bool extract_rad (const geo::DPolygon &polygon, double &rinner, double &router, unsigned int &n, geo::DPolygon *new_polygon = 0);
 
 /**
  *  @brief Compute the rounded version of a polygon contour
@@ -407,24 +406,24 @@ bool DB_PUBLIC extract_rad (const geo::DPolygon &polygon, double &rinner, double
  *  @param router The outer corner radius (in dbu units)
  *  @param n The number of points per full circle
  */
-void DB_PUBLIC compute_rounded_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, std::vector <geo::Point> &new_pts, double rinner, double router, unsigned int n);
+void compute_rounded_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, std::vector <geo::Point> &new_pts, double rinner, double router, unsigned int n);
 
 /**
  *  @brief Compute the rounded version of a polygon contour (double coordinate version)
  */
-void DB_PUBLIC compute_rounded_contour (geo::DPolygon::polygon_contour_iterator from, geo::DPolygon::polygon_contour_iterator to, std::vector <geo::DPoint> &new_pts, double rinner, double router, unsigned int n);
+void compute_rounded_contour (geo::DPolygon::polygon_contour_iterator from, geo::DPolygon::polygon_contour_iterator to, std::vector <geo::DPoint> &new_pts, double rinner, double router, unsigned int n);
 
 /**
  *  @brief Compute the rounded version of the polygon
  *
  *  See compute_rounded_contour for details.
  */
-geo::Polygon DB_PUBLIC compute_rounded (const geo::Polygon &poly, double rinner, double router, unsigned int n);
+geo::Polygon compute_rounded (const geo::Polygon &poly, double rinner, double router, unsigned int n);
 
 /**
  *  @brief Compute the rounded version of the polygon (double coordinate version)
  */
-geo::DPolygon DB_PUBLIC compute_rounded (const geo::DPolygon &poly, double rinner, double router, unsigned int n);
+geo::DPolygon compute_rounded (const geo::DPolygon &poly, double rinner, double router, unsigned int n);
 
 #define KLAYOUT_SMOOTH_HAS_KEEP_HV 1
 
@@ -439,12 +438,12 @@ geo::DPolygon DB_PUBLIC compute_rounded (const geo::DPolygon &poly, double rinne
  *  @param d The distance that determines the smoothing "roughness"
  *  @param keep_hv If true, vertical and horizontal edges are maintained
  */
-void DB_PUBLIC smooth_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, std::vector <geo::Point> &new_pts, geo::Coord d, bool keep_hv);
+void smooth_contour (geo::Polygon::polygon_contour_iterator from, geo::Polygon::polygon_contour_iterator to, std::vector <geo::Point> &new_pts, geo::Coord d, bool keep_hv);
 
 /**
  *  @brief Smooth a polygon (apply smoothing to the whole polygon)
  */
-geo::Polygon DB_PUBLIC smooth (const geo::Polygon &poly, geo::Coord d, bool keep_hv);
+geo::Polygon smooth (const geo::Polygon &poly, geo::Coord d, bool keep_hv);
 
 /**
  *  @brief Returns a value indicating whether the polygon is an "strange polygon"
@@ -453,7 +452,7 @@ geo::Polygon DB_PUBLIC smooth (const geo::Polygon &poly, geo::Coord d, bool keep
  *  If "error_parts" is given it will receive markers indicating the parts which violate
  *  this wrap count condition.
  */
-bool DB_PUBLIC is_strange_polygon (const geo::Polygon &poly, std::vector<geo::Polygon> *error_parts = 0);
+bool is_strange_polygon (const geo::Polygon &poly, std::vector<geo::Polygon> *error_parts = 0);
 
 /**
  *  @brief Returns a value indicating whether the polygon is "non-orientable"
@@ -461,7 +460,7 @@ bool DB_PUBLIC is_strange_polygon (const geo::Polygon &poly, std::vector<geo::Po
  *  If "error_parts" is given it will receive markers indicating the parts which are
  *  non-orientable.
  */
-bool DB_PUBLIC is_non_orientable_polygon (const geo::Polygon &poly, std::vector<geo::Polygon> *error_parts = 0);
+bool is_non_orientable_polygon (const geo::Polygon &poly, std::vector<geo::Polygon> *error_parts = 0);
 
 /**
  *  @brief A area collector
@@ -470,7 +469,7 @@ bool DB_PUBLIC is_non_orientable_polygon (const geo::Polygon &poly, std::vector<
  *  It is used for example by the rasterize function to collect area values 
  *  on a per-pixel basis.
  */
-class DB_PUBLIC AreaMap
+class AreaMap
 {
 public:
   typedef geo::coord_traits<geo::Coord>::area_type area_type;
@@ -623,42 +622,42 @@ private:
  *
  *  Returns a value indicating whether the map will be non-empty.
  */
-bool DB_PUBLIC rasterize (const geo::Polygon &polygon, geo::AreaMap &am);
+bool rasterize (const geo::Polygon &polygon, geo::AreaMap &am);
 
 /**
  *  @brief Minkowski sum of an edge and a polygon
  */
-geo::Polygon DB_PUBLIC minkowski_sum (const geo::Polygon &a, const geo::Edge &b, bool resolve_holes = false);
+geo::Polygon minkowski_sum (const geo::Polygon &a, const geo::Edge &b, bool resolve_holes = false);
 
 /**
  *  @brief Minkowski sum of a polygon and a polygon
  */
-geo::Polygon DB_PUBLIC minkowski_sum (const geo::Polygon &a, const geo::Polygon &b, bool resolve_holes = false);
+geo::Polygon minkowski_sum (const geo::Polygon &a, const geo::Polygon &b, bool resolve_holes = false);
 
 /**
  *  @brief Minkowski sum of a polygon and a box
  */
-geo::Polygon DB_PUBLIC minkowski_sum (const geo::Polygon &a, const geo::Box &b, bool resolve_holes = false);
+geo::Polygon minkowski_sum (const geo::Polygon &a, const geo::Box &b, bool resolve_holes = false);
 
 /**
  *  @brief Minkowski sum of a polygon and a contour
  */
-geo::Polygon DB_PUBLIC minkowski_sum (const geo::Polygon &a, const std::vector<geo::Point> &c, bool resolve_holes = false);
+geo::Polygon minkowski_sum (const geo::Polygon &a, const std::vector<geo::Point> &c, bool resolve_holes = false);
 
 /**
  *  @brief Resolve holes 
  */
-geo::Polygon DB_PUBLIC resolve_holes (const geo::Polygon &p);
+geo::Polygon resolve_holes (const geo::Polygon &p);
 
 /**
  *  @brief SimplePolygon to Polygon conversion
  */
-geo::Polygon DB_PUBLIC simple_polygon_to_polygon (const geo::SimplePolygon &a);
+geo::Polygon simple_polygon_to_polygon (const geo::SimplePolygon &a);
 
 /**
  *  @brief Polygon to SimplePolygon conversion (resolves holes)
  */
-geo::SimplePolygon DB_PUBLIC polygon_to_simple_polygon (const geo::Polygon &a);
+geo::SimplePolygon polygon_to_simple_polygon (const geo::Polygon &a);
 
 /**
  *  @brief The decomposition mode for decompose_convex
@@ -701,24 +700,24 @@ enum TrapezoidDecompositionMode
  *  The resulting polygons will be sent to the sink. Only "put" events will be generated
  *  to facilitate call chaining of multiple "decompose_convex" calls.
  */
-void DB_PUBLIC decompose_convex (const geo::Polygon &p, PreferredOrientation po, SimplePolygonSink &sink);
+void decompose_convex (const geo::Polygon &p, PreferredOrientation po, SimplePolygonSink &sink);
 
 /**
  *  @brief Decompose a simple polygon into convex (simple) polygons
  *
  *  See the "Polygon" version of this function for details.
  */
-void DB_PUBLIC decompose_convex (const geo::SimplePolygon &p, PreferredOrientation po, SimplePolygonSink &sink);
+void decompose_convex (const geo::SimplePolygon &p, PreferredOrientation po, SimplePolygonSink &sink);
 
 /**
  *  @brief Returns true, if the given polygon is a convex one
  */
-bool DB_PUBLIC is_convex (const geo::Polygon &poly);
+bool is_convex (const geo::Polygon &poly);
 
 /**
  *  @brief Returns true, if the given simple polygon is a convex one
  */
-bool DB_PUBLIC is_convex (const geo::SimplePolygon &poly);
+bool is_convex (const geo::SimplePolygon &poly);
 
 /**
  *  @brief Decomposes the given polygon into trapezoids
@@ -728,14 +727,14 @@ bool DB_PUBLIC is_convex (const geo::SimplePolygon &poly);
  *  The resulting single polygons will be sent to the sink. Only "put" events will be
  *  generated on the sink.
  */
-void DB_PUBLIC decompose_trapezoids (const geo::Polygon &p, TrapezoidDecompositionMode mode, SimplePolygonSink &sink);
+void decompose_trapezoids (const geo::Polygon &p, TrapezoidDecompositionMode mode, SimplePolygonSink &sink);
 
 /**
  *  @brief Decomposes the given simple polygon into trapezoids
  *
  *  See the "Polygon" version of this function for details.
  */
-void DB_PUBLIC decompose_trapezoids (const geo::SimplePolygon &p, TrapezoidDecompositionMode mode, SimplePolygonSink &sink);
+void decompose_trapezoids (const geo::SimplePolygon &p, TrapezoidDecompositionMode mode, SimplePolygonSink &sink);
 
 }
 

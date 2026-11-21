@@ -1,7 +1,6 @@
 #ifndef HDR_geoEdgeProcessor
 #define HDR_geoEdgeProcessor
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoEdge.h"
@@ -26,7 +25,7 @@ class EdgeSink;
  *
  *  This is the base class for such edge receivers.
  */
-class DB_PUBLIC EdgeSink 
+class EdgeSink 
 {
 public:
   /** 
@@ -99,7 +98,7 @@ public:
  *  This receiver simply collects the edges in a container (a vector of edges)
  *  which is either kept internally or supplied from the outside.
  */
-class DB_PUBLIC EdgeContainer 
+class EdgeContainer 
   : public EdgeSink
 {
 public:
@@ -169,7 +168,7 @@ private:
  *  evaluator into a defined state. Each edge has an integer property that can be
  *  used to distinguish edges from different polygons or layers.
  */
-class DB_PUBLIC EdgeEvaluatorBase
+class EdgeEvaluatorBase
 {
 public:
   typedef size_t property_type;
@@ -197,7 +196,7 @@ public:
  *  It will build a set of property pairs, where the lower property value
  *  is the first one of the pairs. 
  */
-class DB_PUBLIC InteractionDetector
+class InteractionDetector
   : public EdgeEvaluatorBase
 {
 public:
@@ -299,7 +298,7 @@ private:
  *  based on a generic operator.
  */
 template <class F>
-class DB_PUBLIC_TEMPLATE GenericMerge
+class GenericMerge
   : public EdgeEvaluatorBase
 {
 public:
@@ -398,7 +397,7 @@ public:
  *    mode == n: wc >= n
  *    mode == -n: wc >= n || wc <= -n
  */
-class DB_PUBLIC SimpleMerge
+class SimpleMerge
   : public GenericMerge<ParametrizedInsideFunc>
 {
 public:
@@ -419,7 +418,7 @@ public:
  *  while the other bits are used to distinguish the polygons. For each polygon, a non-zero
  *  wrap count rule is applied before the boolean operation's output is formed.
  */
-class DB_PUBLIC BooleanOp 
+class BooleanOp 
   : public EdgeEvaluatorBase 
 {
 public:
@@ -463,7 +462,7 @@ private:
  *  It can be configured to include edges on the border of the polygons
  *  as being considered "inside the polygon".
  */
-class DB_PUBLIC EdgePolygonOp 
+class EdgePolygonOp 
   : public geo::EdgeEvaluatorBase
 {
 public:
@@ -498,7 +497,7 @@ private:
  *  This operator is especially useful to implement boolean operations
  *  with sized polygons which required a >0 interpretation.
  */
-class DB_PUBLIC BooleanOp2
+class BooleanOp2
   : public BooleanOp
 {
 public:
@@ -525,7 +524,7 @@ private:
  *  merge is equivalent to producing all polygins. A overlap value of 1 means
  *  that at least two polygons must overlap to produce a result.
  */
-class DB_PUBLIC MergeOp 
+class MergeOp 
   : public EdgeEvaluatorBase 
 {
 public:
@@ -556,7 +555,7 @@ private:
  *  applying a custom operator for computing the output edge sets which then are delivered
  *  to an EdgeSink receiver object.
  */
-class DB_PUBLIC EdgeProcessor
+class EdgeProcessor
 {
 public:
   typedef size_t property_type;

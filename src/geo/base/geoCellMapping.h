@@ -1,7 +1,6 @@
 #ifndef HDR_geoCellMapping
 #define HDR_geoCellMapping
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 
@@ -25,7 +24,7 @@ class Layout;
  *
  *  Cell mappings play a role in copy and compare operations.
  */
-class DB_PUBLIC CellMapping
+class CellMapping
 {
 public:
   typedef std::map <geo::cell_index_type, geo::cell_index_type>::const_iterator iterator;

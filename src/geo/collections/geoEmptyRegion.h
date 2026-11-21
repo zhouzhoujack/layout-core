@@ -1,7 +1,6 @@
 #ifndef HDR_geoEmptyRegion
 #define HDR_geoEmptyRegion
 
-#include "geoCommon.h"
 #include "geoRegionDelegate.h"
 #include "geoEmptyEdges.h"
 #include "geoEmptyTexts.h"
@@ -11,7 +10,7 @@ namespace geo {
 /**
  *  @brief An empty Region
  */
-class DB_PUBLIC EmptyRegion
+class EmptyRegion
   : public RegionDelegate
 {
 public:

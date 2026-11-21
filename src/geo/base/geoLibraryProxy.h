@@ -1,7 +1,6 @@
 #ifndef HDR_geoLibraryProxy
 #define HDR_geoLibraryProxy
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoCell.h"
@@ -17,7 +16,7 @@ namespace geo
  *  The library reference is through the library id and the cell index inside this
  *  library.
  */
-class DB_PUBLIC LibraryProxy 
+class LibraryProxy 
   : public Cell
 {
 public:

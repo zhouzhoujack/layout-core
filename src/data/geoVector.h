@@ -1,9 +1,9 @@
 #ifndef HDR_geoVector
 #define HDR_geoVector
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
+
 #include "utilsString.h"
 #include "utilsTypeTraits.h"
 
@@ -21,7 +21,7 @@ template <class C> class point;
  */
 
 template <class C>
-class DB_PUBLIC_TEMPLATE vector
+class vector
 {
 public:
   typedef C coord_type;
@@ -698,11 +698,11 @@ namespace geo
     typedef true_tag has_equal_operator;
   };
 
-  template <> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::Vector &p);
-  template <> DB_PUBLIC void extractor_impl (geo::Extractor &ex, geo::DVector &p);
+  template <> void extractor_impl (geo::Extractor &ex, geo::Vector &p);
+  template <> void extractor_impl (geo::Extractor &ex, geo::DVector &p);
 
-  template <> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::Vector &p);
-  template <> DB_PUBLIC bool test_extractor_impl (geo::Extractor &ex, geo::DVector &p);
+  template <> bool test_extractor_impl (geo::Extractor &ex, geo::Vector &p);
+  template <> bool test_extractor_impl (geo::Extractor &ex, geo::DVector &p);
 
 } // namespace geo
 

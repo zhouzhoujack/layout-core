@@ -1,7 +1,6 @@
 #ifndef HDR_geoPCellDeclaration
 #define HDR_geoPCellDeclaration
 
-#include "geoCommon.h"
 
 #include "gsiObject.h"
 #include "geoLayout.h"
@@ -24,7 +23,7 @@ typedef std::vector<geo::Variant> pcell_parameters_type;
  *  There is also a readonly flag (in this case, the user interface displays the property but does not allow
  *  to edit it) and a unit string (displayed left to the edit field for double and integer values).
  */
-class DB_PUBLIC PCellParameterDeclaration
+class PCellParameterDeclaration
 {
 public:
   /**
@@ -276,7 +275,7 @@ private:
  *  Such a layer declaration consists of a geo::LayerProperties description (layer, datatype and/or name)
  *  and a symbolic name which can potentially be used as a variable name.
  */
-class DB_PUBLIC PCellLayerDeclaration
+class PCellLayerDeclaration
   : public geo::LayerProperties
 {
 public:
@@ -303,7 +302,7 @@ public:
 /**
  *  @brief A declaration for a PCell
  */
-class DB_PUBLIC PCellDeclaration
+class PCellDeclaration
   : public gsi::ObjectBase,
     public geo::RefCounted
 {

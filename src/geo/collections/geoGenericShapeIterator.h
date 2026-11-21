@@ -1,7 +1,6 @@
 #ifndef HDR_geoGenericShapeIterator
 #define HDR_geoGenericShapeIterator
 
-#include "geoCommon.h"
 #include "geoShapes.h"
 #include "geoShapeFlags.h"
 #include <type_traits>
@@ -10,7 +9,7 @@ namespace geo
 {
 
 template <class T>
-class DB_PUBLIC generic_shape_iterator_delegate_base
+class generic_shape_iterator_delegate_base
 {
 public:
   typedef T value_type;
@@ -29,7 +28,7 @@ public:
 };
 
 template <class Iter, bool addressable = true>
-class DB_PUBLIC generic_shape_iterator_delegate2
+class generic_shape_iterator_delegate2
   : public generic_shape_iterator_delegate_base<typename Iter::value_type>
 {
 public:
@@ -80,7 +79,7 @@ private:
 };
 
 template <class Iter, bool addressable = true>
-class DB_PUBLIC generic_shape_iterator_delegate1
+class generic_shape_iterator_delegate1
   : public generic_shape_iterator_delegate_base<typename Iter::value_type>
 {
 public:
@@ -131,7 +130,7 @@ private:
 };
 
 template <class T>
-class DB_PUBLIC generic_shapes_iterator_delegate
+class generic_shapes_iterator_delegate
   : public generic_shape_iterator_delegate_base<T>
 {
 public:
@@ -225,7 +224,7 @@ private:
 };
 
 template <class T>
-class DB_PUBLIC generic_shape_iterator
+class generic_shape_iterator
 {
 public:
   typedef T value_type;
@@ -352,7 +351,7 @@ public:
  */
 
 template <class Iter>
-class DB_PUBLIC addressable_shape_delivery_impl
+class addressable_shape_delivery_impl
 {
 public:
   typedef typename Iter::value_type value_type;
@@ -400,7 +399,7 @@ private:
 };
 
 template <class Iter>
-class DB_PUBLIC addressable_shape_delivery_gen
+class addressable_shape_delivery_gen
   : public addressable_shape_delivery_impl<Iter>
 {
 public:
@@ -420,7 +419,7 @@ public:
 };
 
 template <class T>
-class DB_PUBLIC addressable_shape_delivery
+class addressable_shape_delivery
   : public addressable_shape_delivery_impl<geo::generic_shape_iterator<T> >
 {
 public:

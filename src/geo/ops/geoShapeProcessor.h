@@ -1,7 +1,6 @@
 #ifndef HDR_geoShapeProcessor
 #define HDR_geoShapeProcessor
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoEdge.h"
@@ -21,7 +20,7 @@ class Cell;
  *
  *  This class implements the PolygonSink interface.
  */
-class DB_PUBLIC ShapeGenerator
+class ShapeGenerator
   : public PolygonSink
 {
 public:
@@ -68,7 +67,7 @@ private:
  *
  *  This class implements the EdgeSink interface.
  */
-class DB_PUBLIC EdgeShapeGenerator
+class EdgeShapeGenerator
   : public EdgeSink
 {
 public:
@@ -116,7 +115,7 @@ private:
  *  Similar to the edge processor, this class deals with shape objects and shape containers 
  *  instead of polygons.
  */
-class DB_PUBLIC ShapeProcessor 
+class ShapeProcessor 
 {
 public:
   /**

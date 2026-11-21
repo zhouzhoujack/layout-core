@@ -1,7 +1,6 @@
 #ifndef HDR_geoDeepEdgePairs
 #define HDR_geoDeepEdgePairs
 
-#include "geoCommon.h"
 
 #include "geoMutableEdgePairs.h"
 #include "geoDeepShapeStore.h"
@@ -12,7 +11,7 @@ namespace geo {
 /**
  *  @brief Provides hierarchical edges implementation
  */
-class DB_PUBLIC DeepEdgePairs
+class DeepEdgePairs
   : public geo::MutableEdgePairs, public geo::DeepShapeCollectionDelegateBase
 {
 public:

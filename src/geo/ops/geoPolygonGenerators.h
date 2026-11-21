@@ -1,7 +1,6 @@
 #ifndef HDR_geoPolygonGenerators
 #define HDR_geoPolygonGenerators
 
-#include "geoCommon.h"
 
 #include "geoTypes.h"
 #include "geoEdge.h"
@@ -28,7 +27,7 @@ class SimplePolygonSink;
  *  In addition, it can be specified if the resulting polygons contain holes are whether the 
  *  holes are attached to the hull contour by stich lines.
  */
-class DB_PUBLIC PolygonGenerator
+class PolygonGenerator
   : public EdgeSink
 {
 public:
@@ -170,7 +169,7 @@ private:
  *  and outputs the polygons to another receiver (PolygonSink or SimplePolygonSink). The
  *  polygons created form a horizontal trapezoid decomposition of the full polygon.
  */
-class DB_PUBLIC TrapezoidGenerator
+class TrapezoidGenerator
   : public EdgeSink
 {
 public:
@@ -256,7 +255,7 @@ private:
 /**
  *  @brief Declaration of the simple polygon sink interface
  */
-class DB_PUBLIC SimplePolygonSink
+class SimplePolygonSink
 {
 public:
   /**
@@ -301,7 +300,7 @@ public:
  *  Like EdgeContainer, this receiver collects the objects either in an external
  *  or an internal vector of polygons.
  */
-class DB_PUBLIC SimplePolygonContainer
+class SimplePolygonContainer
   : public SimplePolygonSink
 {
 public:
@@ -364,7 +363,7 @@ private:
 /**
  *  @brief Declaration of the polygon sink interface
  */
-class DB_PUBLIC PolygonSink
+class PolygonSink
 {
 public:
   /**
@@ -409,7 +408,7 @@ public:
  *  Like EdgeContainer, this receiver collects the objects either in an external
  *  or an internal vector of polygons.
  */
-class DB_PUBLIC PolygonContainer
+class PolygonContainer
   : public PolygonSink
 {
 public:
@@ -474,7 +473,7 @@ private:
  *
  *  This class implements the PolygonSink interface and delivers the sized polygons to an EdgeSink.
  */
-class DB_PUBLIC SizingPolygonFilter
+class SizingPolygonFilter
   : public PolygonSink
 {
 public:

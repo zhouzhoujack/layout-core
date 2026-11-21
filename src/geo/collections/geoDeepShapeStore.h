@@ -1,7 +1,6 @@
 #ifndef HDR_geoDeepShapeStore
 #define HDR_geoDeepShapeStore
 
-#include "geoCommon.h"
 
 #include "utilsObject.h"
 #include "utilsStableVector.h"
@@ -30,7 +29,7 @@ class ShapeCollection;
  *  This is a lightweight class pointing into the deep shape store.
  *  DeepLayer objects are issued by the DeepShapeStore class.
  */
-class DB_PUBLIC DeepLayer
+class DeepLayer
 {
 public:
   /**
@@ -209,7 +208,7 @@ private:
 /**
  *  @brief An object holding the state of a DeepShapeStore
  */
-class DB_PUBLIC DeepShapeStoreState
+class DeepShapeStoreState
 {
 public:
   DeepShapeStoreState ();
@@ -256,7 +255,7 @@ private:
   }
 };
 
-struct DB_PUBLIC RecursiveShapeIteratorCompareForTargetHierarchy
+struct RecursiveShapeIteratorCompareForTargetHierarchy
 {
   bool operator () (const std::pair<geo::RecursiveShapeIterator, geo::ICplxTrans> &a, const std::pair<geo::RecursiveShapeIterator, geo::ICplxTrans> &b) const
   {
@@ -280,7 +279,7 @@ struct DB_PUBLIC RecursiveShapeIteratorCompareForTargetHierarchy
  *  back into the original layout. The deep shape store provides the methods and
  *  algorithms for doing the preparation and transfer.
  */
-class DB_PUBLIC DeepShapeStore
+class DeepShapeStore
   : public geo::RefCounted, public gsi::ObjectBase
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoHierarchyBuilder
 #define HDR_geoHierarchyBuilder
 
-#include "geoCommon.h"
 
 #include "geoRecursiveShapeIterator.h"
 #include "geoLayout.h"
@@ -19,7 +18,7 @@ namespace geo
  *  This function will return -1, 0 or 1 depending on whether the two iterators
  *  can be used with the same builder (0) or whether they are less (-1) or greater (1).
  */
-int DB_PUBLIC compare_iterators_with_respect_to_target_hierarchy (const geo::RecursiveShapeIterator &iter1, const geo::RecursiveShapeIterator &iter2);
+int compare_iterators_with_respect_to_target_hierarchy (const geo::RecursiveShapeIterator &iter1, const geo::RecursiveShapeIterator &iter2);
 
 /**
  *  @brief A class to receive shapes from the hierarchy builder
@@ -27,7 +26,7 @@ int DB_PUBLIC compare_iterators_with_respect_to_target_hierarchy (const geo::Rec
  *  This class can be reimplemented to implement clipping and/or
  *  simplification.
  */
-class DB_PUBLIC HierarchyBuilderShapeReceiver
+class HierarchyBuilderShapeReceiver
 {
 public:
   HierarchyBuilderShapeReceiver () { }
@@ -41,7 +40,7 @@ public:
 /**
  *  @brief A shape receiver that simply pushes into the target
  */
-class DB_PUBLIC HierarchyBuilderShapeInserter
+class HierarchyBuilderShapeInserter
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -76,7 +75,7 @@ public:
 /**
  *  @brief A clipping shape receiver that forwards to another one
  */
-class DB_PUBLIC ClippingHierarchyBuilderShapeReceiver
+class ClippingHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -98,7 +97,7 @@ private:
 /**
  *  @brief A polygon reducing shape receiver that forwards to another one
  */
-class DB_PUBLIC ReducingHierarchyBuilderShapeReceiver
+class ReducingHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -120,7 +119,7 @@ private:
 /**
  *  @brief A polygon reference generating shape receiver that feeds a shapes array after turning the shapes into PolygonRefs
  */
-class DB_PUBLIC PolygonReferenceHierarchyBuilderShapeReceiver
+class PolygonReferenceHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -140,7 +139,7 @@ private:
 /**
  *  @brief An edge-generating shape receiver that feeds a shapes array after turning the shapes into edges
  */
-class DB_PUBLIC EdgeBuildingHierarchyBuilderShapeReceiver
+class EdgeBuildingHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -157,7 +156,7 @@ private:
 /**
  *  @brief An edge pair-generating shape receiver that feeds a shapes array after turning the shapes into edges
  */
-class DB_PUBLIC EdgePairBuildingHierarchyBuilderShapeReceiver
+class EdgePairBuildingHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -171,7 +170,7 @@ public:
 /**
  *  @brief An text-generating shape receiver that feeds a shapes array after turning the shapes into texts
  */
-class DB_PUBLIC TextBuildingHierarchyBuilderShapeReceiver
+class TextBuildingHierarchyBuilderShapeReceiver
   : public HierarchyBuilderShapeReceiver
 {
 public:
@@ -200,7 +199,7 @@ private:
  *  rely on precisely the same hierarchy arrangement. This is not given with
  *  region selections.
  */
-class DB_PUBLIC HierarchyBuilder
+class HierarchyBuilder
   : public geo::RecursiveShapeReceiver
 {
 public:

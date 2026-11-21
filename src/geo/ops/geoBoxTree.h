@@ -4,7 +4,7 @@
 #include "utilsVector.h"
 #include "utilsReuseVector.h"
 #include "geoBox.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 
 #include <limits>
 #include <vector>

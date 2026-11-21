@@ -26,7 +26,7 @@ class TransformationReducer;
  *  The iterator delivers the texts of the text set
  */
 
-class DB_PUBLIC TextsIterator
+class TextsIterator
   : public generic_shape_iterator<geo::Text>
 {
 public:
@@ -84,7 +84,7 @@ class Texts;
 /**
  *  @brief A base class for text filters
  */
-class DB_PUBLIC TextFilterBase
+class TextFilterBase
 {
 public:
   TextFilterBase () { }
@@ -104,7 +104,7 @@ public:
  *  can be converted to polygons (representing a small box around the text's point) or to dot-like
  *  edges representing the point of the text.
  */
-class DB_PUBLIC Texts
+class Texts
   : public geo::ShapeCollection
 {
 public:

@@ -1,7 +1,6 @@
 #ifndef HDR_geoObject
 #define HDR_geoObject
 
-#include "geoCommon.h"
 
 #include "geoManager.h"
 
@@ -17,7 +16,7 @@ namespace geo
  *  to implement the recall functionality.
  */
 
-class DB_PUBLIC Object
+class Object
 {
 public:
   /**

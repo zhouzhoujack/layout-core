@@ -1,7 +1,6 @@
 #ifndef HDR_geoAsIfFlatEdges
 #define HDR_geoAsIfFlatEdges
 
-#include "geoCommon.h"
 #include "geoBoxScanner.h"
 #include "geoEdgesDelegate.h"
 #include "geoEdgeBoolean.h"
@@ -18,7 +17,7 @@ class PolygonSink;
 /**
  *  @brief Provides default flat implementations
  */
-class DB_PUBLIC AsIfFlatEdges
+class AsIfFlatEdges
   : public EdgesDelegate
 {
 public:

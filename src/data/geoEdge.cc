@@ -1,4 +1,5 @@
 #include "geoEdge.h"
+
 #include "utilsLongInt.h"
 
 namespace geo

@@ -1,7 +1,6 @@
 #ifndef HDR_geoCompoundOperation
 #define HDR_geoCompoundOperation
 
-#include "geoCommon.h"
 #include "geoLocalOperation.h"
 #include "geoHierProcessor.h"
 #include "geoEdgeProcessor.h"
@@ -34,7 +33,7 @@ class CompoundRegionOperationNode;
  *  This cache is important to avoid duplicate evaluation of the same node in
  *  a diamond-graph structure of nodes.
  */
-class DB_PUBLIC CompoundRegionOperationCache
+class CompoundRegionOperationCache
 {
 public:
   template <class TR>
@@ -80,7 +79,7 @@ private:
  *  The tree nodes will
  */
 
-class DB_PUBLIC CompoundRegionOperationNode
+class CompoundRegionOperationNode
   : public gsi::ObjectBase, public geo::RefCounted
 {
 public:
@@ -307,7 +306,7 @@ struct compound_operation_type_traits<geo::EdgePair>
 };
 
 
-class DB_PUBLIC CompoundRegionOperationEmptyNode
+class CompoundRegionOperationEmptyNode
   : public CompoundRegionOperationNode
 {
 public:
@@ -327,7 +326,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundRegionOperationPrimaryNode
+class CompoundRegionOperationPrimaryNode
   : public CompoundRegionOperationNode
 {
 public:
@@ -348,7 +347,7 @@ public:
   virtual void do_compute_local (CompoundRegionOperationCache * /*cache*/, geo::Layout * /*layout*/, const shape_interactions<geo::PolygonRef, geo::PolygonRef> & /*interactions*/, std::vector<std::unordered_set<geo::EdgePair> > & /*results*/,    size_t /*max_vertex_count*/, double /*area_ratio*/) const { }
 };
 
-class DB_PUBLIC CompoundRegionOperationForeignNode
+class CompoundRegionOperationForeignNode
   : public CompoundRegionOperationNode
 {
 public:
@@ -369,7 +368,7 @@ public:
   virtual void do_compute_local (CompoundRegionOperationCache * /*cache*/, geo::Layout * /*layout*/, const shape_interactions<geo::PolygonRef, geo::PolygonRef> & /*interactions*/, std::vector<std::unordered_set<geo::EdgePair> > & /*results*/,    size_t /*max_vertex_count*/, double /*area_ratio*/) const { }
 };
 
-class DB_PUBLIC CompoundRegionOperationSecondaryNode
+class CompoundRegionOperationSecondaryNode
   : public CompoundRegionOperationNode
 {
 public:
@@ -394,7 +393,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundTransformationReducer
+class CompoundTransformationReducer
   : public geo::TransformationReducer
 {
 public:
@@ -413,7 +412,7 @@ private:
   std::vector<const geo::TransformationReducer *> m_vars;
 };
 
-class DB_PUBLIC CompoundRegionMultiInputOperationNode
+class CompoundRegionMultiInputOperationNode
   : public CompoundRegionOperationNode
 {
 public:
@@ -496,7 +495,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundRegionLogicalBoolOperationNode
+class CompoundRegionLogicalBoolOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -535,7 +534,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundRegionCountFilterNode
+class CompoundRegionCountFilterNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -600,7 +599,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundRegionGeometricalBoolOperationNode
+class CompoundRegionGeometricalBoolOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -634,7 +633,7 @@ private:
 };
 
 template <class TS, class TI, class TR>
-class DB_PUBLIC compound_region_generic_operation_node
+class compound_region_generic_operation_node
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -714,7 +713,7 @@ private:
   geo::Layout m_aux_layout;
 };
 
-class DB_PUBLIC CompoundRegionInteractOperationNode
+class CompoundRegionInteractOperationNode
   : public compound_region_generic_operation_node<geo::Polygon, geo::Polygon, geo::Polygon>
 {
 public:
@@ -744,7 +743,7 @@ private:
   op_type m_op;
 };
 
-class DB_PUBLIC CompoundRegionInteractWithEdgeOperationNode
+class CompoundRegionInteractWithEdgeOperationNode
   : public compound_region_generic_operation_node<geo::Polygon, geo::Edge, geo::Polygon>
 {
 public:
@@ -772,7 +771,7 @@ private:
   geo::interacting_with_edge_local_operation<geo::Polygon, geo::Edge, geo::Polygon> m_op;
 };
 
-class DB_PUBLIC CompoundRegionPullOperationNode
+class CompoundRegionPullOperationNode
   : public compound_region_generic_operation_node<geo::Polygon, geo::Polygon, geo::Polygon>
 {
 public:
@@ -801,7 +800,7 @@ private:
   geo::pull_local_operation<geo::Polygon, geo::Polygon, geo::Polygon> m_op;
 };
 
-class DB_PUBLIC CompoundRegionPullWithEdgeOperationNode
+class CompoundRegionPullWithEdgeOperationNode
   : public compound_region_generic_operation_node<geo::Polygon, geo::Edge, geo::Edge>
 {
 public:
@@ -836,7 +835,7 @@ private:
  *  The types of the inputs must be the same.
  */
 
-class DB_PUBLIC CompoundRegionJoinOperationNode
+class CompoundRegionJoinOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -893,7 +892,7 @@ private:
  *  default is evaluated if no other condition matched.
  */
 
-class DB_PUBLIC CompoundRegionLogicalCaseSelectOperationNode
+class CompoundRegionLogicalCaseSelectOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -943,7 +942,7 @@ private:
 };
 
 
-class DB_PUBLIC CompoundRegionFilterOperationNode
+class CompoundRegionFilterOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -992,7 +991,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgeFilterOperationNode
+class CompoundRegionEdgeFilterOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1041,7 +1040,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgePairFilterOperationNode
+class CompoundRegionEdgePairFilterOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1085,7 +1084,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionProcessingOperationNode
+class CompoundRegionProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1133,7 +1132,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionSizeOperationNode
+class CompoundRegionSizeOperationNode
   : public CompoundRegionProcessingOperationNode
 {
 public:
@@ -1155,7 +1154,7 @@ private:
   CompoundTransformationReducer m_vars;
 };
 
-class DB_PUBLIC CompoundRegionMergeOperationNode
+class CompoundRegionMergeOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1224,7 +1223,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgeToPolygonProcessingOperationNode
+class CompoundRegionEdgeToPolygonProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1270,7 +1269,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgeProcessingOperationNode
+class CompoundRegionEdgeProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1315,7 +1314,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgePairToPolygonProcessingOperationNode
+class CompoundRegionEdgePairToPolygonProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1361,7 +1360,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionEdgePairToEdgeProcessingOperationNode
+class CompoundRegionEdgePairToEdgeProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1404,7 +1403,7 @@ private:
   }
 };
 
-class DB_PUBLIC CompoundRegionToEdgeProcessingOperationNode
+class CompoundRegionToEdgeProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1455,7 +1454,7 @@ private:
  *
  *  This node takes polygons for input. It will produce edge pairs by means of the PolygonToEdgePairProcessorBase object.
  */
-class DB_PUBLIC CompoundRegionToEdgePairProcessingOperationNode
+class CompoundRegionToEdgePairProcessingOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1511,7 +1510,7 @@ private:
  *
  *  This node takes polygons for input. It will produce edge pairs as result of the DRC check.
  */
-class DB_PUBLIC CompoundRegionCheckOperationNode
+class CompoundRegionCheckOperationNode
   : public CompoundRegionMultiInputOperationNode
 {
 public:
@@ -1562,7 +1561,7 @@ private:
  *  When put into a local processor, the operation tree will be executed on each interaction.
  */
 template <class TS, class TI, class TR>
-class DB_PUBLIC compound_local_operation
+class compound_local_operation
   : public local_operation<TS, TI, TR>
 {
 public:

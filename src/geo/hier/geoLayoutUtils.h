@@ -1,7 +1,6 @@
 #ifndef HDR_geoLayoutUtils
 #define HDR_geoLayoutUtils
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 
@@ -17,7 +16,7 @@ namespace geo
  *
  *  This implementation will create new layers if required.
  */
-class DB_PUBLIC DirectLayerMapping
+class DirectLayerMapping
   : public ImportLayerMapping 
 {
 public:
@@ -46,7 +45,7 @@ private:
  *  This class can be used as property mapper for certain "insert" flavors of
  *  the Instance and Shapes class. 
  */
-class DB_PUBLIC PropertyMapper
+class PropertyMapper
 {
 public:
   /**
@@ -108,7 +107,7 @@ const geo::cell_index_type DropCell = std::numeric_limits<geo::cell_index_type>:
  *  Instances are only copied for cells which are created new. 
  *  The layer mapping table identifies target layers for source layout layers.
  */
-void DB_PUBLIC 
+void 
 merge_layouts (geo::Layout &target, const geo::Layout &source, const geo::ICplxTrans &trans,
                const std::vector<geo::cell_index_type> &source_cells, 
                const std::map<geo::cell_index_type, geo::cell_index_type> &cell_mapping,
@@ -122,7 +121,7 @@ merge_layouts (geo::Layout &target, const geo::Layout &source, const geo::ICplxT
  *  a shape collection into a another one. By reimplementing this interface,
  *  more shape transformations can be provided.
  */
-class DB_PUBLIC ShapesTransformer
+class ShapesTransformer
 {
 public:
   ShapesTransformer () { }
@@ -139,7 +138,7 @@ public:
  *  A transformation can be specified which is applied to the shapes and which can be used
  *  for example to compensate different database units of the layouts.
  */
-void DB_PUBLIC
+void 
 copy_shapes (geo::Layout &target, 
              const geo::Layout &source, 
              const geo::ICplxTrans &trans,
@@ -157,7 +156,7 @@ copy_shapes (geo::Layout &target,
  *  A transformation can be specified which is applied to the shapes and which can be used
  *  for example to compensate different database units of the layouts.
  */
-void DB_PUBLIC
+void 
 move_shapes (geo::Layout &target, 
              geo::Layout &source, 
              const geo::ICplxTrans &trans,
@@ -173,14 +172,14 @@ move_shapes (geo::Layout &target,
  *  and one example instantiation in the second member.
  */
 std::pair<bool, geo::ICplxTrans>
-DB_PUBLIC find_layout_context (const geo::Layout &layout, geo::cell_index_type from, geo::cell_index_type to);
+find_layout_context (const geo::Layout &layout, geo::cell_index_type from, geo::cell_index_type to);
 
 /**
  *  @brief A cache for contexts
  *
  *  This object is supposed to minimize the effort to compute many contexts.
  */
-class DB_PUBLIC ContextCache
+class ContextCache
 {
 public:
   /**
@@ -204,7 +203,7 @@ private:
  *  This method will scale and snap all layers from the given cell and below to the
  *  specified grid. Scaling happens by the rational factor m / d.
  */
-DB_PUBLIC void scale_and_snap (geo::Layout &layout, geo::Cell &cell, geo::Coord g, geo::Coord m, geo::Coord d);
+void scale_and_snap (geo::Layout &layout, geo::Cell &cell, geo::Coord g, geo::Coord m, geo::Coord d);
 
 }  // namespace geo
 

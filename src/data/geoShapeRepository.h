@@ -1,12 +1,12 @@
 #ifndef HDR_geoShapeRepository
 #define HDR_geoShapeRepository
 
-#include "geoCommon.h"
 
-#include "geoObjectTag.h"
+#include "dataObjectTag.h"
 #include "geoTrans.h"
 #include "geoBox.h"
-#include "geoMemStatistics.h"
+
+#include "utilsMemStatistics.h"
 
 #include <set>
 

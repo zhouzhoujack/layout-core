@@ -1,8 +1,5 @@
-#ifndef HDR_geoMemStatistics
-#define HDR_geoMemStatistics
-
-#include "geoCommon.h"
-#include "utilsObjectCollection.h"
+#ifndef HDR_utilsMemStatistics
+#define HDR_utilsMemStatistics
 
 #include <stdio.h>
 #include <string>
@@ -13,6 +10,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <typeinfo>
+
+#include "utilsObjectCollection.h"
 #include "utilsReuseVector.h"
 
 namespace geo
@@ -29,7 +28,7 @@ namespace geo
  *  @brief A collector for memory statistics
  *  This interface implements the collector for memory statistics.
  */
-class DB_PUBLIC MemStatistics 
+class MemStatistics 
 {
 public:
   MemStatistics ();
@@ -64,7 +63,7 @@ public:
  *  @brief A generic memory statistics collector
  *  This collector will collect the summary of memory usage only.
  */
-class DB_PUBLIC MemStatisticsCollector
+class MemStatisticsCollector
   : public MemStatistics
 {
 public:
@@ -88,7 +87,7 @@ private:
  *  @brief A simple memory statistics collector
  *  This collector will simply add the size required
  */
-class DB_PUBLIC MemStatisticsSimple
+class MemStatisticsSimple
   : public MemStatistics
 {
 public:

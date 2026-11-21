@@ -1,9 +1,8 @@
 #ifndef HDR_geoPropertiesRepository
 #define HDR_geoPropertiesRepository
 
-#include "geoCommon.h"
 #include "geoTypes.h"
-#include "geoMemStatistics.h"
+#include "utilsMemStatistics.h"
 
 #include "utilsVariant.h"
 
@@ -25,7 +24,7 @@ class LayoutStateModel;
  *  stored as such but as integers.
  */
 
-class DB_PUBLIC PropertiesRepository
+class PropertiesRepository
 {
 public:
   typedef std::multimap <property_names_id_type, geo::Variant> properties_set;

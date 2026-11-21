@@ -1,7 +1,6 @@
 #ifndef HDR_geoDeepRegion
 #define HDR_geoDeepRegion
 
-#include "geoCommon.h"
 
 #include "geoMutableRegion.h"
 #include "geoDeepShapeStore.h"
@@ -11,7 +10,7 @@ namespace geo {
 /**
  *  @brief A deep, polygon-set delegate
  */
-class DB_PUBLIC DeepRegion
+class DeepRegion
   : public MutableRegion, public DeepShapeCollectionDelegateBase
 {
 public:

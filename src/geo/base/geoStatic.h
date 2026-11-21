@@ -1,7 +1,6 @@
 #ifndef HDR_geoStatic
 #define HDR_geoStatic
 
-#include "geoCommon.h"
 
 namespace geo
 {
@@ -17,7 +16,7 @@ namespace geo
  */
 inline bool default_editable_mode ()
 {
-  extern DB_PUBLIC bool ms_editable;
+  extern bool ms_editable;
   return ms_editable;
 }
 
@@ -26,7 +25,7 @@ inline bool default_editable_mode ()
  *
  *  Hint: this should only be done initially, not at runtime.
  */
-void DB_PUBLIC set_default_editable_mode (bool editable);
+void set_default_editable_mode (bool editable);
 
 // -----------------------------------------------------------
 //  circle resolution
@@ -38,14 +37,14 @@ void DB_PUBLIC set_default_editable_mode (bool editable);
  */
 inline unsigned int num_circle_points () 
 {
-  extern DB_PUBLIC unsigned int ms_num_circle_points;
+  extern unsigned int ms_num_circle_points;
   return ms_num_circle_points < 4 ? 4 : ms_num_circle_points;
 }
 
 /**
  *  @brief Sets the number of points per full circle.
  */
-void DB_PUBLIC set_num_circle_points (unsigned int n);
+void set_num_circle_points (unsigned int n);
 
 }
 

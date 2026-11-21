@@ -1,7 +1,6 @@
 #ifndef HDR_geoPCellHeader
 #define HDR_geoPCellHeader
 
-#include "geoCommon.h"
 
 #include "geoLayout.h"
 #include "geoPCellDeclaration.h"
@@ -14,7 +13,7 @@ namespace geo
 
 class PCellVariant;
 
-struct DB_PUBLIC PCellParametersCompareFunc
+struct PCellParametersCompareFunc
 {
   bool operator() (const pcell_parameters_type *a, const pcell_parameters_type *b) const;
 };
@@ -24,7 +23,7 @@ struct DB_PUBLIC PCellParametersCompareFunc
  *
  *  The PCell header manages the PCell variants along with the PCell declaration.
  */
-class DB_PUBLIC PCellHeader
+class PCellHeader
 {
 public:
   typedef std::map<const pcell_parameters_type *, geo::PCellVariant *, PCellParametersCompareFunc> variant_map_t;
