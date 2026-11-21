@@ -1,0 +1,61 @@
+cmake_minimum_required(VERSION 3.16)
+
+set(CMAKE_AUTOMOC ON)
+
+file(GLOB TL_CORE_SOURCES
+    "core/*.cc"
+    "math/*.cc"
+    "object/*.cc"
+    "exception/*.cc"
+    "io/*.cc"
+    "thread/*.cc"
+    "registrar/*.cc"
+    "text/*.cc"
+)
+
+add_library(utils SHARED
+    ${TL_CORE_SOURCES}
+)
+
+target_include_directories(utils PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/core
+    ${CMAKE_CURRENT_SOURCE_DIR}/math
+    ${CMAKE_CURRENT_SOURCE_DIR}/object
+    ${CMAKE_CURRENT_SOURCE_DIR}/exception
+    ${CMAKE_CURRENT_SOURCE_DIR}/io
+    ${CMAKE_CURRENT_SOURCE_DIR}/thread
+    ${CMAKE_CURRENT_SOURCE_DIR}/registrar
+    ${CMAKE_CURRENT_SOURCE_DIR}/text
+)
+
+target_link_libraries(utils PUBLIC
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Xml
+    glog::glog
+    toolkit::toolkit
+    ZLIB::ZLIB
+)
+
+target_compile_definitions(utils PUBLIC HAVE_QT)
+
+target_link_options(utils PRIVATE -Wl,--no-undefined)
+
+set(LAYOUTIO_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../.." CACHE PATH "layout-io 产物输出根目录")
+set(LAYOUTIO_STAGE_LIB    "${LAYOUTIO_STAGE_ROOT}/lib")
+set(LAYOUTIO_STAGE_INCLUDE "${LAYOUTIO_STAGE_ROOT}/include")
+
+set_target_properties(utils PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTIO_STAGE_LIB}"
+)
+
+file(GLOB_RECURSE TL_HEADERS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+
+add_custom_command(TARGET utils POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTIO_STAGE_INCLUDE}"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TL_HEADERS} "${LAYOUTIO_STAGE_INCLUDE}"
+    COMMENT "Staging utils headers -> ${LAYOUTIO_STAGE_INCLUDE}"
+)
+
+add_subdirectory(test)

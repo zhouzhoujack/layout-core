@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# layout-io —— 构建产物 / IDE 临时文件
+# ---------------------------------------------------------------------------
+
+# CMake 构建目录（compile.sh 生成 build/、build-demo/）
+/build/
+/build-demo/
+/out/
+cmake-build-*/
+
+# CMake 生成文件（误在源码树内 configure 时兜底）
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
+Makefile
+
+# 构建输出：.so 与平铺头文件（由 CMake 生成）
+/lib/
+/include/
+
+# 目标文件 / 静态库 / 动态库 / 依赖文件
+*.o
+*.obj
+*.lo
+*.a
+*.la
+*.so
+*.so.*
+*.d
+*.dylib
+*.mod
+
+# 测试 / 覆盖率产物
+Testing/
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+
+# 日志与临时文件
+*.log
+*.tmp
+*.swp
+*~
+core
+core.*
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+.cache/
+.clangd/
