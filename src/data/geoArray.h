@@ -1,18 +1,16 @@
 #ifndef HDR_geoArray
 #define HDR_geoArray
 
-#include <algorithm> 
 #include <limits> 
-#include <vector> 
 
 #include "geoTypes.h"
-#include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoBox.h"
 #include "geoBoxTree.h"
 #include "geoTrans.h"
 #include "geoShapeRepository.h"
 
+#include "utilsMemStatistics.h"
 #include "utilsException.h"
 
 namespace geo

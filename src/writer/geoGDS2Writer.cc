@@ -1,7 +1,9 @@
+#include "geoGDS2Writer.h"
+
 #include "utilsStream.h"
 #include "utilsAssert.h"
 #include "utilsException.h"
-#include "geoGDS2Writer.h"
+
 #include "geoGDS2.h"
 
 #include <stdio.h>

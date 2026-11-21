@@ -27,3 +27,6 @@ add_subdirectory(data)
 
 add_subdirectory(geo)
 
+add_subdirectory(writer)
+add_subdirectory(reader)
+

@@ -1,9 +1,10 @@
 #ifndef HDR_geoBoxTree
 #define HDR_geoBoxTree
 
+#include "geoBox.h"
+
 #include "utilsVector.h"
 #include "utilsReuseVector.h"
-#include "geoBox.h"
 #include "utilsMemStatistics.h"
 
 #include <limits>

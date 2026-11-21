@@ -2,18 +2,18 @@
 #define HDR_geoPolygon
 
 #include "geoTypes.h"
-// #include "utilsMemStatistics.h"
 #include "geoPoint.h"
 #include "geoTrans.h"
 #include "geoEdge.h"
 #include "geoBox.h"
-#include "geoObjectTag.h"
+#include "dataObjectTag.h"
 #include "geoShapeRepository.h"
 
 #include "utilsTypeTraits.h"
 #include "utilsVector.h"
 #include "utilsAlgorithm.h"
 #include "utilsAssert.h"
+// #include "utilsMemStatistics.h"
 
 #include <cstddef>
 #include <string>

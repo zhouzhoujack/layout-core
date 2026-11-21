@@ -4,6 +4,7 @@
 
 #include "utilsException.h"
 #include "utilsReuseVector.h"
+
 #include "geoManager.h"
 #include "geoPolygon.h"
 #include "geoPath.h"

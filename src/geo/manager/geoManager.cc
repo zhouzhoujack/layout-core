@@ -7,7 +7,6 @@
 #include "utilsProgress.h"
 #include "utilsLog.h"
 
-
 namespace geo
 {
 

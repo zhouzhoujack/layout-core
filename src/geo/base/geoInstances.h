@@ -9,6 +9,7 @@
 #include "geoArray.h"
 #include "geoPropertiesRepository.h"
 #include "geoCellInst.h"
+
 #include "utilsVector.h"
 #include "utilsTypeTraits.h"
 #include "utilsUtils.h"

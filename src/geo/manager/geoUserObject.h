@@ -7,8 +7,8 @@
 #include "geoTrans.h"
 #include "geoObjectTag.h"
 #include "geoBox.h"
-#include "utilsMemStatistics.h"
 
+#include "utilsMemStatistics.h"
 #include "utilsClassRegistry.h"
 
 #include <string>
