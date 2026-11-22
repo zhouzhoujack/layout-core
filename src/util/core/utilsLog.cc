@@ -3,9 +3,7 @@
 #include "utilsEnv.h"
 
 #include <stdio.h>
-#if !defined(_MSC_VER)
-#  include <unistd.h>
-#endif
+#include <unistd.h>
 
 namespace geo
 {
@@ -234,19 +232,11 @@ ChannelProxy::ChannelProxy (const ChannelProxy &d)
 // ------------------------------------------------
 //  Some utilities for colorized terminal output
 
-#if defined(_MSC_VER)
-static bool
-can_colorize (FILE * /*stream*/)
-{
-  return false;
-}
-#else
 static bool
 can_colorize (FILE *stream)
 {
   return isatty (fileno (stream));
 }
-#endif
 
 #define ANSI_RED "\033[31;1m"
 #define ANSI_BLUE "\033[34m"

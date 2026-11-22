@@ -2359,13 +2359,11 @@ acos_f (const ExpressionParserContext &context, geo::Variant &out, const std::ve
   out = acos (to_double (context, v));
 }
 
-#ifndef _MSC_VER // not available on MS VC++
 static void
 acosh_f (const ExpressionParserContext &context, geo::Variant &out, const std::vector <geo::Variant> &v)
 {
   out = acosh (to_double (context, v));
 }
-#endif
 
 static void
 asin_f (const ExpressionParserContext &context, geo::Variant &out, const std::vector <geo::Variant> &v)
@@ -2373,13 +2371,11 @@ asin_f (const ExpressionParserContext &context, geo::Variant &out, const std::ve
   out = asin (to_double (context, v));
 }
 
-#ifndef _MSC_VER // not available on MS VC++
 static void
 asinh_f (const ExpressionParserContext &context, geo::Variant &out, const std::vector <geo::Variant> &v)
 {
   out = asinh (to_double (context, v));
 }
-#endif
 
 static void
 atan_f (const ExpressionParserContext &context, geo::Variant &out, const std::vector <geo::Variant> &v)
@@ -2387,13 +2383,11 @@ atan_f (const ExpressionParserContext &context, geo::Variant &out, const std::ve
   out = atan (to_double (context, v));
 }
 
-#ifndef _MSC_VER // not available on MS VC++
 static void
 atanh_f (const ExpressionParserContext &context, geo::Variant &out, const std::vector <geo::Variant> &v)
 {
   out = atanh (to_double (context, v));
 }
-#endif
 
 static void
 min_f (const ExpressionParserContext &, geo::Variant &out, const std::vector <geo::Variant> &vv)
@@ -2959,11 +2953,9 @@ static EvalStaticFunction f14 ("max", &max_f);
 static EvalStaticFunction f15 ("min", &min_f);
 static EvalStaticFunction f16 ("pow", &pow_f);
 static EvalStaticFunction f17 ("acos", &acos_f);
-#ifndef _MSC_VER // not available on MS VC++
 static EvalStaticFunction f18 ("acosh", &acosh_f);
 static EvalStaticFunction f19 ("asinh", &asinh_f);
 static EvalStaticFunction f20 ("atanh", &atanh_f);
-#endif
 static EvalStaticFunction f21 ("asin", &asin_f);
 static EvalStaticFunction f22 ("atan", &atan_f);
 static EvalStaticFunction f23 ("atan2", &atan2_f);

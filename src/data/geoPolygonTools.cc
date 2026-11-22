@@ -2,7 +2,6 @@
 #include "geoPolygonTools.h"
 #include "geoPolygonGenerators.h"
 #include "utilsLog.h"
-#include "utilsInt128Support.h"
 
 #include <algorithm>
 #include <cmath>

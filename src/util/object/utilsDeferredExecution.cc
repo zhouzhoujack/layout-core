@@ -3,9 +3,7 @@
 
 #include <stdio.h>
 
-#if defined(HAVE_QT)
-#  include "utilsDeferredExecutionQt.h"
-#endif
+#include "utilsDeferredExecutionQt.h"
 
 namespace geo
 {
@@ -31,11 +29,9 @@ DeferredMethodScheduler *
 DeferredMethodScheduler::instance ()
 {
 //  TODO: provide a way to register non-Qt schedulers
-#if defined(HAVE_QT)
   if (! s_inst) {
     new DeferredMethodSchedulerQt ();
   }
-#endif
   return s_inst;
 }
 

@@ -5,7 +5,6 @@
 #include <string.h>
 #include <limits>
 
-#if defined(HAVE_QT)
 
 # include <QVariant>
 # include <QStringList>
@@ -57,7 +56,6 @@
 # include <QVector3D>
 # include <QVector4D>
 
-#endif
 
 namespace geo
 {
@@ -223,7 +221,6 @@ Variant::Variant (const std::vector<char> &ba)
   m_var.m_bytearray = new std::vector<char> (ba);
 }
 
-#if defined(HAVE_QT)
 
 Variant::Variant (const QByteArray &qba) 
   : m_type (t_qbytearray), m_string (0)
@@ -421,7 +418,6 @@ Variant::Variant (const QVariant &v)
   }
 }
 
-#endif
 
 Variant::Variant (const std::string &s) 
   : m_type (t_stdstring), m_string (0)
@@ -558,12 +554,10 @@ Variant::reset ()
     delete m_var.m_array;
   } else if (m_type == t_bytearray) {
     delete m_var.m_bytearray;
-#if defined(HAVE_QT)
   } else if (m_type == t_qstring) {
     delete m_var.m_qstring;
   } else if (m_type == t_qbytearray) {
     delete m_var.m_qbytearray;
-#endif
   } else if (m_type == t_stdstring) {
     delete m_var.m_stdstring;
   } else if (m_type == t_user_ref) {
@@ -620,7 +614,6 @@ Variant::operator= (const std::vector<char> &s)
   return *this;
 }
 
-#if defined(HAVE_QT)
 
 Variant &
 Variant::operator= (const QByteArray &qs)
@@ -650,7 +643,6 @@ Variant::operator= (const QString &qs)
   return *this;
 }
 
-#endif
 
 Variant &
 Variant::operator= (double d)
@@ -837,12 +829,10 @@ Variant::operator= (const Variant &v)
       m_var.m_id = v.m_var.m_id;
     } else if (m_type == t_bytearray) {
       m_var.m_bytearray = new std::vector<char> (*v.m_var.m_bytearray);
-#if defined(HAVE_QT)
     } else if (m_type == t_qstring) {
       m_var.m_qstring = new QString (*v.m_var.m_qstring);
     } else if (m_type == t_qbytearray) {
       m_var.m_qbytearray = new QByteArray (*v.m_var.m_qbytearray);
-#endif
     } else if (m_type == t_stdstring) {
       m_var.m_stdstring = new std::string (*v.m_var.m_stdstring);
     } else if (m_type == t_string) {
@@ -930,10 +920,8 @@ normalized_type (Variant::type type)
 #endif
   case Variant::t_bool:
   case Variant::t_nil:
-#if defined(HAVE_QT)
   case Variant::t_qstring:
   case Variant::t_qbytearray:
-#endif
     return type;
   }
 }
@@ -994,12 +982,10 @@ Variant::operator== (const geo::Variant &d) const
   } else if (t == t_bytearray) {
     //  TODO: can't compare std::vector<char> with QByteArray currently
     return *m_var.m_bytearray == *d.m_var.m_bytearray;
-#if defined(HAVE_QT)
   } else if (t == t_qstring) {
     return *m_var.m_qstring == *d.m_var.m_qstring;
   } else if (t == t_qbytearray) {
     return *m_var.m_qbytearray == *d.m_var.m_qbytearray;
-#endif
   } else if (t == t_list) {
     return *m_var.m_list == *d.m_var.m_list;
   } else if (t == t_array) {
@@ -1050,12 +1036,10 @@ Variant::operator< (const geo::Variant &d) const
   } else if (t == t_bytearray) {
     //  TODO: can't compare std::vector<char> with QByteArray currently
     return *m_var.m_bytearray < *d.m_var.m_bytearray;
-#if defined(HAVE_QT)
   } else if (t == t_qstring) {
     return *m_var.m_qstring < *d.m_var.m_qstring;
   } else if (t == t_qbytearray) {
     return *m_var.m_qbytearray < *d.m_var.m_qbytearray;
-#endif
   } else if (t == t_list) {
     return *m_var.m_list < *d.m_var.m_list;
   } else if (t == t_array) {
@@ -1103,10 +1087,8 @@ Variant::can_convert_to_float () const
     return true;
   case t_double:
     return m_var.m_double < std::numeric_limits<float>::max () && m_var.m_double > std::numeric_limits<float>::min ();
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_bytearray:
   case t_stdstring:
   case t_string:
@@ -1143,10 +1125,8 @@ Variant::can_convert_to_double () const
   case t_bool:
   case t_nil:
     return true;
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_bytearray:
   case t_stdstring:
   case t_string:
@@ -1183,10 +1163,8 @@ Variant::can_convert_to_int128 () const
   case t_nil:
     return true;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_bytearray:
   case t_stdstring:
     //  TODO: there is no range checking currently
@@ -1230,10 +1208,8 @@ Variant::can_convert_to_ulonglong () const
   case t_int:
     return m_var.m_int >= 0;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1278,10 +1254,8 @@ Variant::can_convert_to_longlong () const
   case t_nil:
     return true;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1332,10 +1306,8 @@ Variant::can_convert_to_ulong () const
   case t_int:
     return m_var.m_int >= 0;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1382,10 +1354,8 @@ Variant::can_convert_to_long () const
   case t_nil:
     return true;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1434,10 +1404,8 @@ Variant::can_convert_to_int () const
   case t_nil:
     return true;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1486,10 +1454,8 @@ Variant::can_convert_to_uint () const
   case t_nil:
     return true;
   case t_string:
-#if defined(HAVE_QT)
   case t_qstring:
   case t_qbytearray:
-#endif
   case t_stdstring:
   case t_bytearray:
     {
@@ -1536,7 +1502,6 @@ Variant::can_convert_to_uchar () const
   return can_convert_to_long () && (to_short () <= (long) std::numeric_limits<unsigned char>::max () && to_short () >= (long) std::numeric_limits<unsigned char>::min ());
 }
 
-#if defined(HAVE_QT)
 
 QByteArray
 Variant::to_qbytearray () const
@@ -1570,20 +1535,17 @@ Variant::to_qstring () const
   }
 }
 
-#endif
 
 std::vector<char>
 Variant::to_bytearray () const
 {
   if (m_type == t_bytearray) {
     return *m_var.m_bytearray;
-#if defined(HAVE_QT)
   } else if (m_type == t_qstring) {
     QByteArray ba = m_var.m_qstring->toUtf8 ();
     return std::vector<char> (ba.constBegin (), ba.constEnd ());
   } else if (m_type == t_qbytearray) {
     return std::vector<char> (m_var.m_qbytearray->constBegin (), m_var.m_qbytearray->constEnd ());
-#endif
   } else if (m_type == t_stdstring) {
     return std::vector<char> (m_var.m_stdstring->begin (), m_var.m_stdstring->end ());
   } else {
@@ -1600,12 +1562,10 @@ Variant::to_stdstring () const
     return *m_var.m_stdstring;
   } else if (m_type == t_bytearray) {
     return std::string (m_var.m_bytearray->begin (), m_var.m_bytearray->end ());
-#if defined(HAVE_QT)
   } else if (m_type == t_qstring) {
     return geo::to_string (*m_var.m_qstring);
   } else if (m_type == t_qbytearray) {
     return std::string (m_var.m_qbytearray->constData (), m_var.m_qbytearray->size ());
-#endif
   } else {
     return std::string (to_string ());
   }
@@ -1630,7 +1590,6 @@ Variant::to_string () const
 
     return m_string;
 
-#if defined(HAVE_QT)
   } else if (m_type == t_qbytearray) {
 
     //  need to add a terminating 0 for safety
@@ -1643,7 +1602,6 @@ Variant::to_string () const
 
     return m_string;
 
-#endif
 
   // conversion needed
   } else if (! m_string) {
@@ -1684,10 +1642,8 @@ Variant::to_string () const
 #endif
     } else if (m_type == t_bool) {
       r = geo::to_string (m_var.m_bool);
-#if defined(HAVE_QT)
     } else if (m_type == t_qstring) {
       r = geo::to_string (*m_var.m_qstring);
-#endif
     } else if (m_type == t_list) {
       for (std::vector<geo::Variant>::const_iterator v = m_var.m_list->begin (); v != m_var.m_list->end (); ++v) {
         if (v != m_var.m_list->begin ()) {
@@ -1770,7 +1726,6 @@ Variant::to_int128 () const
     return m_var.m_longlong;
   } else if (m_type == t_bool) {
     return m_var.m_bool;
-#if defined(HAVE_QT)
   } else if (m_type == t_qbytearray || m_type == t_bytearray) {
     geo::Extractor ex (to_string ());
     __int128 l = 0;
@@ -1782,7 +1737,6 @@ Variant::to_int128 () const
     __int128 l = 0;
     ex.read (l);
     return l;
-#endif
   } else if (m_type == t_stdstring) {
     geo::Extractor ex (m_var.m_stdstring->c_str ());
     __int128 l = 0;
@@ -1841,11 +1795,7 @@ Variant::to_ulonglong () const
     unsigned long long l = 0;
     geo::from_string (*m_var.m_stdstring, l);
     return l;
-#if defined(HAVE_QT)
   } else if (m_type == t_string || m_type == t_qstring || m_type == t_qbytearray || m_type == t_bytearray) {
-#else
-  } else if (m_type == t_string || m_type == t_bytearray) {
-#endif
     unsigned long long l = 0;
     geo::from_string (to_string (), l);
     return l;
@@ -1895,11 +1845,7 @@ Variant::to_longlong () const
     long long l = 0;
     geo::from_string (*m_var.m_stdstring, l);
     return l;
-#if defined(HAVE_QT)
   } else if (m_type == t_string || m_type == t_qstring || m_type == t_qbytearray || m_type == t_bytearray) {
-#else
-  } else if (m_type == t_string || m_type == t_bytearray) {
-#endif
     long long l = 0;
     geo::from_string (to_string (), l);
     return l;
@@ -1949,11 +1895,7 @@ Variant::to_ulong () const
     unsigned long l = 0;
     geo::from_string (*m_var.m_stdstring, l);
     return l;
-#if defined(HAVE_QT)
   } else if (m_type == t_string || m_type == t_qstring || m_type == t_qbytearray || m_type == t_bytearray) {
-#else
-  } else if (m_type == t_string || m_type == t_bytearray) {
-#endif
     unsigned long l = 0;
     geo::from_string (to_string (), l);
     return l;
@@ -2003,11 +1945,7 @@ Variant::to_long () const
     long l = 0;
     geo::from_string (*m_var.m_stdstring, l);
     return l;
-#if defined(HAVE_QT)
   } else if (m_type == t_string || m_type == t_qstring || m_type == t_qbytearray || m_type == t_bytearray) {
-#else
-  } else if (m_type == t_string || m_type == t_bytearray) {
-#endif
     long l = 0;
     geo::from_string (to_string (), l);
     return l;
@@ -2109,11 +2047,7 @@ Variant::to_double () const
     double d = 0;
     geo::from_string (*m_var.m_stdstring, d);
     return d;
-#if defined(HAVE_QT)
   } else if (m_type == t_string || m_type == t_qstring || m_type == t_qbytearray || m_type == t_bytearray) {
-#else
-  } else if (m_type == t_string || m_type == t_bytearray) {
-#endif
     double d = 0;
     geo::from_string (to_string (), d);
     return d;
@@ -2170,12 +2104,10 @@ Variant::native_ptr () const
     return &m_var.m_uint;
   case t_string:
     return m_string;
-#if defined(HAVE_QT)
   case t_qstring:
     return m_var.m_qstring;
   case t_qbytearray:
     return m_var.m_qbytearray;
-#endif
   case t_bytearray:
     return m_var.m_bytearray;
   case t_stdstring:
@@ -2261,11 +2193,7 @@ Variant::to_parsable_string () const
     return "nil";
   } else if (is_stdstring ()) {
     return geo::to_quoted_string (*m_var.m_stdstring);
-#if defined(HAVE_QT)
   } else if (is_cstring () || is_qstring () || is_qbytearray () || is_bytearray ()) {
-#else
-  } else if (is_cstring () || is_bytearray ()) {
-#endif
     return geo::to_quoted_string (to_string ());
   } else if (is_list ()) {
     std::string r = "(";
@@ -2326,7 +2254,6 @@ geo::Variant::swap (geo::Variant &other)
   std::swap (m_string, other.m_string);
 }
 
-#if defined(HAVE_QT)
 
 QVariant Variant::to_qvariant () const
 {
@@ -2372,12 +2299,10 @@ QVariant Variant::to_qvariant () const
     return QVariant (geo::to_qstring (*m_var.m_stdstring));
   case t_string:
     return QVariant (geo::to_qstring (m_string));
-#if defined(HAVE_QT)
   case t_qstring:
     return QVariant (*m_var.m_qstring);
   case t_qbytearray:
     return QVariant (*m_var.m_qbytearray);
-#endif
   case t_bytearray:
     return QVariant (to_qbytearray ());
   case t_list:
@@ -2493,7 +2418,6 @@ QVariant Variant::to_qvariant () const
   }
 }
 
-#endif
 
 void Variant::set_user_object (void *obj, bool shared)
 {

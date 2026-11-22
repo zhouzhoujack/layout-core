@@ -3,14 +3,7 @@
 
 #include <string>
 
-#ifdef _WIN32
-#  include <windows.h>
-#elif __APPLE__
-#  include <libproc.h>
-#  include <unistd.h>
-#else
-#  include <unistd.h>
-#endif
+#include <unistd.h>
 
 namespace geo
 {
@@ -20,34 +13,18 @@ namespace geo
 
 std::string get_env (const std::string &name, const std::string &def_value)
 {
-#ifdef _WIN32
-  std::wstring wname = geo::to_wstring (name);
-  wchar_t *env = _wgetenv (wname.c_str ());
-  if (env) {
-    return geo::to_string (std::wstring (env));
-  } else {
-    return def_value;
-  }
-#else
   char *env = getenv (name.c_str ());
   if (env) {
     return geo::system_to_string (env);
   } else {
     return def_value;
   }
-#endif
 }
 
 bool has_env (const std::string &name)
 {
-#ifdef _WIN32
-  std::wstring wname = geo::to_wstring (name);
-  wchar_t *env = _wgetenv (wname.c_str ());
-  return env != 0;
-#else
   char *env = getenv (name.c_str ());
   return env != 0;
-#endif
 }
 
 bool app_flag (const std::string &name)

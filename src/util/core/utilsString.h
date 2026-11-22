@@ -11,9 +11,7 @@
 #include "utilsException.h"
 #include "utilsVariant.h"
 
-#if defined(HAVE_QT)
 class QImage;
-#endif
 
 namespace geo {
 
@@ -267,10 +265,8 @@ template <> inline std::string to_string (const std::string &s) { return s; }
 //  to a variant object
 template <> inline std::string to_string (const geo::Variant &v) { return v.to_parsable_string (); }
 
-#if defined(HAVE_QT)
 //  some dummy conversions provided for geo::Variant implementation
 template <> inline std::string to_string (const QImage &) { return std::string (); }
-#endif
 
 /**
  *  @brief Converts UTF-8 to wide character string
