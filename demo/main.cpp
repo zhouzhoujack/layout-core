@@ -1,7 +1,7 @@
 // ===========================================================================
 // layout-io demo —— 入口
 //
-// 演示代码在 demoCase.cpp（demo::run），这里只负责初始化日志并调用。
+// 演示代码在 demoCase.cpp（demo::DemoCase），这里只负责初始化日志并调用。
 // 编译：见 demo/CMakeLists.txt（或直接 ./compile.sh --demo）
 // ===========================================================================
 
@@ -16,7 +16,7 @@ int main (int argc, char **argv)
     google::SetStderrLogging (google::GLOG_INFO);
 
     LOGI << "layout-io demo 开始";
-    demo::run ();
+    demo::DemoCase ().run ();
     LOGI << "layout-io demo 结束";
 
     google::ShutdownGoogleLogging ();
