@@ -40,9 +40,7 @@ target_compile_definitions(utils PUBLIC HAVE_QT)
 
 target_link_options(utils PRIVATE -Wl,--no-undefined)
 
-set(LAYOUTIO_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../.." CACHE PATH "layout-io 产物输出根目录")
-set(LAYOUTIO_STAGE_LIB    "${LAYOUTIO_STAGE_ROOT}/lib")
-set(LAYOUTIO_STAGE_INCLUDE "${LAYOUTIO_STAGE_ROOT}/include")
+# LAYOUTIO_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
 
 set_target_properties(utils PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${LAYOUTIO_STAGE_LIB}"
