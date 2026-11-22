@@ -4,10 +4,8 @@
 #include "utilsCommon.h"
 
 #include <string>
-
-# include <QString>
-//  provides QObject for tr
-# include <QObject>
+#include <QString>
+#include <QObject>
 
 /**
  *  @brief Generic tr function for non-Qt and Qt builds
