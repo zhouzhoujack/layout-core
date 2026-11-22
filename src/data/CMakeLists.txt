@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 file(GLOB DATA_SOURCES
     "*.cc"
     "common/*.cc"
+    "basic/*.cc"
 )
 
 add_library(data SHARED
@@ -12,6 +13,7 @@ add_library(data SHARED
 target_include_directories(data PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/common
+    ${CMAKE_CURRENT_SOURCE_DIR}/basic
 )
 
 target_link_libraries(data PUBLIC
