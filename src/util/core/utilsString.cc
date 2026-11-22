@@ -13,7 +13,7 @@
 #include "utilsExpression.h"
 #include "utilsInternational.h"
 
-// 字符串裁剪交给 toolkit 库（toolchain 提供），layout-io 不再重复实现
+// 字符串裁剪交给 toolkit 库（toolchain 提供），layout-core 不再重复实现
 #include "toolkit/string_utils.h"
 
 namespace geo

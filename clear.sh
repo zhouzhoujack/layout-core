@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===========================================================================
-# 清理 layout-io 的构建产物
+# 清理 layout-core 的构建产物
 #
 # 删除：
 #   build/        cmake -S src -B build 的构建目录
@@ -54,5 +54,5 @@ done
 
 if [[ "${dry_run}" == "0" ]]; then
     echo
-    echo "layout-io 已清理。重新构建： ./compile.sh [--test] [--demo]"
+    echo "layout-core 已清理。重新构建： ./compile.sh [--test] [--demo]"
 fi

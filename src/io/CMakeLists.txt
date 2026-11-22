@@ -31,7 +31,7 @@ file(GLOB_RECURSE IO_HEADERS CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/writer/*.h"
 )
 
-# LAYOUTIO_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
+# LAYOUTCORE_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
 
 set(IO_SOURCES
     ${IO_COMMON_SOURCES}
@@ -62,13 +62,13 @@ target_link_libraries(io PUBLIC
 target_link_options(io PRIVATE -Wl,--no-undefined)
 
 set_target_properties(io PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTIO_STAGE_LIB}"
+    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTCORE_STAGE_LIB}"
 )
 
 add_custom_command(TARGET io POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTIO_STAGE_INCLUDE}"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${IO_HEADERS} "${LAYOUTIO_STAGE_INCLUDE}"
-    COMMENT "Staging io headers -> ${LAYOUTIO_STAGE_INCLUDE}"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTCORE_STAGE_INCLUDE}"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${IO_HEADERS} "${LAYOUTCORE_STAGE_INCLUDE}"
+    COMMENT "Staging io headers -> ${LAYOUTCORE_STAGE_INCLUDE}"
 )
 
 add_subdirectory(test)

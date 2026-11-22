@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------------------
 // Minimal stand-in for KLayout's "gsi" (generic scripting interface).
 //
-// layout-io 不导出对象到脚本语言，几何类只需要一个空的基类来保持定义不变；
-// 真正的 gsi 层依赖 Qt，不属于 layout-io。
+// layout-core 不导出对象到脚本语言，几何类只需要一个空的基类来保持定义不变；
+// 真正的 gsi 层依赖 Qt，不属于 layout-core。
 //
 // 本文件合并了原先的 gsiCommon.h / gsiObject.h / gsiDecl.h / gsiClass.h，
 // 以便所有 gsi 相关声明集中在一处。
@@ -22,7 +22,7 @@ namespace gsi
  *  Stand-in for KLayout's gsi::ObjectBase.
  *
  *  In KLayout this class manages script-side lifetime (keep/release and the
- *  client indexes). layout-io has no scripting layer, so only the interface
+ *  client indexes). layout-core has no scripting layer, so only the interface
  *  that the geometry classes rely on is provided here.
  */
 class ObjectBase
@@ -52,7 +52,7 @@ public:
  *  Minimal concrete descriptor for geo::Variant values holding a T.
  *
  *  KLayout's full implementation provides type conversion, string
- *  serialisation and script binding. None of that is needed by layout-io,
+ *  serialisation and script binding. None of that is needed by layout-core,
  *  whose public API is C++ only - the descriptor is required solely because
  *  geo::Variant::make_variant() stores a class pointer alongside the object.
  */
