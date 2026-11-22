@@ -59,8 +59,6 @@ target_link_libraries(io PUBLIC
     data
 )
 
-target_compile_definitions(io PUBLIC HAVE_QT)
-
 target_link_options(io PRIVATE -Wl,--no-undefined)
 
 set_target_properties(io PROPERTIES

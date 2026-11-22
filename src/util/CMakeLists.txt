@@ -32,8 +32,6 @@ target_link_libraries(utils PUBLIC
     ZLIB::ZLIB
 )
 
-target_compile_definitions(utils PUBLIC HAVE_QT)
-
 target_link_options(utils PRIVATE -Wl,--no-undefined)
 
 # LAYOUTIO_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义

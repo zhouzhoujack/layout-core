@@ -13,7 +13,7 @@
 #   ./compile.sh --test                             # 构建后跑 ctest 单元测试
 #   ./compile.sh --demo                             # 构建并运行 demo/ 示例程序
 #
-# 注意：layout-io 目前与主工程一样启用 Qt（HAVE_QT），产物需要 Qt5 运行库。
+# 注意：layout-io 依赖 Qt5（Core/Gui/Xml），产物需要 Qt5 运行库。
 # 工具链与第三方库路径在 src/CMakeLists.txt 里通过
 # include("/home/hz/toolchain/cmake/toolchain.cmake") 引入，无需额外参数。
 # ===========================================================================

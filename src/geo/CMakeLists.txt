@@ -27,8 +27,6 @@ target_link_libraries(db-io PUBLIC
     ZLIB::ZLIB
 )
 
-target_compile_definitions(db-io PUBLIC HAVE_QT)
-
 target_link_options(db-io PRIVATE -Wl,--no-undefined)
 
 # LAYOUTIO_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义

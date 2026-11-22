@@ -29,7 +29,6 @@ function (layoutio_import name)
     set_target_properties(layoutio::${name} PROPERTIES
         IMPORTED_LOCATION "${LAYOUTIO_LIB_DIR}/lib${name}.so"
         INTERFACE_INCLUDE_DIRECTORIES "${LAYOUTIO_INCLUDE_DIR}"
-        INTERFACE_COMPILE_DEFINITIONS HAVE_QT
         INTERFACE_LINK_LIBRARIES "${ARGN}")
 endfunction()
 
