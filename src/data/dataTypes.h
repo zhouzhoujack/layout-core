@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <math.h>
 
-#include "dataCoord.h"
+#include "geoTypeDef.h"
 
 namespace geo {
 

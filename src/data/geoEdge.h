@@ -5,7 +5,7 @@
 #include "geoPoint.h"
 #include "geoVector.h"
 #include "geoTrans.h"
-#include "dataObjectTag.h"
+#include "geoObjectTag.h"
 #include "geoBox.h"
 
 #include <string>

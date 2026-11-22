@@ -2,7 +2,7 @@
 #define HDR_geoShapeRepository
 
 
-#include "dataObjectTag.h"
+#include "geoObjectTag.h"
 #include "geoTrans.h"
 #include "geoBox.h"
 

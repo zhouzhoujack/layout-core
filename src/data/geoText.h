@@ -7,7 +7,7 @@
 #include "geoBox.h"
 #include "geoTrans.h"
 #include "geoShapeRepository.h"
-#include "dataObjectTag.h"
+#include "geoObjectTag.h"
 #include "geoHersheyFont.h"
 
 #include "utilsString.h"
