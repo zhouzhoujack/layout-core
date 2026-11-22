@@ -6,7 +6,7 @@
 #include "geoTrans.h"
 #include "geoEdge.h"
 #include "geoBox.h"
-#include "dataObjectTag.h"
+#include "geoObjectTag.h"
 #include "geoShapeRepository.h"
 
 #include "utilsTypeTraits.h"

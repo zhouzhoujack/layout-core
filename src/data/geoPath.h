@@ -8,7 +8,7 @@
 #include "geoEdge.h"
 #include "geoBox.h"
 #include "geoPolygon.h"
-#include "dataObjectTag.h"
+#include "geoObjectTag.h"
 #include "geoShapeRepository.h"
 #include "geoStatic.h"
 
