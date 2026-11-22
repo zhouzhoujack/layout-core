@@ -39,10 +39,15 @@ namespace
 
 const std::string kFile = "/tmp/layoutio_demo.gds";
 
+}  // namespace
+
+namespace demo
+{
+
 // ---------------------------------------------------------------------------
 // 1) 生成示例版图：1/0 放两个方框，2/0 放一个（相距很远，便于后面区分）
 // ---------------------------------------------------------------------------
-void write_sample_layout ()
+void DemoCase::write_sample_layout ()
 {
     geo::Layout layout;
     layout.dbu (0.001);
@@ -70,7 +75,7 @@ void write_sample_layout ()
 // ---------------------------------------------------------------------------
 // 2) 布尔运算：Region 是「多边形集合」，支持 & | - ^ 与面积统计
 // ---------------------------------------------------------------------------
-void boolean_operations ()
+void DemoCase::boolean_operations ()
 {
     const geo::Region a (geo::Box (0, 0, 100, 100));
     const geo::Region b (geo::Box (50, 50, 150, 150));
@@ -95,7 +100,7 @@ void boolean_operations ()
 // ---------------------------------------------------------------------------
 // 3) 读回整个版图
 // ---------------------------------------------------------------------------
-void read_whole_layout ()
+void DemoCase::read_whole_layout ()
 {
     geo::InputStream stream (kFile);
     geo::Reader reader (stream);
@@ -112,7 +117,7 @@ void read_whole_layout ()
 // ---------------------------------------------------------------------------
 // 4) 部分读入：只读 1/0，并打印读到的每个图形
 // ---------------------------------------------------------------------------
-void partial_load ()
+void DemoCase::partial_load ()
 {
     geo::InputStream stream (kFile);
     geo::Reader reader (stream);
@@ -163,7 +168,7 @@ void partial_load ()
 // 收集成 Region，再与窗口 Region 求交（= 裁剪）。
 // 输出优先用 .oas（OASIS），格式不可用时回退 .gds。
 // ---------------------------------------------------------------------------
-void clip_and_dump (const std::string &src_file)
+void DemoCase::clip_and_dump (const std::string &src_file)
 {
     if (! std::ifstream (src_file).good ()) {
         LOGW << "[5] 跳过：找不到示例文件 " << src_file;
@@ -269,12 +274,7 @@ void clip_and_dump (const std::string &src_file)
     }
 }
 
-}  // namespace
-
-namespace demo
-{
-
-void run ()
+void DemoCase::run ()
 {
     std::remove (kFile.c_str ());
 
