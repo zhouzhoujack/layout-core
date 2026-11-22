@@ -2,18 +2,8 @@
 #include "utilsLog.h"
 #include "utilsString.h"
 
-#if defined(_MSC_VER) || defined(_WIN32)
-#  include <Windows.h>
-#  include <Psapi.h>
-#elif defined(__MACH__)
-#  include <mach/clock.h>
-#  include <mach/mach.h>
-#  include <sys/times.h>
-#  include <unistd.h>
-#else
-#  include <sys/times.h>
-#  include <unistd.h>
-#endif
+#include <sys/times.h>
+#include <unistd.h>
 
 #include <stdio.h>
 
@@ -22,40 +12,9 @@ namespace geo
 
 // -------------------------------------------------------------
 
-#if defined(_MSC_VER)
-//  FILETIME and Posix use different zero time. This is the difference
-//  between Jan 1, 1601 and Jan 1, 1970. This value is taken from pthread-win32.
-const uint64_t ft_to_epoch_offset = uint64_t (11644473600) * uint64_t (10000000);
-#endif
-
 void current_utc_time (struct timespec *ts)
 {
-
-#if defined(__MACH__)
-
-  clock_serv_t cclock;
-  mach_timespec_t mts;
-  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-  clock_get_time(cclock, &mts);
-  mach_port_deallocate(mach_task_self(), cclock);
-  ts->tv_sec = mts.tv_sec;
-  ts->tv_nsec = mts.tv_nsec;
-
-#elif defined(_MSC_VER)
-
-  FILETIME ft;
-  GetSystemTimeAsFileTime (&ft);
-
-  uint64_t t = (uint64_t (ft.dwHighDateTime) << (sizeof (ft.dwHighDateTime) * 8)) | uint64_t (ft.dwLowDateTime);
-  t -= ft_to_epoch_offset;
-
-  //  t is in 100ns units
-  ts->tv_nsec = (t % 10000000) * 100;
-  ts->tv_sec = (t / 10000000);
-
-#else
-  clock_gettime(CLOCK_REALTIME, ts);
-#endif
+  clock_gettime (CLOCK_REALTIME, ts);
 }
 
 // -------------------------------------------------------------
@@ -63,34 +22,9 @@ void current_utc_time (struct timespec *ts)
 
 static int64_t ms_time ()
 {
-#if defined(__MACH__)
-
-  clock_serv_t cclock;
-  mach_timespec_t mts;
-  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-  clock_get_time(cclock, &mts);
-  mach_port_deallocate(mach_task_self(), cclock);
-
-  return int64_t (mts.tv_sec) * 1000 + int64_t (0.5 + mts.tv_nsec / 1.0e6);
-
-#elif defined(_MSC_VER)
-
-  FILETIME ft;
-  GetSystemTimeAsFileTime (&ft);
-
-  uint64_t t = (uint64_t (ft.dwHighDateTime) << (sizeof (ft.dwHighDateTime) * 8)) | uint64_t (ft.dwLowDateTime);
-  t -= ft_to_epoch_offset;
-
-  //  FILETIME uses 100ns resolution, hence divide by 10000 to get ms:
-  return int64_t (t / 10000);
-
-#else
-
   timespec ts;
   clock_gettime (CLOCK_REALTIME, &ts);
   return int64_t (ts.tv_sec) * 1000 + int64_t (0.5 + ts.tv_nsec / 1.0e6);
-
-#endif
 }
 
 // -------------------------------------------------------------
@@ -109,18 +43,12 @@ Timer::Timer ()
 void
 Timer::start ()
 {
-#ifdef _WIN32
-  timer_t clks_ms = (timer_t) ((double) clock () * (1000.0 / CLOCKS_PER_SEC) + 0.5);
-  m_user_ms += clks_ms;
-  //  no system time available ..
-#else
   struct tms clks;
   times (&clks);
   const double clk2msec = 1000.0 / sysconf (_SC_CLK_TCK);
 
   m_user_ms += (timer_t) ((clks.tms_utime + clks.tms_cutime) * clk2msec + 0.5);
   m_sys_ms += (timer_t) ((clks.tms_stime + clks.tms_cstime) * clk2msec + 0.5);
-#endif
 
   m_wall_ms += ms_time ();
 }
@@ -165,26 +93,6 @@ Timer::take ()
 size_t
 Timer::memory_size ()
 {
-#ifdef _WIN32
-
-  size_t mem = 0;
-
-  HANDLE h_process = OpenProcess (PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, GetCurrentProcessId ());
-  if (h_process != NULL) {
-
-    PROCESS_MEMORY_COUNTERS pmc;
-    if (GetProcessMemoryInfo (h_process, &pmc, sizeof (pmc))) {
-      mem = size_t (pmc.WorkingSetSize);
-    }
-
-    CloseHandle (h_process);
-
-  }
-
-  return mem;
-
-#else
-
   unsigned long memsize = 0;
   FILE *procfile = fopen ("/proc/self/stat", "r");
   if (procfile != NULL) {
@@ -237,8 +145,6 @@ Timer::memory_size ()
   }
 
   return size_t (memsize);
-
-#endif
 }
 
 void

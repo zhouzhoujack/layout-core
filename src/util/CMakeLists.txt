@@ -4,11 +4,9 @@ set(CMAKE_AUTOMOC ON)
 
 file(GLOB TL_CORE_SOURCES
     "core/*.cc"
-    "math/*.cc"
     "object/*.cc"
     "exception/*.cc"
     "io/*.cc"
-    "thread/*.cc"
     "text/*.cc"
 )
 
@@ -19,11 +17,9 @@ add_library(utils SHARED
 target_include_directories(utils PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/core
-    ${CMAKE_CURRENT_SOURCE_DIR}/math
     ${CMAKE_CURRENT_SOURCE_DIR}/object
     ${CMAKE_CURRENT_SOURCE_DIR}/exception
     ${CMAKE_CURRENT_SOURCE_DIR}/io
-    ${CMAKE_CURRENT_SOURCE_DIR}/thread
     ${CMAKE_CURRENT_SOURCE_DIR}/text
 )
 

@@ -6,16 +6,9 @@
 #include <stdio.h>
 #include <errno.h>
 #include <zlib.h>
-#ifdef _WIN32 
-#  include <io.h>
-#else
-#  include <unistd.h>
-#endif
+#include <unistd.h>
 
 #include "utilsStream.h"
-#ifdef HAVE_CURL
-#  include "tlHttpStream.h"
-#endif
 #include "utilsDeflate.h"
 #include "utilsAssert.h"
 #include "utilsFileUtils.h"
@@ -25,10 +18,8 @@
 #include "utilsString.h"
 #include "utilsUri.h"
 
-#if defined(HAVE_QT)
-#  include <QByteArray>
-#  include <QResource>
-#endif
+#include <QByteArray>
+#include <QResource>
 
 namespace geo
 {
@@ -150,7 +141,6 @@ InputStream::InputStream (const std::string &abstract_path)
 
   if (ex.test (":")) {
 
-#if defined(HAVE_QT)
 
     QResource res (geo::to_qstring (abstract_path));
     if (res.size () > 0) {
@@ -171,9 +161,6 @@ InputStream::InputStream (const std::string &abstract_path)
 
     }
 
-#else
-    throw geo::Exception (geo::to_string (tr ("Qt not enabled - resource paths are not available")));
-#endif
 
   } else if (ex.test ("pipe:")) {
 
@@ -184,11 +171,7 @@ InputStream::InputStream (const std::string &abstract_path)
     geo::URI uri (abstract_path);
 
     if (uri.scheme () == "http" || uri.scheme () == "https") {
-#if defined(HAVE_CURL)
-      mp_delegate = new InputHttpStream (abstract_path);
-#else
       throw geo::Exception (geo::to_string (tr ("HTTP support not enabled - HTTP/HTTPS paths are not available")));
-#endif
     } else if (uri.scheme () == "file") {
       mp_delegate = new InputZLibFile (uri.path ());
     } else if (! uri.scheme ().empty ()) {
@@ -211,16 +194,9 @@ std::string InputStream::absolute_path (const std::string &abstract_path)
   //  TODO: align this implementation with InputStream ctor
 
   geo::Extractor ex (abstract_path.c_str ());
-#if defined(HAVE_QT)
   if (ex.test (":")) {
     return abstract_path;
   } else
-#endif
-#if defined(HAVE_CURL)
-  if (ex.test ("http:") || ex.test ("https:")) {
-    return abstract_path;
-  } else
-#endif
   if (ex.test ("pipe:")) {
     return abstract_path;
   } else if (ex.test ("file:")) {
@@ -536,19 +512,11 @@ InputFile::InputFile (const std::string &path)
   : m_fd (-1)
 {
   m_source = path;
-#if defined(_WIN32)
-  int fd = _wopen (geo::to_wstring (path).c_str (), _O_BINARY | _O_RDONLY | _O_SEQUENTIAL);
-  if (fd < 0) {
-    throw FileOpenErrorException (m_source, errno);
-  }
-  m_fd = fd;
-#else
   int fd = open (path.c_str (), O_RDONLY);
   if (fd < 0) {
     throw FileOpenErrorException (m_source, errno);
   }
   m_fd = fd;
-#endif
 }
 
 InputFile::~InputFile ()
@@ -560,11 +528,7 @@ void
 InputFile::close ()
 {
   if (m_fd >= 0) {
-#if defined(_WIN32)
-    _close (m_fd);
-#else
     ::close (m_fd);
-#endif
     m_fd = -1;
   }  
 }
@@ -573,11 +537,7 @@ size_t
 InputFile::read (char *b, size_t n)
 {
   tl_assert (m_fd >= 0);
-#if defined(_WIN32)
-  ptrdiff_t ret = _read (m_fd, b, (unsigned int) n);
-#else
   ptrdiff_t ret = ::read (m_fd, b, (unsigned int) n);
-#endif
   if (ret < 0) {
     throw FileReadErrorException (m_source, errno);
   }
@@ -588,13 +548,7 @@ void
 InputFile::reset ()
 {
   if (m_fd >= 0) {
-#if defined(_WIN64)
-    _lseeki64 (m_fd, 0, SEEK_SET);
-#elif defined(_WIN64)
-    _lseek (m_fd, 0, SEEK_SET);
-#else
     lseek (m_fd, 0, SEEK_SET);
-#endif
   }
 }
 
@@ -617,15 +571,7 @@ InputZLibFile::InputZLibFile (const std::string &path)
   : mp_d (new ZLibFilePrivate ())
 {
   m_source = path;
-#if defined(_WIN32)
-  int fd = _wopen (geo::to_wstring (path).c_str (), _O_BINARY | _O_RDONLY | _O_SEQUENTIAL);
-  if (fd < 0) {
-    throw FileOpenErrorException (m_source, errno);
-  }
-  mp_d->zs = gzdopen (fd, "rb");
-#else
   mp_d->zs = gzopen (geo::string_to_system (path).c_str (), "rb");
-#endif
   if (mp_d->zs == NULL) {
     throw FileOpenErrorException (m_source, errno);
   }
@@ -1006,29 +952,17 @@ OutputFile::OutputFile (const std::string &path, int keep_backups)
   : OutputFileBase (path, keep_backups), m_fd (-1)
 {
   m_source = path;
-#if defined(_WIN32)
-  int fd = _wopen (geo::to_wstring (path).c_str (), _O_CREAT | _O_TRUNC | _O_BINARY | _O_WRONLY | _O_SEQUENTIAL, _S_IREAD | _S_IWRITE );
-  if (fd < 0) {
-    throw FileOpenErrorException (m_source, errno);
-  }
-  m_fd = fd;
-#else
   int fd = open (path.c_str (), O_WRONLY | O_CREAT | O_TRUNC, 0666);
   if (fd < 0) {
     throw FileOpenErrorException (m_source, errno);
   }
   m_fd = fd;
-#endif
 }
 
 OutputFile::~OutputFile ()
 {
   if (m_fd >= 0) {
-#if defined(_WIN32)
-    _close (m_fd);
-#else
     close (m_fd);
-#endif
     m_fd = -1;
   }
 }
@@ -1037,24 +971,14 @@ void
 OutputFile::seek_file (size_t s)
 {
   tl_assert (m_fd >= 0);
-#if defined(_WIN64)
-  _lseeki64 (m_fd, s, SEEK_SET);
-#elif defined(_WIN32)
-  _lseek (m_fd, s, SEEK_SET);
-#else
   lseek (m_fd, s, SEEK_SET);
-#endif
 }
 
 void
 OutputFile::write_file (const char *b, size_t n)
 {
   tl_assert (m_fd >= 0);
-#if defined(_WIN32)
-  ptrdiff_t ret = _write (m_fd, b, (unsigned int) n);
-#else
   ptrdiff_t ret = ::write (m_fd, b, (unsigned int) n);
-#endif
   if (ret < 0) {
     throw FileWriteErrorException (m_source, errno);
   }
@@ -1067,15 +991,7 @@ OutputZLibFile::OutputZLibFile (const std::string &path, int keep_backups)
   : OutputFileBase (path, keep_backups), mp_d (new ZLibFilePrivate ())
 {
   m_source = path;
-#if defined(_WIN32)
-  FILE *file = _wfopen (geo::to_wstring (path).c_str (), L"wb");
-  if (file == NULL) {
-    throw FileOpenErrorException (m_source, errno);
-  }
-  mp_d->zs = gzdopen (_fileno (file), "wb");
-#else
   mp_d->zs = gzopen (geo::string_to_system (path).c_str (), "wb");
-#endif
   if (mp_d->zs == NULL) {
     throw FileOpenErrorException (m_source, errno);
   }
@@ -1106,99 +1022,6 @@ OutputZLibFile::write_file (const char *b, size_t n)
     }
   }
 }
-
-#if defined(_WIN32)
-
-// ---------------------------------------------------------------
-//  InputPipe delegate implementation
-
-InputPipe::InputPipe (const std::string &path)
-  : m_file (NULL)
-{
-  std::wstring wpath = geo::to_wstring (path);
-  m_source = path;
-  m_file = _wpopen (wpath.c_str (), L"r");
-  if (m_file == NULL) {
-    throw FilePOpenErrorException (m_source, errno);
-  }
-}
-
-InputPipe::~InputPipe ()
-{
-  close ();
-}
-
-void
-InputPipe::close ()
-{
-  wait ();
-}
-
-int InputPipe::wait ()
-{
-  int ret = 0;
-  if (m_file != NULL) {
-    ret = _pclose (m_file);
-    m_file = NULL;
-  }
-  return ret;
-}
-
-size_t
-InputPipe::read (char *b, size_t n)
-{
-  tl_assert (m_file != NULL);
-  size_t ret = fread (b, 1, n, m_file);
-  if (ret < n) {
-    if (ferror (m_file)) {
-      throw FilePReadErrorException (m_source, errno);
-    }
-  }
-
-  return ret;
-}
-
-void
-InputPipe::reset ()
-{
-  throw geo::Exception (geo::to_string (tr ("'reset' is not supported on pipeline input files")));
-}
-
-// ---------------------------------------------------------------
-//  OutputPipe delegate implementation
-
-OutputPipe::OutputPipe (const std::string &path)
-  : m_file (NULL)
-{
-  std::wstring wpath = geo::to_wstring (path);
-  m_source = path;
-  m_file = _wpopen (wpath.c_str (), L"w");
-  if (m_file == NULL) {
-    throw FilePOpenErrorException (m_source, errno);
-  }
-}
-
-OutputPipe::~OutputPipe ()
-{
-  if (m_file != NULL) {
-    _pclose (m_file);
-    m_file = NULL;
-  }
-}
-
-void
-OutputPipe::write (const char *b, size_t n)
-{
-  tl_assert (m_file != NULL);
-  size_t ret = fwrite (b, 1, n, m_file);
-  if (ret < n) {
-    if (ferror (m_file)) {
-      throw FilePWriteErrorException (m_source, errno);
-    }
-  }
-}
-
-#else
 
 // ---------------------------------------------------------------
 //  InputPipe delegate implementation
@@ -1299,8 +1122,6 @@ OutputPipe::write (const char *b, size_t n)
     }
   }
 }
-
-#endif
 
 // ---------------------------------------------------------------
 //  match_filename_to_format implementation

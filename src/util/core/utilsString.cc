@@ -1733,32 +1733,6 @@ string::operator>= (const geo::string &s) const
 // -------------------------------------------------------------------
 //  sprintf implementation
 
-#if defined(_STLPORT_VERSION) && _STLPORT_VERSION == 0x521 && defined(_MSC_VER)
-/**
- *  @brief Workaround for STLPort 5.2.1 bug with scientific formatting
- *  In that version, the scientific formatting produces on digit less precision
- *  and replaces uses 0 for the last digit.
- *  To work around that problem we first create one digit too much and delete the
- *  trailing '0' in front of 'E' or 'e'.
- */
-std::string format_sci_stlport_fix (double f, int prec, unsigned int flags)
-{
-  std::ostringstream os;
-  os.setf (flags);
-  os.precision (prec + 1);
-  os << f;
-  std::string res;
-  res.reserve (os.str ().size ());
-  for (const char *cp = os.str ().c_str (); *cp; ++cp) {
-  if (*cp == '0' && (cp[1] == 'e' || cp[1] == 'E')) {
-    ++cp;
-  }
-  res += *cp;
-  }
-  return res;
-};
-#endif
-
 std::string
 sprintf (const char *f, const std::vector <geo::Variant> &vv, unsigned int a0)
 {
@@ -1859,11 +1833,7 @@ sprintf (const char *f, const std::vector <geo::Variant> &vv, unsigned int a0)
           os.setf (std::ios::uppercase);
         }
         if (a < vv.size ()) {
-#if defined(_STLPORT_VERSION) && _STLPORT_VERSION == 0x521 && defined(_MSC_VER)
-        os << format_sci_stlport_fix (vv [a].to_double (), os.precision (), os.flags ()).c_str ();
-#else
           os << vv [a].to_double ();
-#endif
         }
       } else if (*cp == 'f' || *cp == 'F') {
         os.setf (std::ios::fixed, std::ios::floatfield | std::ios::basefield);
