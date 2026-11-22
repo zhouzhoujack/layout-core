@@ -111,7 +111,7 @@ protected:
 /**
  *  @brief A minimal user class descriptor for Variant user objects
  *
- *  layout-io 不需要脚本层，因此这里只提供 Variant 存储用户对象所需的
+ *  layout-core 不需要脚本层，因此这里只提供 Variant 存储用户对象所需的
  *  基本操作（销毁、比较、命名等）；与 gsi 相关的钩子均为空实现。
  */
 template <class T>

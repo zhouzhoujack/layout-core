@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===========================================================================
-# 编译 layout-io（独立的 GDS2 / OASIS 读入 + polygon 布尔库）
+# 编译 layout-core（独立的 GDS2 / OASIS 读入 + polygon 布尔库）
 #
 # 源码布局：src/（工程根，含 src/CMakeLists.txt）、
 #           src/util/（→ libutils.so）、src/util/test/（ut_utils）、
@@ -13,7 +13,7 @@
 #   ./compile.sh --test                             # 构建后跑 ctest 单元测试
 #   ./compile.sh --demo                             # 构建并运行 demo/ 示例程序
 #
-# 注意：layout-io 依赖 Qt5（Core/Gui/Xml），产物需要 Qt5 运行库。
+# 注意：layout-core 依赖 Qt5（Core/Gui/Xml），产物需要 Qt5 运行库。
 # 工具链与第三方库路径在 src/CMakeLists.txt 里通过
 # include("/home/hz/toolchain/cmake/toolchain.cmake") 引入，无需额外参数。
 # ===========================================================================
@@ -44,7 +44,7 @@ else
 fi
 
 echo
-echo "layout-io built (${build_type}):"
+echo "layout-core built (${build_type}):"
 ls -1 lib/*.so 2>/dev/null | sed 's/^/  /'
 echo "  include: $(ls include/*.h 2>/dev/null | wc -l) headers"
 
@@ -61,5 +61,5 @@ if [[ "${run_demo}" == "1" ]]; then
     cmake -S demo -B build-demo > /dev/null
     cmake --build build-demo -j3
     echo
-    ./build-demo/layoutio_demo
+    ./build-demo/layout-core-demo
 fi

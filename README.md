@@ -1,4 +1,4 @@
-# layout-io
+# layout-core
 
 EDA版图数据处理的 C++ 库，提供 GDS2 / OASIS 读写以及图形的布尔运算。
 
@@ -6,7 +6,7 @@ EDA版图数据处理的 C++ 库，提供 GDS2 / OASIS 读写以及图形的布�
 
 ```mermaid
 graph TD
-    PROJECT["layout-io<br/>(C++ Layout Library)"]
+    PROJECT["layout-core<br/>(C++ Layout Library)"]
     IO["Input / Output<br/>(GDSII / OASIS)"]
     GEO["Geometry API<br/>(Boolean Functions)"]
     DATA["Layout DataBase<br/>(Cell / Layer / Shape)"]

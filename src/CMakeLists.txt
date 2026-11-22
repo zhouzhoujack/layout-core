@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(layout-io)
+project(layout-core)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -26,13 +26,13 @@ enable_testing()
 # 产物输出根目录（仓库根）
 #
 # 统一在这里用普通变量定义（绝对、规范化路径），各模块只引用
-# LAYOUTIO_STAGE_LIB / LAYOUTIO_STAGE_INCLUDE。
+# LAYOUTCORE_STAGE_LIB / LAYOUTCORE_STAGE_INCLUDE。
 # 注意：不要改成 CACHE 变量——缓存里一旦存了旧目录（例如改名前的
 # src/utils/../..），mkdir/copy 会按 "utils/.." 把旧目录重新创建出来。
 # ---------------------------------------------------------------------------
-get_filename_component(LAYOUTIO_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
-set(LAYOUTIO_STAGE_LIB     "${LAYOUTIO_STAGE_ROOT}/lib")
-set(LAYOUTIO_STAGE_INCLUDE "${LAYOUTIO_STAGE_ROOT}/include")
+get_filename_component(LAYOUTCORE_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+set(LAYOUTCORE_STAGE_LIB     "${LAYOUTCORE_STAGE_ROOT}/lib")
+set(LAYOUTCORE_STAGE_INCLUDE "${LAYOUTCORE_STAGE_ROOT}/include")
 
 add_subdirectory(util)
 add_subdirectory(data)
