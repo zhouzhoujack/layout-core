@@ -45,8 +45,6 @@ Testing/
 *.tmp
 *.swp
 *~
-core
-core.*
 
 # 编辑器 / IDE
 .vscode/
