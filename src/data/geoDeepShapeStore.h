@@ -8,7 +8,7 @@
 #include "geoLayout.h"
 #include "geoRecursiveShapeIterator.h"
 #include "geoHierarchyBuilder.h"
-#include "gsiObject.h"
+#include "gsi.h"
 
 #include <set>
 #include <map>

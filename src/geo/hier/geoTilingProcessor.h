@@ -9,7 +9,7 @@
 #include "geoPolygonTools.h"
 #include "geoClip.h"
 
-#include "gsiObject.h"
+#include "gsi.h"
 
 #include "utilsExpression.h"
 #include "utilsTypeTraits.h"

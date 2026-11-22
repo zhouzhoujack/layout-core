@@ -5,8 +5,7 @@
 #include "utilsString.h"
 #include "utilsGlobPattern.h"
 #include "utilsExpression.h"
-#include "gsiExpression.h"
-#include "gsiDecl.h"
+#include "gsi.h"
 
 #include <limits>
 #include <memory>

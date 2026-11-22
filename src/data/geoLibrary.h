@@ -1,7 +1,7 @@
 #ifndef HDR_geoLibraryDescriptor
 #define HDR_geoLibraryDescriptor
 
-#include "gsiObject.h"
+#include "gsi.h"
 #include "geoLayout.h"
 #include "utilsTypeTraits.h"
 #include "utilsObject.h"
