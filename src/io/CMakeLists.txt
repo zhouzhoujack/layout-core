@@ -74,3 +74,5 @@ add_custom_command(TARGET io POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${IO_HEADERS} "${LAYOUTIO_STAGE_INCLUDE}"
     COMMENT "Staging io headers -> ${LAYOUTIO_STAGE_INCLUDE}"
 )
+
+add_subdirectory(test)
