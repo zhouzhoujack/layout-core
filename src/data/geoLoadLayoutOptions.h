@@ -7,7 +7,6 @@
 #include "geoLayout.h"
 #include "geoStreamLayers.h"
 
-#include "gsi.h"
 #include "utilsVariant.h"
 
 namespace geo
@@ -17,7 +16,6 @@ namespace geo
  *  @brief Base class for specific options for a certain format
  */
 class FormatSpecificReaderOptions
-  : public gsi::ObjectBase
 {
 public:
   FormatSpecificReaderOptions () { }  

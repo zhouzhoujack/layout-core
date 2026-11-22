@@ -1,7 +1,6 @@
 #ifndef HDR_geoLibraryDescriptor
 #define HDR_geoLibraryDescriptor
 
-#include "gsi.h"
 #include "geoLayout.h"
 #include "utilsTypeTraits.h"
 #include "utilsObject.h"
@@ -23,7 +22,7 @@ class Layout;
  *  is provided. To do so, this class must be reimplemented.
  */
 class Library
-  : public gsi::ObjectBase, public geo::RefCounted
+  : public geo::RefCounted
 {
 public:
   /**

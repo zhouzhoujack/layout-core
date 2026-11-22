@@ -277,7 +277,6 @@ CompoundTransformationReducer::is_translation_invariant () const
 CompoundRegionMultiInputOperationNode::CompoundRegionMultiInputOperationNode (const std::vector<CompoundRegionOperationNode *> &children)
 {
   for (std::vector<CompoundRegionOperationNode *>::const_iterator c = children.begin (); c != children.end (); ++c) {
-    (*c)->keep ();
     m_children.push_back (*c);
   }
   init ();
@@ -290,16 +289,13 @@ CompoundRegionMultiInputOperationNode::CompoundRegionMultiInputOperationNode ()
 
 CompoundRegionMultiInputOperationNode::CompoundRegionMultiInputOperationNode (CompoundRegionOperationNode *child)
 {
-  child->keep ();
   m_children.push_back (child);
   init ();
 }
 
 CompoundRegionMultiInputOperationNode::CompoundRegionMultiInputOperationNode (CompoundRegionOperationNode *a, CompoundRegionOperationNode *b)
 {
-  a->keep ();
   m_children.push_back (a);
-  b->keep ();
   m_children.push_back (b);
   init ();
 }

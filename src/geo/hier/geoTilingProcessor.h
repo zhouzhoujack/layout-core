@@ -9,8 +9,6 @@
 #include "geoPolygonTools.h"
 #include "geoClip.h"
 
-#include "gsi.h"
-
 #include "utilsExpression.h"
 #include "utilsTypeTraits.h"
 #include "utilsThreads.h"
@@ -24,7 +22,7 @@ class TilingProcessor;
  *  @brief A receiver for the output data 
  */
 class TileOutputReceiver
-  : public gsi::ObjectBase, public geo::RefCounted
+  : public geo::RefCounted
 {
 public:
   /**

@@ -111,6 +111,42 @@ protected:
 };
 
 /**
+ *  @brief A minimal user class descriptor for Variant user objects
+ *
+ *  layout-io 不需要脚本层，因此这里只提供 Variant 存储用户对象所需的
+ *  基本操作（销毁、比较、命名等）；与 gsi 相关的钩子均为空实现。
+ */
+template <class T>
+class TL_PUBLIC_TEMPLATE VariantBasicUserClass
+  : public VariantUserClassBase
+{
+public:
+  void *create () const { return 0; }
+  void destroy (void *p) const { delete reinterpret_cast<T *> (p); }
+  bool equal (const void *a, const void *b) const { return a == b; }
+  bool less (const void *a, const void *b) const { return a < b; }
+  void *clone (const void * /*p*/) const { return 0; }
+  std::string to_string (const void * /*p*/) const { return std::string (); }
+  void read (void * /*p*/, geo::Extractor & /*ex*/) const { }
+  const char *name () const { return typeid (T).name (); }
+  bool is_const () const { return false; }
+  void assign (void * /*self*/, const void * /*other*/) const { }
+  const gsi::ClassBase *gsi_cls () const { return 0; }
+  const geo::EvalClass *eval_cls () const { return 0; }
+  void *deref_proxy (geo::RefCounted *proxy) const { return proxy; }
+};
+
+/**
+ *  @brief Delivers the default user class descriptor for a type T
+ */
+template <class T>
+const VariantUserClassBase *basic_user_class (bool /*is_const*/)
+{
+  static VariantBasicUserClass<T> s_class;
+  return &s_class;
+}
+
+/**
  *   @brief A basic variant type
  *
  *   This variant is capable of storing long, double, std::string, void (nil) and lists
@@ -358,7 +394,7 @@ public:
   template <class T>
   static geo::Variant make_variant_ref (T *t)
   {
-    const geo::VariantUserClassBase *c = gsi::cls_decl<T> ()->var_cls (false);
+    const geo::VariantUserClassBase *c = basic_user_class<T> (false);
     tl_assert (c != 0);
     return geo::Variant ((void *) t, c, false);
   }
@@ -369,7 +405,7 @@ public:
   template <class T>
   static geo::Variant make_variant_ref (const T *t)
   {
-    const geo::VariantUserClassBase *c = gsi::cls_decl<T> ()->var_cls (true);
+    const geo::VariantUserClassBase *c = basic_user_class<T> (true);
     tl_assert (c != 0);
     return geo::Variant ((void *) t, c, false);
   }
@@ -380,7 +416,7 @@ public:
   template <class T>
   static geo::Variant make_variant (T *t)
   {
-    const geo::VariantUserClassBase *c = gsi::cls_decl<T> ()->var_cls (false);
+    const geo::VariantUserClassBase *c = basic_user_class<T> (false);
     tl_assert (c != 0);
     return geo::Variant ((void *) t, c, true);
   }
@@ -391,7 +427,7 @@ public:
   template <class T>
   static geo::Variant make_variant (const T &t, bool is_const = false)
   {
-    const geo::VariantUserClassBase *c = gsi::cls_decl <T> ()->var_cls (is_const);
+    const geo::VariantUserClassBase *c = basic_user_class<T> (is_const);
     tl_assert (c != 0);
     return geo::Variant ((void *) new T(t), c, true);
   }

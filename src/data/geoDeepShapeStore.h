@@ -8,7 +8,6 @@
 #include "geoLayout.h"
 #include "geoRecursiveShapeIterator.h"
 #include "geoHierarchyBuilder.h"
-#include "gsi.h"
 
 #include <set>
 #include <map>
@@ -280,7 +279,7 @@ struct RecursiveShapeIteratorCompareForTargetHierarchy
  *  algorithms for doing the preparation and transfer.
  */
 class DeepShapeStore
-  : public geo::RefCounted, public gsi::ObjectBase
+  : public geo::RefCounted
 {
 public:
   /**

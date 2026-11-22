@@ -1,7 +1,6 @@
 #ifndef HDR_geoCell
 #define HDR_geoCell
 
-
 #include "geoInstances.h"
 #include "geoObject.h"
 #include "geoBox.h"
@@ -15,7 +14,6 @@
 #include "utilsTypeTraits.h"
 #include "utilsVector.h"
 #include "utilsAlgorithm.h"
-#include "gsi.h"
 #include "utilsMemStatistics.h"
 
 #include <map>
@@ -48,8 +46,7 @@ class LayerMapping;
  */
 
 class Cell
-  : public geo::Object,
-    public gsi::ObjectBase
+  : public geo::Object
 {
 public:
   typedef geo::Box box_type;

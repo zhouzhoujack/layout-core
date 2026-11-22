@@ -1,5 +1,6 @@
 #include "geoLayout.h"
-#include "utilsMemStatistics.h"
+
+
 #include "geoTrans.h"
 #include "geoTechnology.h"
 #include "geoShapeRepository.h"
@@ -17,10 +18,12 @@
 #include "geoCellMapping.h"
 #include "geoLayerMapping.h"
 #include "geoLayoutUtils.h"
+
 #include "utilsTimer.h"
 #include "utilsLog.h"
 #include "utilsInternational.h"
 #include "utilsProgress.h"
+#include "utilsMemStatistics.h"
 #include "utilsAssert.h"
 
 
@@ -359,7 +362,6 @@ Layout::Layout (bool editable, geo::Manager *manager)
 Layout::Layout (const geo::Layout &layout)
   : geo::Object (layout),
     geo::LayoutStateModel (),
-    gsi::ObjectBase (),
     geo::RefCounted (),
     geo::UniqueId (),
     m_cells_size (0),
@@ -2241,9 +2243,6 @@ Layout::register_pcell (const std::string &name, pcell_declaration_type *declara
 
   declaration->m_id = id;
   declaration->m_name = name;
-
-  //  marks this object being held by the layout
-  declaration->keep ();
 
   return id;
 }

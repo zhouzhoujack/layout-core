@@ -3,7 +3,6 @@
 #include "geoLayout.h"
 #include "utilsTimer.h"
 #include "utilsProgress.h"
-#include "gsi.h"
 
 #include <vector>
 #include <deque>

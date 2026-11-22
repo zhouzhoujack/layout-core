@@ -4,6 +4,7 @@ file(GLOB DATA_SOURCES
     "*.cc"
     "common/*.cc"
     "basic/*.cc"
+    "layout/*.cc"
 )
 
 add_library(data SHARED
@@ -14,6 +15,7 @@ target_include_directories(data PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/common
     ${CMAKE_CURRENT_SOURCE_DIR}/basic
+    ${CMAKE_CURRENT_SOURCE_DIR}/layout
 )
 
 target_link_libraries(data PUBLIC

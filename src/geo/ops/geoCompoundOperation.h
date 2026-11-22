@@ -13,7 +13,6 @@
 #include "geoLocalOperationUtils.h"
 #include "geoTypes.h"
 
-#include "gsi.h"
 #include "utilsObject.h"
 
 #include <memory>
@@ -80,7 +79,7 @@ private:
  */
 
 class CompoundRegionOperationNode
-  : public gsi::ObjectBase, public geo::RefCounted
+  : public geo::RefCounted
 {
 public:
   enum  ResultType { Region, Edges, EdgePairs };

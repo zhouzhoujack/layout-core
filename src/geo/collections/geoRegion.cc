@@ -10,9 +10,6 @@
 #include "geoCompoundOperation.h"
 #include "utilsGlobPattern.h"
 
-//  NOTE: include this to provide the symbols for "make_variant"
-#include "gsi.h"
-
 namespace geo
 {
 
