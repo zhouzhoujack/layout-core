@@ -6,7 +6,7 @@
 #include "utilsString.h"
 
 #include "geoLayerProperties.h"
-#include "gsiObject.h"
+#include "gsi.h"
 
 #include <map>
 #include <limits>

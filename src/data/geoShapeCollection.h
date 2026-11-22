@@ -3,7 +3,7 @@
 
 #include "geoDeepShapeStore.h"
 #include "utilsUniqueId.h"
-#include "gsiObject.h"
+#include "gsi.h"
 
 namespace geo
 {

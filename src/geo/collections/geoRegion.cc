@@ -11,7 +11,7 @@
 #include "utilsGlobPattern.h"
 
 //  NOTE: include this to provide the symbols for "make_variant"
-#include "gsiDecl.h"
+#include "gsi.h"
 
 namespace geo
 {

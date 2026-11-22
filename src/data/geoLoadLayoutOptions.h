@@ -7,8 +7,7 @@
 #include "geoLayout.h"
 #include "geoStreamLayers.h"
 
-#include "gsiObject.h"
-#include "gsiClass.h"
+#include "gsi.h"
 #include "utilsVariant.h"
 
 namespace geo

@@ -2,7 +2,7 @@
 #define HDR_geoPCellDeclaration
 
 
-#include "gsiObject.h"
+#include "gsi.h"
 #include "geoLayout.h"
 #include "utilsVariant.h"
 #include "utilsObject.h"

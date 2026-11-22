@@ -13,7 +13,7 @@
 #include "geoLocalOperationUtils.h"
 #include "geoTypes.h"
 
-#include "gsiObject.h"
+#include "gsi.h"
 #include "utilsObject.h"
 
 #include <memory>
