@@ -4,7 +4,6 @@
 #include "utilsProgress.h"
 #include "utilsThreadedWorkers.h"
 #include "utilsThreads.h"
-#include "gsi.h"
 
 #include <cmath>
 

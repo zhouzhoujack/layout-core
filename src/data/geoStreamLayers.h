@@ -6,7 +6,6 @@
 #include "utilsString.h"
 
 #include "geoLayerProperties.h"
-#include "gsi.h"
 
 #include <map>
 #include <limits>
@@ -160,7 +159,6 @@ struct LDPair
  *  the information in setup files.
  */
 class LayerMap
-  : public gsi::ObjectBase
 {
 public:
   typedef geo::interval_map<ld_type, std::set<unsigned int> > datatype_map;

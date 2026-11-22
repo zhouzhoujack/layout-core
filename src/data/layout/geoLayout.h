@@ -17,7 +17,6 @@
 #include "utilsThreads.h"
 #include "utilsObject.h"
 #include "utilsUniqueId.h"
-#include "gsi.h"
 
 #include <cstring>
 #include <map>
@@ -25,7 +24,6 @@
 #include <string>
 #include <list>
 #include <vector>
-
 
 namespace geo
 {
@@ -457,7 +455,6 @@ struct ProxyContextInfo
 class Layout 
   : public geo::Object,
     public geo::LayoutStateModel,
-    public gsi::ObjectBase,
     public geo::RefCounted,
     public geo::UniqueId
 {

@@ -10,10 +10,6 @@
 // 以便所有 gsi 相关声明集中在一处。
 // ---------------------------------------------------------------------------
 
-#ifndef GSI_PUBLIC
-#  define GSI_PUBLIC
-#endif
-
 #include "utilsVariant.h"
 
 #include <memory>
@@ -29,7 +25,7 @@ namespace gsi
  *  client indexes). layout-io has no scripting layer, so only the interface
  *  that the geometry classes rely on is provided here.
  */
-class GSI_PUBLIC ObjectBase
+class ObjectBase
 {
 public:
   ObjectBase () { }
@@ -42,7 +38,7 @@ public:
   void release () { }
 };
 
-class GSI_PUBLIC ClassBase
+class ClassBase
 {
 public:
   ClassBase () { }

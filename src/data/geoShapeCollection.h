@@ -3,7 +3,6 @@
 
 #include "geoDeepShapeStore.h"
 #include "utilsUniqueId.h"
-#include "gsi.h"
 
 namespace geo
 {
@@ -66,7 +65,6 @@ public:
  *  @brief A base class for the shape collections such as Region, Edges, EdgePairs etc.
  */
 class ShapeCollection
-  : public gsi::ObjectBase
 {
 public:
   ShapeCollection () { }

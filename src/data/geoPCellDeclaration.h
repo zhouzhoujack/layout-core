@@ -2,7 +2,6 @@
 #define HDR_geoPCellDeclaration
 
 
-#include "gsi.h"
 #include "geoLayout.h"
 #include "utilsVariant.h"
 #include "utilsObject.h"
@@ -303,8 +302,7 @@ public:
  *  @brief A declaration for a PCell
  */
 class PCellDeclaration
-  : public gsi::ObjectBase,
-    public geo::RefCounted
+  : public geo::RefCounted
 {
 public:
   /**

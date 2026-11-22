@@ -80,7 +80,6 @@ Cell::Cell (cell_index_type ci, geo::Layout &l)
 
 Cell::Cell (const Cell &d)
   : geo::Object (d), 
-    gsi::ObjectBase (),
     mp_layout (d.mp_layout), m_instances (this), m_prop_id (d.m_prop_id), m_hier_levels (d.m_hier_levels),
     mp_last (0), mp_next (0)
 {

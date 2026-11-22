@@ -103,8 +103,6 @@ LibraryManager::delete_lib (Library *library)
 lib_id_type 
 LibraryManager::register_lib (Library *library)
 {
-  library->keep (); //  marks the library owned by the C++ side of GSI
-
   lib_id_type id;
   for (id = 0; id < m_libs.size (); ++id) {
     if (m_libs [id] == 0) {
