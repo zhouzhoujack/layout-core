@@ -5,20 +5,18 @@
 // 编译：见 demo/CMakeLists.txt（或直接 ./compile.sh --demo）
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>   // LOGI + glogPrefixFormatter
+#include <toolkit/tlGLog.h>   // LOGI（toolkit::logkit 通道）
 
 #include "demoCase.h"
 
 int main (int argc, char **argv)
 {
-    google::InitGoogleLogging (argv[0]);
-    google::InstallPrefixFormatter (glogPrefixFormatter);
-    google::SetStderrLogging (google::GLOG_INFO);
+    (void) argc;
+    (void) argv;
 
     LOGI << "layout-core demo 开始";
     demo::DemoCase ().run ();
     LOGI << "layout-core demo 结束";
 
-    google::ShutdownGoogleLogging ();
     return 0;
 }

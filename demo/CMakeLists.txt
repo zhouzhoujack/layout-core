@@ -21,7 +21,6 @@ endforeach()
 
 find_package(ZLIB REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Xml)
-find_package(glog REQUIRED)
 find_package(toolkit REQUIRED)
 
 function (layoutcore_import name)
@@ -32,7 +31,7 @@ function (layoutcore_import name)
         INTERFACE_LINK_LIBRARIES "${ARGN}")
 endfunction()
 
-layoutcore_import(utils Qt5::Core Qt5::Gui Qt5::Xml glog::glog toolkit::logkit ZLIB::ZLIB)
+layoutcore_import(utils Qt5::Core Qt5::Gui Qt5::Xml toolkit::logkit ZLIB::ZLIB)
 layoutcore_import(data layoutcore::utils)
 layoutcore_import(db-io layoutcore::data layoutcore::utils)
 layoutcore_import(io layoutcore::data)

@@ -17,7 +17,6 @@ endif()
 
 find_package(ZLIB REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Xml)
-find_package(glog REQUIRED)
 find_package(toolkit REQUIRED)
 
 enable_testing()
