@@ -28,7 +28,7 @@ target_link_libraries(utils PUBLIC
     Qt5::Gui
     Qt5::Xml
     glog::glog
-    toolkit::toolkit
+    toolkit::logkit
     ZLIB::ZLIB
 )
 

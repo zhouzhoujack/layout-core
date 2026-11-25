@@ -13,9 +13,6 @@
 #include "utilsExpression.h"
 #include "utilsInternational.h"
 
-// 字符串裁剪交给 toolkit 库（toolchain 提供），layout-core 不再重复实现
-#include "toolkit/string_utils.h"
-
 namespace geo
 {
 
@@ -883,8 +880,16 @@ split (const std::string &t, const std::string &s)
 std::string
 trim (const std::string &s)
 {
-  // 直接复用 toolkit 的实现（空格 / \t / \n / \r / \f / \v）
-  return toolkit::trim (s);
+  //  去掉首尾空白（空格 / \t / \n / \r / \f / \v）
+  size_t b = 0;
+  size_t e = s.size ();
+  while (b < e && safe_isspace (s [b])) {
+    ++b;
+  }
+  while (e > b && safe_isspace (s [e - 1])) {
+    --e;
+  }
+  return std::string (s, b, e - b);
 }
 
 // -------------------------------------------------------------------
