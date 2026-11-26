@@ -7,6 +7,7 @@
 #   build-*/      demo 或其它自定义构建目录（如 build-demo/）
 #   lib/          编译产物 *.so
 #   include/      平铺暂存的头文件
+#   layout-core_*/  ./compile.sh --ver <x.y.z> 生成的版本目录
 #
 # 用法：
 #   ./clear.sh              清理上述全部内容
@@ -33,7 +34,7 @@ for arg in "$@"; do
 done
 
 targets=()
-for d in build build-* lib include; do
+for d in build build-* lib include layout-core_*; do
     # 没有匹配项时通配符会原样返回，靠 -d 判断过滤掉
     [[ -d "${d}" ]] && targets+=("${d}")
 done

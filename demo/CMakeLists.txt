@@ -9,7 +9,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include("/home/hz/toolchain/cmake/toolchain.cmake")
 
-get_filename_component(LAYOUTCORE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+# compile.sh 会传 -DLAYOUTCORE_ROOT=<dir> 指向自定义产物目录
+# （--path / --ver / third_party_dir）；不传时默认用仓库根。
+if (NOT LAYOUTCORE_ROOT)
+    get_filename_component(LAYOUTCORE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+endif()
+get_filename_component(LAYOUTCORE_ROOT "${LAYOUTCORE_ROOT}" ABSOLUTE)
 set(LAYOUTCORE_LIB_DIR     "${LAYOUTCORE_ROOT}/lib")
 set(LAYOUTCORE_INCLUDE_DIR "${LAYOUTCORE_ROOT}/include")
 

@@ -19,6 +19,7 @@ Makefile
 # 构建输出：.so 与平铺头文件（由 CMake 生成）
 /lib/
 /include/
+layout-core*
 
 # 目标文件 / 静态库 / 动态库 / 依赖文件
 *.o

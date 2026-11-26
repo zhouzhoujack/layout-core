@@ -22,14 +22,19 @@ find_package(toolkit REQUIRED)
 enable_testing()
 
 # ---------------------------------------------------------------------------
-# 产物输出根目录（仓库根）
+# 产物输出根目录（默认仓库根）
 #
 # 统一在这里用普通变量定义（绝对、规范化路径），各模块只引用
 # LAYOUTCORE_STAGE_LIB / LAYOUTCORE_STAGE_INCLUDE。
-# 注意：不要改成 CACHE 变量——缓存里一旦存了旧目录（例如改名前的
+# compile.sh 会通过 -DLAYOUTCORE_STAGE_ROOT=<dir> 指定输出目录
+# （--path / --ver / third_party_dir 都换算成这个变量）。
+# 注意：默认值不要写成 CACHE 变量——缓存里一旦存了旧目录（例如改名前的
 # src/utils/../..），mkdir/copy 会按 "utils/.." 把旧目录重新创建出来。
 # ---------------------------------------------------------------------------
-get_filename_component(LAYOUTCORE_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+if (NOT LAYOUTCORE_STAGE_ROOT)
+    get_filename_component(LAYOUTCORE_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+endif()
+get_filename_component(LAYOUTCORE_STAGE_ROOT "${LAYOUTCORE_STAGE_ROOT}" ABSOLUTE)
 set(LAYOUTCORE_STAGE_LIB     "${LAYOUTCORE_STAGE_ROOT}/lib")
 set(LAYOUTCORE_STAGE_INCLUDE "${LAYOUTCORE_STAGE_ROOT}/include")
 
