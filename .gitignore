@@ -19,7 +19,9 @@ Makefile
 # 构建输出：.so 与平铺头文件（由 CMake 生成）
 /lib/
 /include/
-layout-core*
+
+# 版本化安装前缀（./compile.sh --ver <x.y.z> 生成 layout-core_<ver>/）
+/layout-core_*/
 
 # 目标文件 / 静态库 / 动态库 / 依赖文件
 *.o
