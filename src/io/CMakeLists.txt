@@ -31,8 +31,6 @@ file(GLOB_RECURSE IO_HEADERS CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/writer/*.h"
 )
 
-# LAYOUTCORE_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
-
 set(IO_SOURCES
     ${IO_COMMON_SOURCES}
     ${IO_READER_SOURCES}
@@ -49,10 +47,11 @@ add_library(io SHARED
 )
 
 target_include_directories(io PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/common
-    ${CMAKE_CURRENT_SOURCE_DIR}/reader
-    ${CMAKE_CURRENT_SOURCE_DIR}/writer
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/common>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/reader>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/writer>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_link_libraries(io PUBLIC
@@ -61,14 +60,14 @@ target_link_libraries(io PUBLIC
 
 target_link_options(io PRIVATE -Wl,--no-undefined)
 
-set_target_properties(io PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTCORE_STAGE_LIB}"
-)
+# 安装：<prefix>/lib/libio.so + <prefix>/include/*.h（平铺）+ 导出目标
+install(TARGETS io
+    EXPORT  LAYOUTCORETargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-add_custom_command(TARGET io POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${IO_HEADERS} "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMENT "Staging io headers -> ${LAYOUTCORE_STAGE_INCLUDE}"
-)
+list(REMOVE_DUPLICATES IO_HEADERS)
+install(FILES ${IO_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 add_subdirectory(test)

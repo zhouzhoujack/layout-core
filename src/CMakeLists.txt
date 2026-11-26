@@ -22,24 +22,57 @@ find_package(toolkit REQUIRED)
 enable_testing()
 
 # ---------------------------------------------------------------------------
-# 产物输出根目录（默认仓库根）
+# 版本号与安装规则
 #
-# 统一在这里用普通变量定义（绝对、规范化路径），各模块只引用
-# LAYOUTCORE_STAGE_LIB / LAYOUTCORE_STAGE_INCLUDE。
-# compile.sh 会通过 -DLAYOUTCORE_STAGE_ROOT=<dir> 指定输出目录
-# （--path / --ver / third_party_dir 都换算成这个变量）。
-# 注意：默认值不要写成 CACHE 变量——缓存里一旦存了旧目录（例如改名前的
-# src/utils/../..），mkdir/copy 会按 "utils/.." 把旧目录重新创建出来。
+# compile.sh --ver <x.y.z> 通过 -DLAYOUTCORE_VERSION 传入（默认 0.1.0）。
+# 产物用 cmake --install 安装到 <prefix>，与 toolkit 一样提供 CMake 包：
+#
+#   <prefix>/include/*.h                        公共头（平铺）
+#   <prefix>/lib/lib{utils,data,db-io,io}.so
+#   <prefix>/lib/cmake/layout-core/             find_package(layout-core)
+#
+#   find_package(layout-core REQUIRED COMPONENTS utils data db-io io)
+#   target_link_libraries(app PRIVATE layout-core::db-io layout-core::io)
+#
+# 包模板见 cmake/layout-coreConfig.cmake。
 # ---------------------------------------------------------------------------
-if (NOT LAYOUTCORE_STAGE_ROOT)
-    get_filename_component(LAYOUTCORE_STAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+if (NOT LAYOUTCORE_VERSION)
+    set(LAYOUTCORE_VERSION "0.1.0")
 endif()
-get_filename_component(LAYOUTCORE_STAGE_ROOT "${LAYOUTCORE_STAGE_ROOT}" ABSOLUTE)
-set(LAYOUTCORE_STAGE_LIB     "${LAYOUTCORE_STAGE_ROOT}/lib")
-set(LAYOUTCORE_STAGE_INCLUDE "${LAYOUTCORE_STAGE_ROOT}/include")
 
 add_subdirectory(util)
 add_subdirectory(data)
 add_subdirectory(geo)
 add_subdirectory(io)
+
+# ---------------------------------------------------------------------------
+# 导出包
+#
+# 各模块里的 install(TARGETS <lib> EXPORT LAYOUTCORETargets ...) 汇总到这里，
+# 生成 layout-coreTargets.cmake（命名空间 layout-core::）。
+# ---------------------------------------------------------------------------
+install(EXPORT LAYOUTCORETargets
+    FILE      layout-coreTargets.cmake
+    NAMESPACE layout-core::
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/layout-core")
+
+# 生成在 <build>/cmake/layout-core/ 下：若安装前缀恰好是构建目录，
+# 写在 prefix 根上的 config 会遮住安装的版本。
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/layout-coreConfig.cmake"
+    "${PROJECT_BINARY_DIR}/cmake/layout-core/layout-coreConfig.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/layout-core")
+
+write_basic_package_version_file(
+    "${PROJECT_BINARY_DIR}/cmake/layout-core/layout-coreConfigVersion.cmake"
+    VERSION "${LAYOUTCORE_VERSION}"
+    COMPATIBILITY SameMajorVersion)
+
+install(FILES
+    "${PROJECT_BINARY_DIR}/cmake/layout-core/layout-coreConfig.cmake"
+    "${PROJECT_BINARY_DIR}/cmake/layout-core/layout-coreConfigVersion.cmake"
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/layout-core")
 

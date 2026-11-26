@@ -14,11 +14,12 @@ add_library(db-io SHARED
 )
 
 target_include_directories(db-io PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/base
-    ${CMAKE_CURRENT_SOURCE_DIR}/collections
-    ${CMAKE_CURRENT_SOURCE_DIR}/ops
-    ${CMAKE_CURRENT_SOURCE_DIR}/hier
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/base>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/collections>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/ops>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/hier>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_link_libraries(db-io PUBLIC
@@ -29,18 +30,14 @@ target_link_libraries(db-io PUBLIC
 
 target_link_options(db-io PRIVATE -Wl,--no-undefined)
 
-# LAYOUTCORE_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
-
-set_target_properties(db-io PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTCORE_STAGE_LIB}"
-)
+# 安装：<prefix>/lib/libdb-io.so + <prefix>/include/*.h（平铺）+ 导出目标
+install(TARGETS db-io
+    EXPORT  LAYOUTCORETargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 file(GLOB_RECURSE GEO_HEADERS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-
-add_custom_command(TARGET db-io POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GEO_HEADERS} "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMENT "Staging geo headers -> ${LAYOUTCORE_STAGE_INCLUDE}"
-)
+install(FILES ${GEO_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 add_subdirectory(test)

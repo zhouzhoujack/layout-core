@@ -13,7 +13,7 @@
 #   ./compile.sh --test                             # 构建后跑 ctest 单元测试
 #   ./compile.sh --demo                             # 构建并运行 demo/ 示例程序
 #
-# 产物目录（<dir>/lib/*.so + <dir>/include/*.h）：
+# 产物目录（<dir>/lib/*.so + <dir>/include/*.h + <dir>/lib/cmake/layout-core）：
 #   ./compile.sh --path /tmp/out                    # 精确输出到 /tmp/out
 #   ./compile.sh --ver 1.2.3                        # 输出到 ./layout-core_1_2_3
 #   ./compile.sh --ver 1.2.3 /opt/third_party       # 输出到 /opt/third_party/layout-core_1_2_3
@@ -117,7 +117,7 @@ fi
 
 rm -rf build/
 cmake -S src -B build -DCMAKE_BUILD_TYPE="${build_type}" \
-    -DLAYOUTCORE_STAGE_ROOT="${stage_root}" ${CMAKE_ARGS:-}
+    -DLAYOUTCORE_VERSION="${version}" ${CMAKE_ARGS:-}
 
 if [[ ${#build_args[@]} -gt 0 ]]; then
     cmake --build build -j3 "${build_args[@]}"
@@ -125,11 +125,15 @@ else
     cmake --build build -j3
 fi
 
+# cmake --install 的相对 --prefix 会按构建目录解析，前面已统一成绝对路径
+cmake --install build --prefix "${stage_root}" > /dev/null
+
 echo
-echo "layout-core ${version} built (${build_type}):"
+echo "layout-core ${version} installed (${build_type}):"
 echo "  root:    ${stage_root}"
 ls -1 "${stage_root}/lib/"*.so 2>/dev/null | sed 's/^/  /'
 echo "  include: $(ls "${stage_root}/include/"*.h 2>/dev/null | wc -l) headers"
+echo "  cmake:   ${stage_root}/lib/cmake/layout-core"
 
 if [[ "${run_tests}" == "1" ]]; then
     echo
@@ -141,7 +145,7 @@ if [[ "${run_demo}" == "1" ]]; then
     echo
     echo "构建并运行 demo ..."
     rm -rf build-demo
-    cmake -S demo -B build-demo -DLAYOUTCORE_ROOT="${stage_root}" > /dev/null
+    cmake -S demo -B build-demo -DCMAKE_PREFIX_PATH="${stage_root}" > /dev/null
     cmake --build build-demo -j3
     echo
     ./build-demo/layout-core-demo

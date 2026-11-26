@@ -15,12 +15,13 @@ add_library(utils SHARED
 )
 
 target_include_directories(utils PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/core
-    ${CMAKE_CURRENT_SOURCE_DIR}/object
-    ${CMAKE_CURRENT_SOURCE_DIR}/exception
-    ${CMAKE_CURRENT_SOURCE_DIR}/io
-    ${CMAKE_CURRENT_SOURCE_DIR}/text
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/core>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/object>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/exception>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/io>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/text>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_link_libraries(utils PUBLIC
@@ -33,18 +34,14 @@ target_link_libraries(utils PUBLIC
 
 target_link_options(utils PRIVATE -Wl,--no-undefined)
 
-# LAYOUTCORE_STAGE_ROOT / LIB / INCLUDE 由顶层 src/CMakeLists.txt 定义
-
-set_target_properties(utils PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${LAYOUTCORE_STAGE_LIB}"
-)
+# 安装：<prefix>/lib/libutils.so + <prefix>/include/*.h（平铺）+ 导出目标
+install(TARGETS utils
+    EXPORT  LAYOUTCORETargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 file(GLOB_RECURSE TL_HEADERS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-
-add_custom_command(TARGET utils POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TL_HEADERS} "${LAYOUTCORE_STAGE_INCLUDE}"
-    COMMENT "Staging utils headers -> ${LAYOUTCORE_STAGE_INCLUDE}"
-)
+install(FILES ${TL_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 add_subdirectory(test)

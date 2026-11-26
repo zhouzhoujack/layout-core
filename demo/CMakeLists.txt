@@ -9,43 +9,21 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include("/home/hz/toolchain/cmake/toolchain.cmake")
 
-# compile.sh 会传 -DLAYOUTCORE_ROOT=<dir> 指向自定义产物目录
-# （--path / --ver / third_party_dir）；不传时默认用仓库根。
-if (NOT LAYOUTCORE_ROOT)
-    get_filename_component(LAYOUTCORE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
-endif()
-get_filename_component(LAYOUTCORE_ROOT "${LAYOUTCORE_ROOT}" ABSOLUTE)
-set(LAYOUTCORE_LIB_DIR     "${LAYOUTCORE_ROOT}/lib")
-set(LAYOUTCORE_INCLUDE_DIR "${LAYOUTCORE_ROOT}/include")
-
-foreach (_f lib/libdb-io.so lib/libio.so lib/libutils.so lib/libdata.so include/geoRegion.h)
-    if (NOT EXISTS "${LAYOUTCORE_ROOT}/${_f}")
-        message(FATAL_ERROR "未找到 ${LAYOUTCORE_ROOT}/${_f}，请先在 layout-core 目录执行 ./compile.sh")
-    endif()
-endforeach()
-
-find_package(ZLIB REQUIRED)
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Xml)
-find_package(toolkit REQUIRED)
-
-function (layoutcore_import name)
-    add_library(layoutcore::${name} SHARED IMPORTED)
-    set_target_properties(layoutcore::${name} PROPERTIES
-        IMPORTED_LOCATION "${LAYOUTCORE_LIB_DIR}/lib${name}.so"
-        INTERFACE_INCLUDE_DIRECTORIES "${LAYOUTCORE_INCLUDE_DIR}"
-        INTERFACE_LINK_LIBRARIES "${ARGN}")
-endfunction()
-
-layoutcore_import(utils Qt5::Core Qt5::Gui Qt5::Xml toolkit::logkit ZLIB::ZLIB)
-layoutcore_import(data layoutcore::utils)
-layoutcore_import(db-io layoutcore::data layoutcore::utils)
-layoutcore_import(io layoutcore::data)
+# demo 像第三方用户一样消费“已安装”的 layout-core 包（find_package +
+# layout-core::xxx），而不是链接源码树里的 target，因此它同时是导出树
+# （headers / libs / cmake 包）的冒烟测试。
+#
+#   ./compile.sh --demo            # 构建 + 安装到 ./layout-core_0_1_0 后运行 demo
+#   # 等价于：
+#   cmake -S demo -B build-demo -DCMAKE_PREFIX_PATH=<prefix>
+#   cmake --build build-demo -j3
+find_package(layout-core REQUIRED COMPONENTS utils data db-io io)
 
 add_executable(layout-core-demo
     main.cpp
     demoCase.cpp
 )
-target_link_libraries(layout-core-demo PRIVATE layoutcore::db-io layoutcore::io)
+target_link_libraries(layout-core-demo PRIVATE layout-core::db-io layout-core::io)
 
 # io 只做格式注册（静态初始化），demo 不直接引用其符号，
 # 需要 --no-as-needed 防止链接器把它丢掉。
