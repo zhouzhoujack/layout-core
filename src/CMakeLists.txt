@@ -70,7 +70,6 @@ set(LAYOUTCORE_PUBLIC_HEADERS
     geoShapes.h
     geoStreamLayers.h
     geoWriter.h
-    utilsStream.h
 )
 
 file(GLOB_RECURSE LAYOUTCORE_ALL_HEADERS CONFIGURE_DEPENDS
@@ -107,6 +106,7 @@ endforeach()
 
 # 生成改写后的公共头（放 <build>/include/layout-core，不动源码）
 set(LAYOUTCORE_STAGED_INCLUDE "${PROJECT_BINARY_DIR}/include/layout-core")
+file(REMOVE_RECURSE "${LAYOUTCORE_STAGED_INCLUDE}")
 file(MAKE_DIRECTORY "${LAYOUTCORE_STAGED_INCLUDE}")
 foreach (_hdr IN LISTS LAYOUTCORE_PUBLIC_HEADER_FILES)
     get_filename_component(_hdr_name "${_hdr}" NAME)
