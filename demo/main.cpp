@@ -5,7 +5,7 @@
 // 编译：见 demo/CMakeLists.txt（或直接 ./compile.sh --demo）
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>   // LOGI（toolkit::logkit 通道）
+#include <toolkit/lkGLog.h>   // LOGI（toolkit::logkit 通道）
 
 #include "demoCase.h"
 

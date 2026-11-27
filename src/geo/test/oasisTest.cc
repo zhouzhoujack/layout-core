@@ -5,7 +5,7 @@
 //       以及写入后用自家 reader 读回的往返一致性。
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 #include <cstdio>

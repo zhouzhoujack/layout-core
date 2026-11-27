@@ -9,7 +9,7 @@
 //   - 未知格式给出明确异常
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 #include <cstdio>

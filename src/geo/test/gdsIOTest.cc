@@ -2,7 +2,7 @@
 // GDS2 写入 / 读回 / 按层部分读入（走发布出来的 include 头与 lib/*.so）
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 #include <cstdio>

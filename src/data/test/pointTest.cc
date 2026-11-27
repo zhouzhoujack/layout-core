@@ -7,7 +7,7 @@
 
 #include "geoPoint.h"
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 TEST(PointTest, DefaultConstruction)

@@ -6,7 +6,7 @@
 // 面积单位是 dbu²。
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 #include "geoBox.h"

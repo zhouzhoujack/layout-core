@@ -2,10 +2,10 @@
 // utils 单元测试入口
 //
 // 取代 gtest_main：日志走 toolkit 库
-// （toolkit/tlGLog.h：LOGI/LOGW/LOGE）。
+// （toolkit/lkGLog.h：LOGI/LOGW/LOGE）。
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>
+#include <toolkit/lkGLog.h>
 #include <gtest/gtest.h>
 
 int main(int argc, char** argv)

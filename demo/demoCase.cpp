@@ -8,7 +8,7 @@
 //   5) 读真实 GDS，用 [0,0,100,100] µm 窗口裁剪后 dump 成新文件
 // ===========================================================================
 
-#include <toolkit/tlGLog.h>   // LOGI / LOGW / LOGE
+#include <toolkit/lkGLog.h>   // LOGI / LOGW / LOGE
 
 #include <cmath>
 #include <cstdio>
