@@ -145,7 +145,11 @@ if [[ "${run_demo}" == "1" ]]; then
     echo
     echo "构建并运行 demo ..."
     rm -rf build-demo
-    cmake -S demo -B build-demo -DCMAKE_PREFIX_PATH="${stage_root}" > /dev/null
+    # toolchain 里也可能装了一份 layout-core（LayoutCore_ROOT 排在 CMAKE_PREFIX_PATH
+    # 前面），这里用 layout-core_DIR 强制指向本次刚装好的包，保证 demo 验证的是本地构建。
+    cmake -S demo -B build-demo \
+        -DCMAKE_PREFIX_PATH="${stage_root}" \
+        -Dlayout-core_DIR="${stage_root}/lib/cmake/layout-core" > /dev/null
     cmake --build build-demo -j3
     echo
     ./build-demo/layout-core-demo

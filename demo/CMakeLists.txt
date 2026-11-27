@@ -4,7 +4,6 @@ project(layout-core-demo LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include("/home/hz/toolchain/cmake/toolchain.cmake")
@@ -23,7 +22,10 @@ add_executable(layout-core-demo
     main.cpp
     demoCase.cpp
 )
-target_link_libraries(layout-core-demo PRIVATE layout-core::db-io layout-core::io)
+target_link_libraries(layout-core-demo PRIVATE 
+    layout-core::db-io 
+    layout-core::io
+)
 
 # io 只做格式注册（静态初始化），demo 不直接引用其符号，
 # 需要 --no-as-needed 防止链接器把它丢掉。
