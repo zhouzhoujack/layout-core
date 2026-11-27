@@ -7,7 +7,6 @@ file(GLOB TL_CORE_SOURCES
     "object/*.cc"
     "exception/*.cc"
     "io/*.cc"
-    "text/*.cc"
 )
 
 add_library(utils SHARED
@@ -20,7 +19,6 @@ target_include_directories(utils PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/object>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/exception>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/io>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/text>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
