@@ -19,9 +19,9 @@
 
 namespace gsi
 {
-  class GSI_PUBLIC ClassBase;
+  class ClassBase;
   struct NoAdaptorTag;
-  template <class T, class A> class GSI_PUBLIC_TEMPLATE Class;
+  template <class T, class A> class Class;
   template <class X> const ClassBase *cls_decl ();
 }
 

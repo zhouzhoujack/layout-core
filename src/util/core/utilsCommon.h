@@ -9,9 +9,4 @@
 # define TL_PUBLIC_TEMPLATE  __attribute__ ((visibility ("default")))
 # define TL_LOCAL            __attribute__ ((visibility ("hidden")))
 
-//  utilsVariant.h 里仍有 gsi::Class / gsi::ClassBase 的前置声明，保留这组宏。
-# define GSI_PUBLIC           __attribute__ ((visibility ("default")))
-# define GSI_PUBLIC_TEMPLATE  __attribute__ ((visibility ("default")))
-# define GSI_LOCAL            __attribute__ ((visibility ("hidden")))
-
 #endif
